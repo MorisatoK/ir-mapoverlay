@@ -3,57 +3,42 @@ window.app = angular.module 'app', [
     'ngSanitize'
 ]
 
-app.service 'iRData', ($rootScope, $location) ->
-    fps = parseInt($location.search().fps) || 10
+app.service 'config', ($location) ->
+    vars = $location.search()
+
+    fps = parseInt(vars.fps) or 10
     fps = Math.max 1, Math.min 60, fps
+
+    host: vars.host or 'localhost:8182'
+    fps: fps
+
+    requestParams: [
+        # yaml
+        'DriverInfo'
+        'SessionInfo'
+
+        # telemetry
+        'CamCarIdx'
+        'CarIdxLapDistPct'
+        'CarIdxOnPitRoad'
+        'CarIdxTrackSurface'
+        'IsReplayPlaying'
+        'ReplayFrameNumEnd'
+        'SessionNum'
+    ]
+    requestParamsOnce: [
+        # yaml
+        'QualifyResultsInfo'
+        'WeekendInfo'
+    ]
+
+
+app.service 'iRData', ($rootScope, config) ->
     ir = new IRacing \
-        # request params
-        [
-            # yaml
-            'DriverInfo'
-            'SessionInfo'
-
-            # telemetry
-            'CamCarIdx'
-            # 'CarIdxGear'
-            #'CarIdxLap'
-            'CarIdxLapDistPct'
-            'CarIdxOnPitRoad'
-            # 'CarIdxRPM'
-            'CarIdxTrackSurface'
-            #'FuelLevel'
-            # 'Gear'
-            #'IsOnTrack'
-            'IsReplayPlaying'
-            # 'Lap'
-            # 'LapDist'
-            # 'LapDistPct'
-            #'OilTemp'
-            #'OnPitRoad'
-            # 'ReplayFrameNum'
-            'ReplayFrameNumEnd'
-            # 'RPM'
-            # 'SessionFlags'
-            #'SessionLapsRemain'
-            'SessionNum'
-            #'SessionState'
-            #'SessionTime'
-            #'SessionTimeRemain'
-            # 'Speed'
-            #'WaterTemp'
-
-            # forces
-            #'LatAccel'
-            #'LongAccel'
-        ],
-        # request params once
-        [
-            # yaml
-            'QualifyResultsInfo'
-            # 'SplitTimeInfo'
-            'WeekendInfo'
-        ],
-        fps
+        config.requestParams,
+        config.requestParamsOnce,
+        config.fps,
+        config.host
 
     ir.onConnect = ->
         ir.data.connected = true
