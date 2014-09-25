@@ -66,6 +66,7 @@ app.service 'iRData', ($rootScope, $location) ->
     ir.onUpdate = (keys) ->
         if 'DriverInfo' in keys
             updateDriversByCarIdx()
+            updateCarClassIDs()
         if 'SessionInfo' in keys
             updatePositionsByCarIdx()
         if 'QualifyResultsInfo' in keys
@@ -78,13 +79,14 @@ app.service 'iRData', ($rootScope, $location) ->
             ir.data.DriversByCarIdx = {}
         for driver in ir.data.DriverInfo.Drivers
             ir.data.DriversByCarIdx[driver.CarIdx] = driver
+
+    updateCarClassIDs = ->
+        for driver in ir.data.DriverInfo.Drivers
             carClassId = driver.CarClassID
             if not ir.data.CarClassIDs
                 ir.data.CarClassIDs = []
-            if driver.UserID != -1 and driver.IsSpectator == 0 and \
-                    ir.data.CarClassIDs.indexOf(carClassId) == -1
+            if driver.UserID != -1 and driver.IsSpectator == 0 and carClassId not in ir.data.CarClassIDs
                 ir.data.CarClassIDs.push carClassId
-                ir.data.CarClassIDs.sort (a, b) -> b - a
 
     updatePositionsByCarIdx = ->
         if not ir.data.PositionsByCarIdx
