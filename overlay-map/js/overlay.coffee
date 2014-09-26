@@ -1,4 +1,4 @@
-window.app = angular.module 'app', [
+window.app = angular.module 'overlay-map', [
     'ngAnimate'
     'ngSanitize'
 ]
@@ -6,11 +6,76 @@ window.app = angular.module 'app', [
 app.service 'config', ($location) ->
     vars = $location.search()
 
-    fps = parseInt(vars.fps) or 10
+    fps = parseInt(vars.fps) or 15
     fps = Math.max 1, Math.min 60, fps
 
     host: vars.host or 'localhost:8182'
     fps: fps
+
+    mapOptions:
+        dimensions:
+            width: 420
+            height: 324
+        preserveAspectRatio: 'xMidYMax meet'
+        styles:
+            track:
+                fill: 'none'
+                stroke: vars.trackColor or '#000000'
+                'stroke-width': '10'
+                'stroke-miterlimit': '10'
+                'stroke-opacity': '1'
+            pits:
+                fill: 'none'
+                stroke: vars.trackColor or '#000000'
+                'stroke-width': '7'
+                'stroke-miterlimit': '7'
+                'stroke-opacity': '1'
+            track_outline:
+                fill: 'none'
+                stroke: vars.trackOutlineColor or '#FFFFFF'
+                'stroke-width': '18'
+                'stroke-miterlimit': '18'
+                'stroke-opacity': '0.3'
+            pits_outline:
+                fill: 'none'
+                stroke: vars.trackOutlineColor or '#FFFFFF'
+                'stroke-width': '15'
+                'stroke-miterlimit': '15'
+                'stroke-opacity': '0.3'
+            startFinish:
+                stroke: vars.startFinishColor or '#FF0000'
+                'stroke-width': '5'
+                'stroke-miterlimit': '10'
+                'stroke-opacity': '1'
+            driver:
+                circleRadius: 12
+                class: [
+                    '#33ceff'
+                    '#ffda59'
+                    '#ff5888'
+                    '#ad60cd'
+                    '#18cb8a'
+                ]
+                default:
+                    'stroke-width': '0'
+                    stroke: '#4dff51'
+                camera:
+                    'stroke-width': '3'
+                pit:
+                    opacity: '0.5'
+                onTrack:
+                    opacity: '1'
+                offTrack:
+                    'stroke-width': '5'
+                    stroke: '#FF0000'
+                circleNum:
+                    font: ''
+                posNum:
+                    fill: '#000000'
+                    opacity: '1'
+                carNum:
+                    fill: '#666666'
+                    opacity: '0.75'
 
     requestParams: [
         # yaml
@@ -31,7 +96,6 @@ app.service 'config', ($location) ->
         'QualifyResultsInfo'
         'WeekendInfo'
     ]
-
 
 app.service 'iRData', ($rootScope, config) ->
     ir = new IRacing \
@@ -93,7 +157,7 @@ app.service 'iRData', ($rootScope, config) ->
 
 ##### Map
 
-app.controller 'MapCtrl', ($scope, $element, iRData) ->
+app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
     ir = $scope.ir = iRData
 
     CarIdxLapDistPct = null
@@ -113,7 +177,7 @@ app.controller 'MapCtrl', ($scope, $element, iRData) ->
     drivers = {}
     driverCarNum = {}
 
-    throttle = Math.floor 1000/15
+    throttle = Math.floor 1000/config.fps
     skipCars = 0
 
     # hide if not live, but loaded replay is ok
@@ -172,19 +236,19 @@ app.controller 'MapCtrl', ($scope, $element, iRData) ->
             trackId = ir.WeekendInfo.TrackID
 
             if typeof trackOverlay.tracksById[trackId] != 'undefined'
-                trackMap = Raphael('map-overlay', trackOverlay.mapOptions.dimensions.width, trackOverlay.mapOptions.dimensions.height)
+                trackMap = Raphael('map-overlay', config.mapOptions.dimensions.width, config.mapOptions.dimensions.height)
 
                 for path, i in trackOverlay.tracksById[trackId].paths
                     if i == 0
-                        trk_outline = trackMap.path(path).attr(trackOverlay.mapOptions.styles.track_outline).data('id', 'trk_outline')
-                        track = trackMap.path(path).attr(trackOverlay.mapOptions.styles.track).data('id', 'track')
+                        trk_outline = trackMap.path(path).attr(config.mapOptions.styles.track_outline).data('id', 'trk_outline')
+                        track = trackMap.path(path).attr(config.mapOptions.styles.track).data('id', 'track')
 
                         dims = Raphael.pathBBox(path)
                         trackMap.canvas.setAttribute('viewBox', '0 0 ' + (Math.round(dims.width) + 30) + ' ' + (Math.round(dims.height) + 30))
-                        trackMap.canvas.setAttribute('preserveAspectRatio', trackOverlay.mapOptions.preserveAspectRatio)
+                        trackMap.canvas.setAttribute('preserveAspectRatio', config.mapOptions.preserveAspectRatio)
                     else 
-                        pit_outline = trackMap.path(path).attr(trackOverlay.mapOptions.styles.pits_outline).toBack().data('id', 'pit_outline')
-                        pit = trackMap.path(path).attr(trackOverlay.mapOptions.styles.pits).data('id', 'pit')
+                        pit_outline = trackMap.path(path).attr(config.mapOptions.styles.pits_outline).toBack().data('id', 'pit_outline')
+                        pit = trackMap.path(path).attr(config.mapOptions.styles.pits).data('id', 'pit')
                 
                 trackLength = track.getTotalLength()
                 drawStartFinishLine(trackOverlay.tracksById[trackId].extendedLine || 0)
@@ -207,10 +271,10 @@ app.controller 'MapCtrl', ($scope, $element, iRData) ->
                     camCarIdx = n
 
                     for driver, circle of drivers
-                        drivers[driver].attr(trackOverlay.mapOptions.styles.driver.default)
+                        drivers[driver].attr(config.mapOptions.styles.driver.default)
 
                     if typeof drivers[camCarIdx] != 'undefined'
-                        drivers[camCarIdx].attr(trackOverlay.mapOptions.styles.driver.camera).toFront()
+                        drivers[camCarIdx].attr(config.mapOptions.styles.driver.camera).toFront()
                         driverCarNum[camCarIdx].toFront()
 
                 watchPitRoad = $scope.$watch 'ir.CarIdxOnPitRoad', (n, o) ->
@@ -224,9 +288,9 @@ app.controller 'MapCtrl', ($scope, $element, iRData) ->
 
                     for pitStatus, carIdx in carIdxOnPitRoad when carIdx >= skipCars
                         if pitStatus
-                            drivers[carIdx].attr(trackOverlay.mapOptions.styles.driver.pit)
+                            drivers[carIdx].attr(config.mapOptions.styles.driver.pit)
                         else if typeof drivers[carIdx] != 'undefined'
-                            drivers[carIdx].attr(trackOverlay.mapOptions.styles.driver.onTrack)
+                            drivers[carIdx].attr(config.mapOptions.styles.driver.onTrack)
                 , true
 
                 watchOfftracks = $scope.$watch 'ir.CarIdxTrackSurface', (n, o) ->
@@ -238,12 +302,12 @@ app.controller 'MapCtrl', ($scope, $element, iRData) ->
 
                     for trackSurface, carIdx in n when carIdx >= skipCars
                         if trackSurface == 0 and o[carIdx] != 0
-                            drivers[carIdx].attr(trackOverlay.mapOptions.styles.driver.offTrack)
+                            drivers[carIdx].attr(config.mapOptions.styles.driver.offTrack)
                         else if trackSurface != 0 and o[carIdx] == 0
-                            drivers[carIdx].attr(trackOverlay.mapOptions.styles.driver.default)
+                            drivers[carIdx].attr(config.mapOptions.styles.driver.default)
 
                             if carIdx == ir.CamCarIdx
-                                drivers[carIdx].attr(trackOverlay.mapOptions.styles.driver.camera)
+                                drivers[carIdx].attr(config.mapOptions.styles.driver.camera)
                 , true
 
                 watchPositions = $scope.$watch 'ir.PositionsByCarIdx', (n, o) ->
@@ -254,7 +318,7 @@ app.controller 'MapCtrl', ($scope, $element, iRData) ->
 
                     for carIdx, driver of positionsByCarIdx[ir.SessionNum]
                         if typeof driverCarNum[carIdx] != 'undefined'
-                            driverCarNum[carIdx].attr(text: driver.ClassPosition + 1).attr(trackOverlay.mapOptions.styles.driver.posNum)
+                            driverCarNum[carIdx].attr(text: driver.ClassPosition + 1).attr(config.mapOptions.styles.driver.posNum)
                 , true
 
                 watchSessionNum = $scope.$watch 'ir.SessionNum', (n, o) ->
@@ -265,7 +329,7 @@ app.controller 'MapCtrl', ($scope, $element, iRData) ->
                         return
 
                     for idx, text of driverCarNum
-                        text.attr(text: ir.DriversByCarIdx[idx].CarNumber).attr(trackOverlay.mapOptions.styles.driver.carNum)
+                        text.attr(text: ir.DriversByCarIdx[idx].CarNumber).attr(config.mapOptions.styles.driver.carNum)
                     
 
     arrayEqual = (a, b) ->
@@ -275,7 +339,7 @@ app.controller 'MapCtrl', ($scope, $element, iRData) ->
         startCoords = track.getPointAtLength(refPoint * trackLength)
         pathAngle = track.getPointAtLength((refPoint * trackLength) + 0.1)
         rotateAngle = Raphael.angle(startCoords.x, startCoords.y, pathAngle.x, pathAngle.y)
-        startFinishLine = trackMap.path(getLinePath(startCoords.x, startCoords.y - 15, startCoords.x, startCoords.y + 15)).transform('r' + rotateAngle).attr(trackOverlay.mapOptions.styles.startFinish)
+        startFinishLine = trackMap.path(getLinePath(startCoords.x, startCoords.y - 15, startCoords.x, startCoords.y + 15)).transform('r' + rotateAngle).attr(config.mapOptions.styles.startFinish)
 
     getLinePath = (startX, startY, endX, endY) ->
         'M' + startX + ' ' + startY + ' L' + endX + ' ' + endY
@@ -294,25 +358,25 @@ app.controller 'MapCtrl', ($scope, $element, iRData) ->
                         carClassIndex = ir.CarClassIDs.indexOf(carClassId) % 3
                     else carClassIndex = 1
 
-                    drivers[carIdx] = trackMap.circle(driverCoords.x, driverCoords.y, trackOverlay.mapOptions.styles.driver.circleRadius).attr(trackOverlay.mapOptions.styles.driver.default).attr(fill: trackOverlay.mapOptions.styles.driver.class[carClassIndex])
+                    drivers[carIdx] = trackMap.circle(driverCoords.x, driverCoords.y, config.mapOptions.styles.driver.circleRadius).attr(config.mapOptions.styles.driver.default).attr(fill: config.mapOptions.styles.driver.class[carClassIndex])
 
-                    driverCarNum[carIdx] = trackMap.text(driverCoords.x, driverCoords.y, '').attr(trackOverlay.mapOptions.styles.driver.circleNum)
+                    driverCarNum[carIdx] = trackMap.text(driverCoords.x, driverCoords.y, '').attr(config.mapOptions.styles.driver.circleNum)
 
                     if typeof ir.PositionsByCarIdx[ir.SessionNum][carIdx] != 'undefined'
-                        driverCarNum[carIdx].attr(text: ir.PositionsByCarIdx[ir.SessionNum][carIdx].ClassPosition + 1).attr(trackOverlay.mapOptions.styles.driver.posNum)
+                        driverCarNum[carIdx].attr(text: ir.PositionsByCarIdx[ir.SessionNum][carIdx].ClassPosition + 1).attr(config.mapOptions.styles.driver.posNum)
                     else
-                        driverCarNum[carIdx].attr(text: ir.DriversByCarIdx[carIdx].CarNumber).attr(trackOverlay.mapOptions.styles.driver.carNum)
+                        driverCarNum[carIdx].attr(text: ir.DriversByCarIdx[carIdx].CarNumber).attr(config.mapOptions.styles.driver.carNum)
 
                     if carIdx == ir.myCarIdx
-                        drivers[carIdx].attr(fill: shadeColor(trackOverlay.mapOptions.styles.driver.class[carClassIndex], -0.3))
+                        drivers[carIdx].attr(fill: shadeColor(config.mapOptions.styles.driver.class[carClassIndex], -0.3))
                         driverCarNum[carIdx].node.setAttribute('id', 'player')
 
                     if carIdx == ir.CamCarIdx
-                        drivers[carIdx].attr(trackOverlay.mapOptions.styles.driver.camera).toFront()
+                        drivers[carIdx].attr(config.mapOptions.styles.driver.camera).toFront()
                         driverCarNum[carIdx].toFront()
 
                     if ir.CarIdxOnPitRoad[carIdx]
-                        drivers[carIdx].attr(trackOverlay.mapOptions.styles.driver.pit)
+                        drivers[carIdx].attr(config.mapOptions.styles.driver.pit)
 
             else
                 if carIdxDist == -1

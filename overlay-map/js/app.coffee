@@ -29,7 +29,7 @@ app.run ($rootScope, $sce) ->
 app.controller 'SettingsCtrl', ($scope, localStorageService) ->
     defaultSettings =
         host: 'localhost:8182'
-        fps: 10
+        fps: 15
         trackColor: '#000000'
         trackOutlineColor: '#FFFFFF'
         startFinishColor: '#FF0000'
