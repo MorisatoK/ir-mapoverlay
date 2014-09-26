@@ -1,0 +1,118 @@
+@bootstrap-path: "/libs/bootstrap/less/";
+@import "@{bootstrap-path}variables.less";
+@icon-font-path: "/libs/bootstrap/fonts/";
+@import "@{bootstrap-path}glyphicons.less";
+@import "@{bootstrap-path}mixins/size.less";
+@import "@{bootstrap-path}mixins/vendor-prefixes.less";
+
+body {
+	padding-top: 70px;
+	@media (max-width: @grid-float-breakpoint-max) {
+		padding-top: 165px;
+	}
+}
+
+@media (min-width: @screen-sm) {
+	.container {
+		max-width: @screen-sm;
+	}
+}
+
+input,
+button {
+	outline: none !important;
+}
+
+// MARKDOWN
+
+@import (inline) "/libs/highlight/styles/monokai_sublime.css";
+
+xmp {
+	display: none;
+}
+
+pre.hljs {
+	border: none;
+}
+
+// TWITCH
+
+.twitch {
+	.twitch-connect-btn {
+		background: url('../img/twitch-connect.png') no-repeat;
+		.size(170px, 32px);
+		border: none;
+	}
+
+	.input-status {
+		padding-bottom: 1em;
+	}
+
+	#inputNewFollowerSound {
+		width: 70%;
+	}
+	#inputNewFollowerVolume {
+		width: 30%;
+	}
+
+	.checkbox {
+		display: inline-block;
+	}
+
+	> .new-followers {
+		position: absolute;
+		right: 16px;
+		bottom: 0;
+		font-size: @font-size-h4;
+		z-index: 2;
+		width: 28%;
+		min-width: 270px;
+
+		> div {
+			cursor: pointer;
+
+			> .panel-body > img {
+				float: right;
+				max-width: 100px;
+				margin-left: 10px;
+			}
+		}
+	}
+}
+
+// ANIMATE SPIN
+
+.animate-spin {
+	.animation(spin 1s infinite linear);
+	display: inline-block;
+}
+@-moz-keyframes spin {
+	0% { .rotate(0deg) }
+	100% { .rotate(359deg) }
+}
+@-webkit-keyframes spin {
+	0% { .rotate(0deg) }
+	100% { .rotate(359deg) }
+}
+@-o-keyframes spin {
+	0% { .rotate(0deg) }
+	100% { .rotate(359deg) }
+}
+@-ms-keyframes spin {
+	0% { .rotate(0deg) }
+	100% { .rotate(359deg) }
+}
+@keyframes spin {
+	0% { .rotate(0deg) }
+	100% { .rotate(359deg) }
+}
+
+// SETTINGS
+
+.settings {
+
+	.input-url {
+		padding-bottom: 1em;
+	}
+
+}

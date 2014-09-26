@@ -1,0 +1,68 @@
+<div class="row settings">
+	<div class="col-md-12">
+		<form class="form-horizontal">
+
+			<!-- url -->
+			<div class="input-group input-url">
+				<span class="input-group-addon">CLR Browser URL</span>
+				<input ng-model="url" ng-change="changeURL()" type="url" class="form-control">
+			</div>
+
+			<!-- host -->
+			<h2>General</h2>
+			<div ng-if="!isDefaultHost" class="form-group">
+				<label for="inputHost" class="col-sm-3 control-label">Server</label>
+				<div class="col-sm-3">
+					<input ng-model="settings.host" ng-change="saveSettings()" type="text" class="form-control" id="inputHost" placeholder="localhost:8182" />
+				</div>
+				<div class="col-sm-6">
+					<span class="help-block">Your iRacing Browser Apps Server address and port.</span>
+				</div>
+			</div>
+
+			<!-- fps -->
+			<div class="form-group">
+				<label for="inputFps" class="col-sm-3 control-label">FPS</label>
+				<div class="col-sm-2">
+					<input ng-model="settings.fps" ng-change="saveSettings()" type="number" class="form-control" id="inputFps" min="1" max="60" />
+				</div>
+				<div class="col-sm-7">
+					<span class="help-block">How often server will send data and update the map (1-60). <em>This option is CPU expensive</em>.</span>
+				</div>
+			</div>
+
+			<!-- track options -->
+			<h2>Track Stroke Options</h2>
+			<div class="form-group">
+				<label for="inputTrackColor" class="col-sm-3 control-label">Track Stroke Color</label>
+				<div class="col-sm-2">
+					<input ng-model="settings.trackColor" ng-change="saveSettings()" type="text" class="form-control" id="inputTrackColor" colorpicker="hex" />
+				</div>
+				<div class="col-sm-7">
+					<span class="help-block">The color of the track in hexadecimal format. <em>Default: #000000</em></span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="inputTrackOutlineColor" class="col-sm-3 control-label">Track Outline Color</label>
+				<div class="col-sm-2">
+					<input ng-model="settings.trackOutlineColor" ng-change="saveSettings()" type="text" class="form-control" id="inputTrackOutlineColor" colorpicker="hex" />
+				</div>
+				<div class="col-sm-7">
+					<span class="help-block">The color of the track outline. <em>Default: #FFFFFF</em></span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="inputStartColor" class="col-sm-3 control-label">Start/Finish Line Color</label>
+				<div class="col-sm-2">
+					<input ng-model="settings.startFinishColor" ng-change="saveSettings()" type="text" class="form-control" id="inputStartColor" colorpicker="hex" />
+				</div>
+				<div class="col-sm-7">
+					<span class="help-block">The color of the start/finish line. <em>Default: #FF0000</em></span>
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>
