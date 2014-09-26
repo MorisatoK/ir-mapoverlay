@@ -12,6 +12,12 @@ app.service 'config', ($location) ->
     baseStrokeWidth = parseInt(vars.trackWidth) or 10
     baseStrokeWidth = Math.max 1, Math.min 30, baseStrokeWidth
 
+    driverCircle = parseInt(vars.driverCircle) or 12
+    driverCircle = Math.max 1, Math.min 30, driverCircle
+
+    driverHighlightWidth = parseInt(vars.driverHighlightWidth) or 4
+    driverHighlightWidth = Math.max 3, Math.min 10, driverHighlightWidth
+
     host: vars.host or 'localhost:8182'
     fps: fps
 
@@ -51,7 +57,7 @@ app.service 'config', ($location) ->
                 'stroke-miterlimit': (baseStrokeWidth).toString()
                 'stroke-opacity': '1'
             driver:
-                circleRadius: 12
+                circleRadius: driverCircle
                 class: [
                     '#33ceff'
                     '#ffda59'
@@ -61,23 +67,23 @@ app.service 'config', ($location) ->
                 ]
                 default:
                     'stroke-width': '0'
-                    stroke: '#4dff51'
+                    stroke: vars.driverHighlightCam or '#4DFF51'
                 camera:
-                    'stroke-width': '3'
+                    'stroke-width': driverHighlightWidth.toString()
                 pit:
                     opacity: '0.5'
                 onTrack:
                     opacity: '1'
                 offTrack:
-                    'stroke-width': '5'
-                    stroke: '#FF0000'
+                    'stroke-width': driverHighlightWidth.toString()
+                    stroke: vars.driverHighlightOfftrack or '#FF0000'
                 circleNum:
                     font: ''
                 posNum:
-                    fill: '#000000'
+                    fill: vars.driverPosNum or '#000000'
                     opacity: '1'
                 carNum:
-                    fill: '#666666'
+                    fill: vars.driverCarNum or '#666666'
                     opacity: '0.75'
 
     requestParams: [

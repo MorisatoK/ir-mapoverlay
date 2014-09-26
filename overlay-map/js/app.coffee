@@ -34,6 +34,12 @@ app.controller 'SettingsCtrl', ($scope, localStorageService) ->
         trackWidth: 10
         trackOutlineColor: '#FFFFFF'
         startFinishColor: '#FF0000'
+        driverCircle: 12
+        driverHighlightWidth: 4
+        driverHighlightCam: '#4DFF51'
+        driverHighlightOfftrack: '#FF0000'
+        driverPosNum: '#000000'
+        driverCarNum: '#666666'
 
     $scope.isDefaultHost = document.location.host == defaultSettings.host
 
@@ -44,6 +50,12 @@ app.controller 'SettingsCtrl', ($scope, localStorageService) ->
     settings.trackWidth ?= defaultSettings.trackWidth
     settings.trackOutlineColor ?= defaultSettings.trackOutlineColor
     settings.startFinishColor ?= defaultSettings.startFinishColor
+    settings.driverCircle ?= defaultSettings.driverCircle
+    settings.driverHighlightWidth ?= defaultSettings.driverHighlightWidth
+    settings.driverHighlightCam ?= defaultSettings.driverHighlightCam
+    settings.driverHighlightOfftrack ?= defaultSettings.driverHighlightOfftrack
+    settings.driverPosNum ?= defaultSettings.driverPosNum
+    settings.driverCarNum ?= defaultSettings.driverCarNum
 
     $scope.saveSettings = saveSettings = ->
         settings.fps = Math.min 60, Math.max(1, settings.fps)
@@ -57,6 +69,12 @@ app.controller 'SettingsCtrl', ($scope, localStorageService) ->
         'trackWidth'
         'trackOutlineColor'
         'startFinishColor'
+        'driverCircle'
+        'driverHighlightWidth'
+        'driverHighlightCam'
+        'driverHighlightOfftrack'
+        'driverPosNum'
+        'driverCarNum'
     ]
 
     updateURL = ->
