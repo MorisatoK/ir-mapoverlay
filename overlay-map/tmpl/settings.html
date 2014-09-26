@@ -44,6 +44,16 @@
 			</div>
 
 			<div class="form-group">
+				<label for="inputTrackWidth" class="col-sm-3 control-label">Track Stroke Width</label>
+				<div class="col-sm-2">
+					<input ng-model="settings.trackWidth" ng-change="saveSettings()" type="number" class="form-control" id="inputTrackWidth" min="1" max="30" />
+				</div>
+				<div class="col-sm-7">
+					<span class="help-block">The width of the track stroke. <em>Default: 10</em></span>
+				</div>
+			</div>
+
+			<div class="form-group">
 				<label for="inputTrackOutlineColor" class="col-sm-3 control-label">Track Outline Color</label>
 				<div class="col-sm-2">
 					<input ng-model="settings.trackOutlineColor" ng-change="saveSettings()" type="text" class="form-control" id="inputTrackOutlineColor" colorpicker="hex" />

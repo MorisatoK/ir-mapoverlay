@@ -31,6 +31,7 @@ app.controller 'SettingsCtrl', ($scope, localStorageService) ->
         host: 'localhost:8182'
         fps: 15
         trackColor: '#000000'
+        trackWidth: 10
         trackOutlineColor: '#FFFFFF'
         startFinishColor: '#FF0000'
 
@@ -40,6 +41,7 @@ app.controller 'SettingsCtrl', ($scope, localStorageService) ->
     settings.host ?= null
     settings.fps ?= defaultSettings.fps
     settings.trackColor ?= defaultSettings.trackColor
+    settings.trackWidth ?= defaultSettings.trackWidth
     settings.trackOutlineColor ?= defaultSettings.trackOutlineColor
     settings.startFinishColor ?= defaultSettings.startFinishColor
 
@@ -52,6 +54,7 @@ app.controller 'SettingsCtrl', ($scope, localStorageService) ->
         'host'
         'fps'
         'trackColor'
+        'trackWidth'
         'trackOutlineColor'
         'startFinishColor'
     ]

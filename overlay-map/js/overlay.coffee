@@ -9,6 +9,9 @@ app.service 'config', ($location) ->
     fps = parseInt(vars.fps) or 15
     fps = Math.max 1, Math.min 60, fps
 
+    baseStrokeWidth = parseInt(vars.trackWidth) or 10
+    baseStrokeWidth = Math.max 1, Math.min 30, baseStrokeWidth
+
     host: vars.host or 'localhost:8182'
     fps: fps
 
@@ -21,31 +24,31 @@ app.service 'config', ($location) ->
             track:
                 fill: 'none'
                 stroke: vars.trackColor or '#000000'
-                'stroke-width': '10'
-                'stroke-miterlimit': '10'
+                'stroke-width': baseStrokeWidth.toString()
+                'stroke-miterlimit': baseStrokeWidth.toString()
                 'stroke-opacity': '1'
             pits:
                 fill: 'none'
                 stroke: vars.trackColor or '#000000'
-                'stroke-width': '7'
-                'stroke-miterlimit': '7'
+                'stroke-width': (baseStrokeWidth * 0.7).toString()
+                'stroke-miterlimit': (baseStrokeWidth * 0.7).toString()
                 'stroke-opacity': '1'
             track_outline:
                 fill: 'none'
                 stroke: vars.trackOutlineColor or '#FFFFFF'
-                'stroke-width': '18'
-                'stroke-miterlimit': '18'
+                'stroke-width': (baseStrokeWidth * 1.8).toString()
+                'stroke-miterlimit': (baseStrokeWidth * 1.8).toString()
                 'stroke-opacity': '0.3'
             pits_outline:
                 fill: 'none'
                 stroke: vars.trackOutlineColor or '#FFFFFF'
-                'stroke-width': '15'
-                'stroke-miterlimit': '15'
+                'stroke-width': (baseStrokeWidth * 1.5).toString()
+                'stroke-miterlimit': (baseStrokeWidth * 1.5).toString()
                 'stroke-opacity': '0.3'
             startFinish:
                 stroke: vars.startFinishColor or '#FF0000'
-                'stroke-width': '5'
-                'stroke-miterlimit': '10'
+                'stroke-width': (baseStrokeWidth * 0.5).toString()
+                'stroke-miterlimit': (baseStrokeWidth).toString()
                 'stroke-opacity': '1'
             driver:
                 circleRadius: 12
