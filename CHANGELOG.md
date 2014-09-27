@@ -1,5 +1,23 @@
 # iRacing TrackOverlay & Accelerometer Changelog
 
+### 1.2.0 - 2014-09-28
+
+##### General
+
+* Dropped the full overlay with map and accelerometer implemented
+* General refactoring and restructuring
+* Added nice index pages with instructions to the overlays
+
+##### Track Overlay
+
+* Added Donington and new Phoenix
+* Most parts of the map are now configurable
+* Fixed multiclass car coloring
+
+##### Accelerometer
+
+* Most parts of the accelerometer are now configurable
+
 ### 1.1.0 - 2014-05-04
 
 ##### Track Overlay

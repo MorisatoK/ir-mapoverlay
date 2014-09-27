@@ -17,7 +17,7 @@ Usage
 =====
 
 1. Obviously you need the [iRacing Browser Server by Mihail Latyshov](http://ir-apps.kutu.ru/)
-2. Download this repository as ZIP.
+2. Download the latest release from the [releases](./releases).
 3. Extract contents of the ZIP into your iR Browser Server "apps" directory
 
 The two addons available are **overlay-map** and **overlay-accel**.
@@ -25,12 +25,12 @@ The two addons available are **overlay-map** and **overlay-accel**.
 overlay-map
 -----------
 
-The map doesn't need to be configured but can be styled via the according JS and CSS files. Add it to OBS just like the original stream-overlay but with the URL pointing to `http://localhost:8182/ir-mapoverlay/overlay-map/` and a size of 420x324px (default).
+The map can be configured by heading your browser to `http://localhost:8182/ir-mapoverlay/overlay-map/`. Follow the instructions there on how to setup the overlay.
 
 overlay-accel
 -------------
 
-The accelerometer doesn't need to be configured but can be styled via the according JS and CSS files. Add it to OBS just like the original stream-overlay but with the URL pointing to `http://localhost:8182/ir-mapoverlay/overlay-accel/` and a size of 130x130px (default).
+The accelerometer can be configured by heading your browser to `http://localhost:8182/ir-mapoverlay/overlay-accel/`. Follow the instructions there on how to setup the overlay.
 
 Known bugs and limitations
 ==========================
