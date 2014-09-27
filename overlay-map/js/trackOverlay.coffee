@@ -563,5 +563,3 @@ for name, trackObj of trackOverlay.tracks
 		trackOverlay.tracksById[trackObj.trackId] = trackObj
 	
 window.trackOverlay = trackOverlay
-
-$('<div ng-controller="MapCtrl" class="map"><div id="map-overlay" class="map-overlay"></div></div>').appendTo('body')
