@@ -1,1 +1,0 @@
-$('<div ng-controller="CarCtrl" class="forces"> <div class="wrapper"> <div app-lat-accel class="lat-accel"></div> <div app-long-accel class="long-accel"></div> <div class="lat-gauge-top"></div> <div class="lat-gauge-bottom"></div> <div class="long-gauge-left"></div> <div class="long-gauge-right"></div> <div class="gauge-center"></div> </div> </div>').appendTo('body')

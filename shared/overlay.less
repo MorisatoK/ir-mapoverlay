@@ -7,10 +7,6 @@
 @import "@{bootstrap-path}scaffolding.less";
 @import "@{bootstrap-path}type.less";
 
-@default-bg-color: #111;
-@default-bg-opacity: 75%;
-@default-bg: fade(@default-bg-color, @default-bg-opacity);
-
 ::-webkit-scrollbar {
     visibility: hidden;
 }
@@ -40,17 +36,7 @@
 			x-margin-top: -10%;
 			x-margin-left: -10%;
 		}
-		@accelBgColor: #f33;
-		.lat-accel {
-			background: @accelBgColor;
-		}
-		.long-accel {
-			background: @accelBgColor;
-		}
-		@gaugeBorderStyle: 5px solid rgba(255, 255, 255, 0.15);
-		@gaugeBorderRadius: 10px;
 		.lat-gauge-top, .lat-gauge-bottom, .long-gauge-left, .long-gauge-right, .gauge-center {
-			background: @default-bg;
 			position: absolute;
 			z-index: -5;
 		}
@@ -62,39 +48,23 @@
 			width: 40%;
 			height: 120%;
 			margin-left: -10%;
-			border-left: @gaugeBorderStyle;
-			border-right: @gaugeBorderStyle;
 		}
 		.lat-gauge-top {
 			margin-top: -120%;
-			border-top: @gaugeBorderStyle;
-			border-top-left-radius: @gaugeBorderRadius;
-			border-top-right-radius: @gaugeBorderRadius;
 		}
 		.lat-gauge-bottom {
 			margin-top: 20%;
-			border-bottom: @gaugeBorderStyle;
-			border-bottom-left-radius: @gaugeBorderRadius;
-			border-bottom-right-radius: @gaugeBorderRadius;
 		}
 		.long-gauge-left, .long-gauge-right {
 			width: 120%;
 			height: 40%;
 			margin-top: -10%;
-			border-top: @gaugeBorderStyle;
-			border-bottom: @gaugeBorderStyle;
 		}
 		.long-gauge-left {
 			margin-left: -120%;
-			border-left: @gaugeBorderStyle;
-			border-top-left-radius: @gaugeBorderRadius;
-			border-bottom-left-radius: @gaugeBorderRadius;
 		}
 		.long-gauge-right {
 			margin-left: 20%;
-			border-right: @gaugeBorderStyle;
-			border-top-right-radius: @gaugeBorderRadius;
-			border-bottom-right-radius: @gaugeBorderRadius;
 		}
 	}
 }
