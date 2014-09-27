@@ -58,13 +58,6 @@ app.service 'config', ($location) ->
                 'stroke-opacity': '1'
             driver:
                 circleRadius: driverCircle
-                class: [
-                    '#33ceff'
-                    '#ffda59'
-                    '#ff5888'
-                    '#ad60cd'
-                    '#18cb8a'
-                ]
                 default:
                     'stroke-width': '0'
                     stroke: vars.driverHighlightCam or '#4DFF51'
@@ -124,7 +117,6 @@ app.service 'iRData', ($rootScope, config) ->
     ir.onUpdate = (keys) ->
         if 'DriverInfo' in keys
             updateDriversByCarIdx()
-            updateCarClassIDs()
         if 'SessionInfo' in keys
             updatePositionsByCarIdx()
         if 'QualifyResultsInfo' in keys
@@ -137,14 +129,6 @@ app.service 'iRData', ($rootScope, config) ->
             ir.data.DriversByCarIdx = {}
         for driver in ir.data.DriverInfo.Drivers
             ir.data.DriversByCarIdx[driver.CarIdx] = driver
-
-    updateCarClassIDs = ->
-        for driver in ir.data.DriverInfo.Drivers
-            carClassId = driver.CarClassID
-            if not ir.data.CarClassIDs
-                ir.data.CarClassIDs = []
-            if driver.UserID != -1 and driver.IsSpectator == 0 and carClassId not in ir.data.CarClassIDs
-                ir.data.CarClassIDs.push carClassId
 
     updatePositionsByCarIdx = ->
         if not ir.data.PositionsByCarIdx
@@ -362,12 +346,10 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
                 if carIdxDist != -1
                     driverCoords = track.getPointAtLength(trackLength*carIdxDist)
 
-                    carClassId = ir.DriversByCarIdx[carIdx].CarClassID
-                    if ir.CarClassIDs and ir.CarClassIDs.length > 1 and carClassId > 0
-                        carClassIndex = ir.CarClassIDs.indexOf(carClassId) % 3
-                    else carClassIndex = 1
+                    carClassColor = ir.DriversByCarIdx[carIdx].CarClassColor or 0xffda59
+                    carClassColor = '#' + carClassColor.toString(16)
 
-                    drivers[carIdx] = trackMap.circle(driverCoords.x, driverCoords.y, config.mapOptions.styles.driver.circleRadius).attr(config.mapOptions.styles.driver.default).attr(fill: config.mapOptions.styles.driver.class[carClassIndex])
+                    drivers[carIdx] = trackMap.circle(driverCoords.x, driverCoords.y, config.mapOptions.styles.driver.circleRadius).attr(config.mapOptions.styles.driver.default).attr(fill: carClassColor)
 
                     driverCarNum[carIdx] = trackMap.text(driverCoords.x, driverCoords.y, '').attr(config.mapOptions.styles.driver.circleNum)
 
@@ -377,7 +359,7 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
                         driverCarNum[carIdx].attr(text: ir.DriversByCarIdx[carIdx].CarNumber).attr(config.mapOptions.styles.driver.carNum)
 
                     if carIdx == ir.myCarIdx
-                        drivers[carIdx].attr(fill: shadeColor(config.mapOptions.styles.driver.class[carClassIndex], -0.3))
+                        drivers[carIdx].attr(fill: shadeColor(carClassColor, -0.3))
                         driverCarNum[carIdx].node.setAttribute('id', 'player')
 
                     if carIdx == ir.CamCarIdx
