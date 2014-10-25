@@ -348,6 +348,8 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
                     driverCoords = track.getPointAtLength(trackLength*carIdxDist)
 
                     carClassColor = ir.DriversByCarIdx[carIdx].CarClassColor or 0xffda59
+                    if carClassColor == 0xffffff
+                        carClassColor = 0xffda59
                     carClassColor = '#' + carClassColor.toString(16)
 
                     drivers[carIdx] = trackMap.circle(driverCoords.x, driverCoords.y, config.mapOptions.styles.driver.circleRadius).attr(config.mapOptions.styles.driver.default).attr(fill: carClassColor)
