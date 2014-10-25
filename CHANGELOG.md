@@ -1,5 +1,13 @@
 # iRacing TrackOverlay & Accelerometer Changelog
 
+### 1.3.0 - 2014-10-25
+
+##### Track Overlay
+
+* Fixes possible bug in iRacing when ClassPosition is reported as "-1"
+* Fixes white driver bubbles in single class sessions
+* Adds Gateway Motorsports Park to overlays
+
 ### 1.2.0 - 2014-09-28
 
 ##### General
