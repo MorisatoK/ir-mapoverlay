@@ -311,7 +311,8 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
 
                     for carIdx, driver of positionsByCarIdx[ir.SessionNum]
                         if typeof driverCarNum[carIdx] != 'undefined'
-                            driverCarNum[carIdx].attr(text: driver.ClassPosition + 1).attr(config.mapOptions.styles.driver.posNum)
+                            driverPosition = if driver.ClassPosition == -1 then driver.Position else driver.ClassPosition + 1
+                            driverCarNum[carIdx].attr(text: driverPosition).attr(config.mapOptions.styles.driver.posNum)
                 , true
 
                 watchSessionNum = $scope.$watch 'ir.SessionNum', (n, o) ->
@@ -354,7 +355,8 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
                     driverCarNum[carIdx] = trackMap.text(driverCoords.x, driverCoords.y, '').attr(config.mapOptions.styles.driver.circleNum)
 
                     if typeof ir.PositionsByCarIdx[ir.SessionNum][carIdx] != 'undefined'
-                        driverCarNum[carIdx].attr(text: ir.PositionsByCarIdx[ir.SessionNum][carIdx].ClassPosition + 1).attr(config.mapOptions.styles.driver.posNum)
+                        driverPosition = if ir.PositionsByCarIdx[ir.SessionNum][carIdx].ClassPosition == -1 then ir.PositionsByCarIdx[ir.SessionNum][carIdx].Position else ir.PositionsByCarIdx[ir.SessionNum][carIdx].ClassPosition + 1
+                        driverCarNum[carIdx].attr(text: driverPosition).attr(config.mapOptions.styles.driver.posNum)
                     else
                         driverCarNum[carIdx].attr(text: ir.DriversByCarIdx[carIdx].CarNumber).attr(config.mapOptions.styles.driver.carNum)
 
