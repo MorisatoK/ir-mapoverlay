@@ -17,7 +17,7 @@ Usage
 =====
 
 1. Obviously you need the [iRacing Browser Server by Mihail Latyshov](http://ir-apps.kutu.ru/)
-2. Download the latest release from the [releases](./releases).
+2. Download the latest release from the [releases](//github.com/MorisatoK/ir-mapoverlay/releases).
 3. Extract contents of the ZIP into your iR Browser Server "apps" directory
 
 The two addons available are **overlay-map** and **overlay-accel**.
