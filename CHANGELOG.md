@@ -1,5 +1,11 @@
 # iRacing TrackOverlay & Accelerometer Changelog
 
+### 1.4.0 - 2015-03-14
+
+##### Track Overlay
+
+* Adds Autodromo Nazionale Monza to overlays
+
 ### 1.3.0 - 2014-10-25
 
 ##### Track Overlay
