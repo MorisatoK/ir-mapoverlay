@@ -1,5 +1,13 @@
 # iRacing TrackOverlay & Accelerometer Changelog
 
+### 1.4.1 - 2015-03-25
+
+##### Track Overlay
+
+* Fixes CarClassColor for Road Warrior Events
+* Makes description of setting the dimensions of the overlay more clear
+* Adds notice about multiple instances
+
 ### 1.4.0 - 2015-03-14
 
 ##### Track Overlay
