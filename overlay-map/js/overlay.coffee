@@ -347,7 +347,12 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
                 if carIdxDist != -1
                     driverCoords = track.getPointAtLength(trackLength*carIdxDist)
 
-                    carClassColor = ir.DriversByCarIdx[carIdx].CarClassColor or 0xffda59
+                    carClassColor = ir.DriversByCarIdx[carIdx].CarClassColor
+                    if carClassColor == 0
+                        carClassId = ir.DriversByCarIdx[carIdx].CarClassID
+                        for d in ir.DriverInfo.Drivers
+                            if d.CarClassID == carClassId and d.CarClassColor
+                                carClassColor = d.CarClassColor
                     if carClassColor == 0xffffff
                         carClassColor = 0xffda59
                     carClassColor = '#' + carClassColor.toString(16)
