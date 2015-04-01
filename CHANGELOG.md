@@ -1,9 +1,10 @@
 # iRacing TrackOverlay & Accelerometer Changelog
 
-### 1.4.2 - 2015-xx-xx
+### 1.4.2 - 2015-04-01
 
 ##### Track Overlay
 
+* Replaces Raphael.js in favor of svg.js - should fix slow to no update issue on larger grids
 * Clarification on settings page for rare cases when map is cut off
 * Removes necessity of custom CSS in CLR Browser
 

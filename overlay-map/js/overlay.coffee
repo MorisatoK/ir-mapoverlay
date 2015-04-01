@@ -125,14 +125,12 @@ app.service 'iRData', ($rootScope, config) ->
 
     updateDriversByCarIdx = ->
         ir.data.myCarIdx = ir.data.DriverInfo.DriverCarIdx
-        if not ir.data.DriversByCarIdx
-            ir.data.DriversByCarIdx = {}
+        ir.data.DriversByCarIdx ?= {}
         for driver in ir.data.DriverInfo.Drivers
             ir.data.DriversByCarIdx[driver.CarIdx] = driver
 
     updatePositionsByCarIdx = ->
-        if not ir.data.PositionsByCarIdx
-            ir.data.PositionsByCarIdx = []
+        ir.data.PositionsByCarIdx ?= []
         for session, i in ir.data.SessionInfo.Sessions
             while i >= ir.data.PositionsByCarIdx.length
                 ir.data.PositionsByCarIdx.push {}
@@ -141,8 +139,7 @@ app.service 'iRData', ($rootScope, config) ->
                     ir.data.PositionsByCarIdx[i][position.CarIdx] = position
 
     updateQualifyResultsByCarIdx = ->
-        if not ir.data.QualifyResultsByCarIdx
-            ir.data.QualifyResultsByCarIdx = {}
+        ir.data.QualifyResultsByCarIdx ?= {}
         for position in ir.data.QualifyResultsInfo.Results
             ir.data.QualifyResultsByCarIdx[position.CarIdx] = position
 
@@ -190,7 +187,7 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
 
 
     $scope.$watch 'ir.IsReplayPlaying', checkTrackOverlayHide
-    
+
     $scope.$watch 'ir.connected', (n, o) ->
         $element.toggleClass 'ng-hide', not n
         if n == false
@@ -229,21 +226,21 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
             trackId = ir.WeekendInfo.TrackID
 
             if typeof trackOverlay.tracksById[trackId] != 'undefined'
-                trackMap = Raphael('map-overlay', config.mapOptions.dimensions.width, config.mapOptions.dimensions.height)
+                trackMap = SVG('map-overlay').size(config.mapOptions.dimensions.width, config.mapOptions.dimensions.height)
 
                 for path, i in trackOverlay.tracksById[trackId].paths
                     if i == 0
                         trk_outline = trackMap.path(path).attr(config.mapOptions.styles.track_outline).data('id', 'trk_outline')
                         track = trackMap.path(path).attr(config.mapOptions.styles.track).data('id', 'track')
 
-                        dims = Raphael.pathBBox(path)
-                        trackMap.canvas.setAttribute('viewBox', '0 0 ' + (Math.round(dims.width) + 30) + ' ' + (Math.round(dims.height) + 30))
-                        trackMap.canvas.setAttribute('preserveAspectRatio', config.mapOptions.preserveAspectRatio)
+                        dims = track.bbox()
+                        trackMap.attr('viewBox', '0 0 ' + (Math.round(dims.width) + 30) + ' ' + (Math.round(dims.height) + 30))
+                        trackMap.attr('preserveAspectRatio', config.mapOptions.preserveAspectRatio)
                     else 
                         pit_outline = trackMap.path(path).attr(config.mapOptions.styles.pits_outline).toBack().data('id', 'pit_outline')
                         pit = trackMap.path(path).attr(config.mapOptions.styles.pits).data('id', 'pit')
                 
-                trackLength = track.getTotalLength()
+                trackLength = track.length()
                 drawStartFinishLine(trackOverlay.tracksById[trackId].extendedLine || 0)
 
                 drawMap = $scope.$watch 'ir.CarIdxLapDistPct', (n, o) ->
@@ -267,8 +264,8 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
                         drivers[driver].attr(config.mapOptions.styles.driver.default)
 
                     if typeof drivers[camCarIdx] != 'undefined'
-                        drivers[camCarIdx].attr(config.mapOptions.styles.driver.camera).toFront()
-                        driverCarNum[camCarIdx].toFront()
+                        drivers[camCarIdx].attr(config.mapOptions.styles.driver.camera).front()
+                        driverCarNum[camCarIdx].front()
 
                 watchPitRoad = $scope.$watch 'ir.CarIdxOnPitRoad', (n, o) ->
                     if not n or not o
@@ -312,7 +309,7 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
                     for carIdx, driver of positionsByCarIdx[ir.SessionNum]
                         if typeof driverCarNum[carIdx] != 'undefined'
                             driverPosition = if driver.ClassPosition == -1 then driver.Position else driver.ClassPosition + 1
-                            driverCarNum[carIdx].attr(text: driverPosition).attr(config.mapOptions.styles.driver.posNum)
+                            driverCarNum[carIdx].plain(driverPosition).attr(config.mapOptions.styles.driver.posNum)
                 , true
 
                 watchSessionNum = $scope.$watch 'ir.SessionNum', (n, o) ->
@@ -323,29 +320,41 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
                         return
 
                     for idx, text of driverCarNum
-                        text.attr(text: ir.DriversByCarIdx[idx].CarNumber).attr(config.mapOptions.styles.driver.carNum)
+                        text.plain(ir.DriversByCarIdx[idx].CarNumber).attr(config.mapOptions.styles.driver.carNum)
                     
 
     arrayEqual = (a, b) ->
         a.length is b.length and a.every (elem, i) -> elem is b[i]
 
     drawStartFinishLine = (refPoint) ->
-        startCoords = track.getPointAtLength(refPoint * trackLength)
-        pathAngle = track.getPointAtLength((refPoint * trackLength) + 0.1)
-        rotateAngle = Raphael.angle(startCoords.x, startCoords.y, pathAngle.x, pathAngle.y)
-        startFinishLine = trackMap.path(getLinePath(startCoords.x, startCoords.y - 15, startCoords.x, startCoords.y + 15)).transform('r' + rotateAngle).attr(config.mapOptions.styles.startFinish)
+        startCoords = track.pointAt(refPoint * trackLength)
+        pathAngle = track.pointAt((refPoint * trackLength) + 0.1)
+        rotateAngle = getLineAngle(startCoords.x, startCoords.y, pathAngle.x, pathAngle.y)
+        startFinishLine = trackMap.path(getLinePath(startCoords.x, startCoords.y - 15, startCoords.x, startCoords.y + 15)).rotate(rotateAngle).attr(config.mapOptions.styles.startFinish)
 
     getLinePath = (startX, startY, endX, endY) ->
         'M' + startX + ' ' + startY + ' L' + endX + ' ' + endY
 
+    getLineAngle = (x1, y1, x2, y2) ->
+        x = x1 - x2
+        y = y1 - y2
+
+        if (!x && !y)
+            return 0
+
+        return (180 + Math.atan2(-y, -x) * 180 / Math.PI + 360) % 360
+
     updateMap = () ->
+        if not ir.SessionInfo.Sessions[ir.SessionNum]
+            return
+
         if ir.SessionInfo.Sessions[ir.SessionNum].SessionType == 'Race'
             skipCars = 1
 
         for carIdxDist, carIdx in CarIdxLapDistPct when carIdx >= skipCars
             if typeof drivers[carIdx] == 'undefined'
                 if carIdxDist != -1
-                    driverCoords = track.getPointAtLength(trackLength*carIdxDist)
+                    driverCoords = track.pointAt(trackLength*carIdxDist)
 
                     carClassColor = ir.DriversByCarIdx[carIdx].CarClassColor
                     if carClassColor == 0
@@ -357,23 +366,23 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
                         carClassColor = 0xffda59
                     carClassColor = '#' + carClassColor.toString(16)
 
-                    drivers[carIdx] = trackMap.circle(driverCoords.x, driverCoords.y, config.mapOptions.styles.driver.circleRadius).attr(config.mapOptions.styles.driver.default).attr(fill: carClassColor)
+                    drivers[carIdx] = trackMap.circle(config.mapOptions.styles.driver.circleRadius * 2).fill(carClassColor).cx(driverCoords.x).cy(driverCoords.y).attr(config.mapOptions.styles.driver.default).attr(fill: carClassColor)
 
-                    driverCarNum[carIdx] = trackMap.text(driverCoords.x, driverCoords.y, '').attr(config.mapOptions.styles.driver.circleNum)
+                    driverCarNum[carIdx] = trackMap.plain('').cx(driverCoords.x).cy(driverCoords.y).attr(config.mapOptions.styles.driver.circleNum)
 
                     if typeof ir.PositionsByCarIdx[ir.SessionNum][carIdx] != 'undefined'
                         driverPosition = if ir.PositionsByCarIdx[ir.SessionNum][carIdx].ClassPosition == -1 then ir.PositionsByCarIdx[ir.SessionNum][carIdx].Position else ir.PositionsByCarIdx[ir.SessionNum][carIdx].ClassPosition + 1
-                        driverCarNum[carIdx].attr(text: driverPosition).attr(config.mapOptions.styles.driver.posNum)
+                        driverCarNum[carIdx].plain(driverPosition).attr(config.mapOptions.styles.driver.posNum)
                     else
-                        driverCarNum[carIdx].attr(text: ir.DriversByCarIdx[carIdx].CarNumber).attr(config.mapOptions.styles.driver.carNum)
+                        driverCarNum[carIdx].plain(ir.DriversByCarIdx[carIdx].CarNumber).attr(config.mapOptions.styles.driver.carNum)
 
                     if carIdx == ir.myCarIdx
-                        drivers[carIdx].attr(fill: shadeColor(carClassColor, -0.3))
-                        driverCarNum[carIdx].node.setAttribute('id', 'player')
+                        drivers[carIdx].fill(shadeColor(carClassColor, -0.3))
+                        driverCarNum[carIdx].attr('id', 'player')
 
                     if carIdx == ir.CamCarIdx
-                        drivers[carIdx].attr(config.mapOptions.styles.driver.camera).toFront()
-                        driverCarNum[carIdx].toFront()
+                        drivers[carIdx].attr(config.mapOptions.styles.driver.camera).front()
+                        driverCarNum[carIdx].front()
 
                     if ir.CarIdxOnPitRoad[carIdx]
                         drivers[carIdx].attr(config.mapOptions.styles.driver.pit)
@@ -383,13 +392,13 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
                     drivers[carIdx].hide()
                     driverCarNum[carIdx].hide()
                 else
-                    driverCoords = track.getPointAtLength(trackLength*carIdxDist)
-                    drivers[carIdx].attr(cx: driverCoords.x, cy: driverCoords.y)
-                    driverCarNum[carIdx].attr(x: driverCoords.x, y: driverCoords.y)
+                    driverCoords = track.pointAt(trackLength*carIdxDist)
+                    drivers[carIdx].cx(driverCoords.x).cy(driverCoords.y)
+                    driverCarNum[carIdx].cx(driverCoords.x).cy(driverCoords.y)
 
                     if carIdx == ir.CamCarIdx and driverCarNum[carIdx].next != null
-                        drivers[carIdx].toFront()
-                        driverCarNum[carIdx].toFront()
+                        drivers[carIdx].front()
+                        driverCarNum[carIdx].front()
 
                     driverCarNum[carIdx].show()
                     drivers[carIdx].show()
