@@ -1,5 +1,12 @@
 # iRacing TrackOverlay & Accelerometer Changelog
 
+### 1.4.2 - 2015-xx-xx
+
+##### Track Overlay
+
+* Clarification on settings page for rare cases when map is cut off
+* Removes necessity of custom CSS in CLR Browser
+
 ### 1.4.1 - 2015-03-25
 
 ##### Track Overlay

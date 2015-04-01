@@ -12,16 +12,9 @@
 		1. Go to [Settings](#/settings) page
 		2. Copy generated **CLR Browser URL**
 		3. In OBS add new **CLR Browser** layer, and paste it in **URL**
-		4. Set **Dimensions** to `420x324px`
+		4. Set **Dimensions** to `Width: 420` and `Height: 324`
 
-		   **^ This is important, or the map might be cut off ^**
-		5. Go to **CSS** tab and replace all with:
-		   ```css
-		   body {
-		   	background: inherit !important;
-		   }
-		   ```
-		   This will make background transparent
+		   *While these are the exact dimensions of the map and work out of the box most of the time it happens in some cases that the map is still cut off. It is not known what might cause this. In that case use larger dimensions to compensate.*
 
 		## Notice
 
