@@ -18,6 +18,8 @@ app.service 'config', ($location) ->
     driverHighlightWidth = parseInt(vars.driverHighlightWidth) or 4
     driverHighlightWidth = Math.max 3, Math.min 10, driverHighlightWidth
 
+    showSectors: vars.showSectors == 'true'
+
     host: vars.host or 'localhost:8182'
     fps: fps
 
@@ -54,6 +56,11 @@ app.service 'config', ($location) ->
             startFinish:
                 stroke: vars.startFinishColor or '#FF0000'
                 'stroke-width': (baseStrokeWidth * 0.5).toString()
+                'stroke-miterlimit': (baseStrokeWidth).toString()
+                'stroke-opacity': '1'
+            sectors:
+                stroke: vars.sectorColor or '#FFDA59'
+                'stroke-width': (baseStrokeWidth * 0.3).toString()
                 'stroke-miterlimit': (baseStrokeWidth).toString()
                 'stroke-opacity': '1'
             driver:
@@ -97,6 +104,7 @@ app.service 'config', ($location) ->
         # yaml
         'QualifyResultsInfo'
         'WeekendInfo'
+        'SplitTimeInfo'
     ]
 
 app.service 'iRData', ($rootScope, config) ->
@@ -242,6 +250,8 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
                 
                 trackLength = track.length()
                 drawStartFinishLine(trackOverlay.tracksById[trackId].extendedLine || 0)
+                if config.showSectors
+                    drawSectors()
 
                 drawMap = $scope.$watch 'ir.CarIdxLapDistPct', (n, o) ->
                     if not n
@@ -331,6 +341,16 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
         pathAngle = track.pointAt((refPoint * trackLength) + 0.1)
         rotateAngle = getLineAngle(startCoords.x, startCoords.y, pathAngle.x, pathAngle.y)
         startFinishLine = trackMap.path(getLinePath(startCoords.x, startCoords.y - 15, startCoords.x, startCoords.y + 15)).rotate(rotateAngle).attr(config.mapOptions.styles.startFinish)
+
+    drawSectors = () ->
+        if not ir.SplitTimeInfo
+            return
+
+        for sector, i in ir.SplitTimeInfo.Sectors when i >= 1
+            sectorCoords = track.pointAt(sector.SectorStartPct * trackLength)
+            sectorAngle = track.pointAt((sector.SectorStartPct * trackLength) + 0.1)
+            sectorRotation = getLineAngle(sectorCoords.x, sectorCoords.y, sectorAngle.x, sectorAngle.y)
+            sectorLine = trackMap.path(getLinePath(sectorCoords.x, sectorCoords.y - 10, sectorCoords.x, sectorCoords.y + 10)).rotate(sectorRotation).attr(config.mapOptions.styles.sectors)
 
     getLinePath = (startX, startY, endX, endY) ->
         'M' + startX + ' ' + startY + ' L' + endX + ' ' + endY
