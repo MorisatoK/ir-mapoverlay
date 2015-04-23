@@ -237,7 +237,7 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
                         trackMap.attr('viewBox', '0 0 ' + (Math.round(dims.width) + 30) + ' ' + (Math.round(dims.height) + 30))
                         trackMap.attr('preserveAspectRatio', config.mapOptions.preserveAspectRatio)
                     else 
-                        pit_outline = trackMap.path(path).attr(config.mapOptions.styles.pits_outline).toBack().data('id', 'pit_outline')
+                        pit_outline = trackMap.path(path).attr(config.mapOptions.styles.pits_outline).back().data('id', 'pit_outline')
                         pit = trackMap.path(path).attr(config.mapOptions.styles.pits).data('id', 'pit')
                 
                 trackLength = track.length()
