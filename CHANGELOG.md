@@ -1,5 +1,12 @@
 # iRacing TrackOverlay & Accelerometer Changelog
 
+### 1.5.0 - 2015-05-06
+
+##### Track Overlay
+
+* Adds new option to display sector boundaries on map
+* Fixes display bug for track maps with a seperate pitlane
+
 ### 1.4.2 - 2015-04-01
 
 ##### Track Overlay
