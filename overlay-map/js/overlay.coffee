@@ -20,6 +20,37 @@ app.service 'config', ($location) ->
 
     showSectors: vars.showSectors == 'true'
 
+    driverGroups = vars.dGrp
+    driverGroupsColors = vars.dGrpClr
+
+    if (driverGroups and driverGroupsColors)
+        if driverGroups instanceof Array
+            for group, i in driverGroups
+                driverGroups[i] = group.split(',')
+
+                for item, j in driverGroups[i]
+                    driverGroups[i][j] = parseInt(item)
+        else
+            driverGroups = driverGroups.split(',')
+            driverGroups = new Array(driverGroups)
+
+            for item, i in driverGroups[0]
+                driverGroups[0][i] = parseInt(item)
+
+            driverGroupsColors = new Array(driverGroupsColors)
+
+        if driverGroups.length == driverGroupsColors.length
+            driverGroupsEnabled = true
+        else
+            driverGroupsEnabled = false
+
+    else
+        driverGroupsEnabled = false
+
+    driverGroupsEnabled: driverGroupsEnabled
+    driverGroups: driverGroups
+    driverGroupsColors: driverGroupsColors
+
     host: vars.host or 'localhost:8182'
     fps: fps
 
@@ -386,7 +417,17 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
                         carClassColor = 0xffda59
                     carClassColor = '#' + carClassColor.toString(16)
 
-                    drivers[carIdx] = trackMap.circle(config.mapOptions.styles.driver.circleRadius * 2).fill(carClassColor).cx(driverCoords.x).cy(driverCoords.y).attr(config.mapOptions.styles.driver.default).attr(fill: carClassColor)
+                    if config.driverGroupsEnabled
+                        for group, i in config.driverGroups
+                            if (ir.DriversByCarIdx[carIdx].UserID in group) or (ir.WeekendInfo.TeamRacing and ir.DriversByCarIdx[carIdx].TeamID in group)
+                                circleColor = config.driverGroupsColors[i]
+                                break
+                            else
+                                circleColor = carClassColor
+                    else
+                        circleColor = carClassColor
+
+                    drivers[carIdx] = trackMap.circle(config.mapOptions.styles.driver.circleRadius * 2).fill(circleColor).cx(driverCoords.x).cy(driverCoords.y).attr(config.mapOptions.styles.driver.default).attr(fill: circleColor)
 
                     driverCarNum[carIdx] = trackMap.plain('').cx(driverCoords.x).cy(driverCoords.y).attr(config.mapOptions.styles.driver.circleNum)
 
@@ -397,7 +438,7 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
                         driverCarNum[carIdx].plain(ir.DriversByCarIdx[carIdx].CarNumber).attr(config.mapOptions.styles.driver.carNum)
 
                     if carIdx == ir.myCarIdx
-                        drivers[carIdx].fill(shadeColor(carClassColor, -0.3))
+                        drivers[carIdx].fill(shadeColor(circleColor, -0.3))
                         driverCarNum[carIdx].attr('id', 'player')
 
                     if carIdx == ir.CamCarIdx
