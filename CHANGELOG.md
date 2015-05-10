@@ -1,5 +1,12 @@
 # iRacing TrackOverlay & Accelerometer Changelog
 
+### 1.6.0 - 2015-xx-xx
+
+##### Track Overlay
+
+* New feature: Driver/Team groups to highlight specific driver circles on map
+* Slight overhaul of the settings page
+
 ### 1.5.0 - 2015-05-06
 
 ##### Track Overlay
