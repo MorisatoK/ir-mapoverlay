@@ -163,6 +163,29 @@
 					</div>
 				</div>
 			</div>
+			<!-- driver/team groups -->
+			<div class="panel panel-default driver-groups">
+				<div class="panel-heading">
+					<h3 class="panel-title">Driver/Team Groups</h3>
+				</div>
+				<div class="panel-body">
+					<div class="form-group">
+						<div class="col-sm-12">
+							<span class="help-block">Enter one or more iRacing Customer IDs or Team IDs and pick a color in which the group should be highlighted. Separate multiple entries with a comma.</span>
+						</div>
+						<div class="row" ng-repeat="group in settings.driverGroups">
+							<div class="col-sm-9">
+								<input ng-model="group['ids']" ng-change="sanitizeDriverGroups()" ng-blur="trimComma()" type="text" class="form-control" placeholder="123456,987654" ng-pattern="/[0-9,]/"/>
+							</div>
+							<div class="col-sm-2">
+								<input ng-model="group['color']" ng-change="saveSettings()" type="text" class="form-control" placeholder="#000000" colorpicker="hex" />
+							</div>
+							<button class="col-sm-1 btn btn-danger remove-group" ng-click="removeGroup()">-</button>
+						</div>
+						<button class="btn btn-primary add-group" ng-click="addGroup()">Add group</button>
+					</div>
+				</div>
+			</div>
 		</form>
 	</div>
 </div>

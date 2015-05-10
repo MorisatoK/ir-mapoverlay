@@ -42,6 +42,7 @@ app.controller 'SettingsCtrl', ($scope, localStorageService) ->
         driverHighlightOfftrack: '#FF0000'
         driverPosNum: '#000000'
         driverCarNum: '#666666'
+        driverGroups: []
 
     $scope.isDefaultHost = document.location.host == defaultSettings.host
 
@@ -60,6 +61,7 @@ app.controller 'SettingsCtrl', ($scope, localStorageService) ->
     settings.driverHighlightOfftrack ?= defaultSettings.driverHighlightOfftrack
     settings.driverPosNum ?= defaultSettings.driverPosNum
     settings.driverCarNum ?= defaultSettings.driverCarNum
+    settings.driverGroups ?= defaultSettings.driverGroups
 
     $scope.saveSettings = saveSettings = ->
         settings.fps = Math.min 60, Math.max(1, settings.fps)
@@ -92,6 +94,13 @@ app.controller 'SettingsCtrl', ($scope, localStorageService) ->
                 continue
             if k in actualKeys
                 params.push "#{k}=#{encodeURIComponent v}"
+            if k == 'driverGroups'
+                for group in v
+                    if group.ids == '' or group.color == ''
+                        continue
+                    params.push "dGrp=#{encodeURIComponent group.ids}"
+                    params.push "dGrpClr=#{encodeURIComponent group.color}"
+
         $scope.url = "http://#{document.location.host}/ir-mapoverlay/overlay-map/overlay.html\
             #{if params.length then '#?' + params.join '&' else ''}"
     updateURL()
@@ -108,6 +117,25 @@ app.controller 'SettingsCtrl', ($scope, localStorageService) ->
             if not isNaN nv and v.length == nv.toString().length
                 v = Number(v)
             settings[k] = v
+        saveSettings()
+
+    $scope.sanitizeDriverGroups = sanitizeDriverGroups = ->
+        for group in settings.driverGroups
+            group.ids = group.ids.replace /,{2,}/g, ','
+            group.ids = group.ids.replace /[^0-9,]/g, ''
+        saveSettings()
+
+    $scope.trimComma = trimComma = ->
+        for group in settings.driverGroups
+            if group.ids.charAt(group.ids.length - 1) == ','
+                group.ids = group.ids.slice 0, -1
+        saveSettings()
+
+    $scope.addGroup = ->
+        settings.driverGroups.push {'ids':'', 'color': ''}
+      
+    $scope.removeGroup = (element) ->
+        settings.driverGroups.splice this.$index, 1
         saveSettings()
 
 angular.bootstrap document, [app.name]
