@@ -34,6 +34,8 @@ app.controller 'SettingsCtrl', ($scope, localStorageService) ->
         trackWidth: 10
         trackOutlineColor: '#FFFFFF'
         startFinishColor: '#FF0000'
+        sectorColor: '#FFDA59'
+        showSectors: false
         driverCircle: 12
         driverHighlightWidth: 4
         driverHighlightCam: '#4DFF51'
@@ -50,6 +52,8 @@ app.controller 'SettingsCtrl', ($scope, localStorageService) ->
     settings.trackWidth ?= defaultSettings.trackWidth
     settings.trackOutlineColor ?= defaultSettings.trackOutlineColor
     settings.startFinishColor ?= defaultSettings.startFinishColor
+    settings.sectorColor ?= defaultSettings.sectorColor
+    settings.showSectors ?= defaultSettings.showSectors
     settings.driverCircle ?= defaultSettings.driverCircle
     settings.driverHighlightWidth ?= defaultSettings.driverHighlightWidth
     settings.driverHighlightCam ?= defaultSettings.driverHighlightCam
@@ -69,6 +73,8 @@ app.controller 'SettingsCtrl', ($scope, localStorageService) ->
         'trackWidth'
         'trackOutlineColor'
         'startFinishColor'
+        'sectorColor'
+        'showSectors'
         'driverCircle'
         'driverHighlightWidth'
         'driverHighlightCam'
