@@ -184,33 +184,45 @@ app.service 'iRData', ($rootScope, config) ->
 
     return ir.data
 
-##### Map
-
 app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
     ir = $scope.ir = iRData
 
-    CarIdxLapDistPct = null
-    currentRun = null
-    prevRun = null
-    trackMap = null
-    track = null
-    trackLength = null
-    drawMap = null
-    watchCamCar = null
-    watchPitRoad = null
-    watchPositions = null
-    camCarIdx = null
-    carIdxOnPitRoad = null
-    positionsByCarIdx = null
-
-    drivers = {}
-    driverCarNum = {}
-
-    throttle = Math.floor 1000/config.fps
-    skipCars = 0
-
-    # hide if not live, but loaded replay is ok
     replayFrameWatcher = null
+
+    mapVars =
+        skipCars: 0
+        trackMap: null
+        track: null
+        trackLength: null
+        drivers: {}
+
+    $scope.$watch 'ir.IsReplayPlaying', checkTrackOverlayHide
+
+    $scope.$watch 'ir.connected', (n, o) ->
+        $element.toggleClass 'ng-hide', not n
+        if not n and !!mapVars.trackMap
+            mapVars.trackMap.remove()
+            mapVars.trackMap = null
+            mapVars.track = null
+            mapVars.trackLength= null
+            mapVars.skipCars = 0
+            mapVars.drivers = {}
+
+    $scope.$watch 'ir.WeekendInfo', ->
+        if not ir.WeekendInfo
+            return
+
+        trackId = ir.WeekendInfo.TrackID
+
+        initMap(trackId)
+
+        $scope.$watch 'ir.CarIdxLapDistPct', drawMap
+        $scope.$watch 'ir.CamCarIdx', watchCamCar
+        $scope.$watch 'ir.CarIdxOnPitRoad', watchPitRoad
+        $scope.$watch 'ir.CarIdxTrackSurface', watchOfftracks
+        $scope.$watch 'ir.PositionsByCarIdx', watchPositions, true
+        $scope.$watch 'ir.SessionNum', watchSessionNum
+
     checkTrackOverlayHide = ->
         if not ir.WeekendInfo or ir.WeekendInfo.SimMode == 'replay'
             return
@@ -224,245 +236,178 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
         $element.toggleClass 'ng-hide', \
             (ir.IsReplayPlaying and ir.ReplayFrameNumEnd > 10)
 
+    initMap = (trackId) ->
+        if not trackOverlay.tracksById[trackId]
+            return
 
-    $scope.$watch 'ir.IsReplayPlaying', checkTrackOverlayHide
+        mapVars.trackMap = SVG('map-overlay').size(config.mapOptions.dimensions.width, config.mapOptions.dimensions.height)
 
-    $scope.$watch 'ir.connected', (n, o) ->
-        $element.toggleClass 'ng-hide', not n
-        if n == false
-            if trackMap != null
-                trackMap.remove()
-                trackMap = null
-                track = null
-                trackLength= null
-                camCarIdx = null
-                carIdxOnPitRoad = null
-                positionsByCarIdx = null
-                skipCars = 0
-                drivers = {}
-                driverCarNum = {}
-                if drawMap?
-                    drawMap()
-                    drawMap = null
-                if watchCamCar?
-                    watchCamCar()
-                    watchCamCar = null
-                if watchPitRoad?
-                    watchPitRoad()
-                    watchPitRoad = null
-                if watchOfftracks?
-                    watchOfftracks()
-                    watchOfftracks = null
-                if watchPositions?
-                    watchPositions()
-                    watchPositions = null
-                if watchSessionNum?
-                    watchSessionNum()
-                    watchSessionNum = null
+        for path, i in trackOverlay.tracksById[trackId].paths
+            if i == 0
+                trk_outline = mapVars.trackMap.path(path).attr(config.mapOptions.styles.track_outline).data('id', 'trk_outline')
+                mapVars.track = mapVars.trackMap.path(path).attr(config.mapOptions.styles.track).data('id', 'track')
 
-    $scope.$watch 'ir.WeekendInfo', (n, o) ->
-        if typeof ir.WeekendInfo != 'undefined'
-            trackId = ir.WeekendInfo.TrackID
+                dims = mapVars.track.bbox()
+                mapVars.trackMap.attr('viewBox', '0 0 ' + (Math.round(dims.width) + 30) + ' ' + (Math.round(dims.height) + 30))
+                mapVars.trackMap.attr('preserveAspectRatio', config.mapOptions.preserveAspectRatio)
+            else 
+                pit_outline = mapVars.trackMap.path(path).attr(config.mapOptions.styles.pits_outline).back().data('id', 'pit_outline')
+                pit = mapVars.trackMap.path(path).attr(config.mapOptions.styles.pits).data('id', 'pit')
+        
+        mapVars.trackLength = mapVars.track.length()
+        drawStartFinishLine(trackOverlay.tracksById[trackId].extendedLine || 0)
 
-            if typeof trackOverlay.tracksById[trackId] != 'undefined'
-                trackMap = SVG('map-overlay').size(config.mapOptions.dimensions.width, config.mapOptions.dimensions.height)
+        if config.showSectors
+            drawSectors()
 
-                for path, i in trackOverlay.tracksById[trackId].paths
-                    if i == 0
-                        trk_outline = trackMap.path(path).attr(config.mapOptions.styles.track_outline).data('id', 'trk_outline')
-                        track = trackMap.path(path).attr(config.mapOptions.styles.track).data('id', 'track')
+    drawMap = ->
+        requestAnimationFrame(updateMap)
 
-                        dims = track.bbox()
-                        trackMap.attr('viewBox', '0 0 ' + (Math.round(dims.width) + 30) + ' ' + (Math.round(dims.height) + 30))
-                        trackMap.attr('preserveAspectRatio', config.mapOptions.preserveAspectRatio)
-                    else 
-                        pit_outline = trackMap.path(path).attr(config.mapOptions.styles.pits_outline).back().data('id', 'pit_outline')
-                        pit = trackMap.path(path).attr(config.mapOptions.styles.pits).data('id', 'pit')
-                
-                trackLength = track.length()
-                drawStartFinishLine(trackOverlay.tracksById[trackId].extendedLine || 0)
-                if config.showSectors
-                    drawSectors()
+    watchCamCar = ->
+        for index, driver of mapVars.drivers
+            driver.get(0).attr(config.mapOptions.styles.driver.default)
 
-                drawMap = $scope.$watch 'ir.CarIdxLapDistPct', (n, o) ->
-                    if not n
-                        return
-                    
-                    CarIdxLapDistPct = n
+        if !!mapVars.drivers[ir.CamCarIdx]
+            mapVars.drivers[ir.CamCarIdx].get(0).attr(config.mapOptions.styles.driver.camera)
 
-                    currentRun = new Date().getTime()
-                    if currentRun >= (prevRun + throttle)
-                        prevRun = currentRun
-                        updateMap()
+    watchPitRoad = ->
+        if not ir.CarIdxOnPitRoad
+            return
 
-                watchCamCar = $scope.$watch 'ir.CamCarIdx', (n, o) ->
-                    if not n?
-                        return
+        for pitStatus, carIdx in ir.CarIdxOnPitRoad when carIdx >= mapVars.skipCars
+            if not mapVars.drivers[carIdx]
+                continue
 
-                    camCarIdx = n
+            if pitStatus
+                mapVars.drivers[carIdx].attr(config.mapOptions.styles.driver.pit)
+            else if !!mapVars.drivers[carIdx]
+                mapVars.drivers[carIdx].attr(config.mapOptions.styles.driver.onTrack)
 
-                    for driver, circle of drivers
-                        drivers[driver].attr(config.mapOptions.styles.driver.default)
+    watchOfftracks = (n, o) ->
+        if not n or not o
+            return
 
-                    if typeof drivers[camCarIdx] != 'undefined'
-                        drivers[camCarIdx].attr(config.mapOptions.styles.driver.camera).front()
-                        driverCarNum[camCarIdx].front()
+        for trackSurface, carIdx in n when carIdx >= mapVars.skipCars
+            if trackSurface == 0 and o[carIdx] != 0
+                mapVars.drivers[carIdx].get(0).attr(config.mapOptions.styles.driver.offTrack)
+            else if trackSurface != 0 and o[carIdx] == 0
+                mapVars.drivers[carIdx].get(0).attr(config.mapOptions.styles.driver.default)
 
-                watchPitRoad = $scope.$watch 'ir.CarIdxOnPitRoad', (n, o) ->
-                    if not n or not o
-                        return
+                if carIdx == ir.CamCarIdx
+                    mapVars.drivers[carIdx].get(0).attr(config.mapOptions.styles.driver.camera)
 
-                    if arrayEqual(n, o)
-                        return
+    watchPositions = ->
+        if not ir.PositionsByCarIdx
+            return
 
-                    carIdxOnPitRoad = n
+        for carIdx, driver of ir.PositionsByCarIdx[ir.SessionNum]
+            if !!mapVars.drivers[carIdx]
+                driverPosition = if driver.ClassPosition == -1 then driver.Position else driver.ClassPosition + 1
+                mapVars.drivers[carIdx].get(1).plain(driverPosition).attr(config.mapOptions.styles.driver.posNum).center(0, 0)
 
-                    for pitStatus, carIdx in carIdxOnPitRoad when carIdx >= skipCars
-                        if pitStatus
-                            drivers[carIdx].attr(config.mapOptions.styles.driver.pit)
-                        else if typeof drivers[carIdx] != 'undefined'
-                            drivers[carIdx].attr(config.mapOptions.styles.driver.onTrack)
-                , true
+    watchSessionNum = (n, o) ->
+        if not n? or not ir.DriversByCarIdx
+            return
 
-                watchOfftracks = $scope.$watch 'ir.CarIdxTrackSurface', (n, o) ->
-                    if not n or not o
-                        return
+        if ir.WeekendInfo.SimMode == 'replay'
+            return
 
-                    if arrayEqual(n, o)
-                        return
+        for index, driver of mapVars.drivers
+            driver.get(1).plain(ir.DriversByCarIdx[index].CarNumber).attr(config.mapOptions.styles.driver.carNum)
 
-                    for trackSurface, carIdx in n when carIdx >= skipCars
-                        if trackSurface == 0 and o[carIdx] != 0
-                            drivers[carIdx].attr(config.mapOptions.styles.driver.offTrack)
-                        else if trackSurface != 0 and o[carIdx] == 0
-                            drivers[carIdx].attr(config.mapOptions.styles.driver.default)
+    updateMap = ->
+        if not ir.SessionInfo or not ir.SessionInfo.Sessions[ir.SessionNum]
+            return
 
-                            if carIdx == ir.CamCarIdx
-                                drivers[carIdx].attr(config.mapOptions.styles.driver.camera)
-                , true
+        if ir.SessionInfo.Sessions[ir.SessionNum].SessionType == 'Race'
+            mapVars.skipCars = 1
 
-                watchPositions = $scope.$watch 'ir.PositionsByCarIdx', (n, o) ->
-                    if not n
-                        return
+        for carIdxDist, carIdx in ir.CarIdxLapDistPct when carIdx >= mapVars.skipCars
+            if not mapVars.drivers[carIdx]
+                if carIdxDist == -1
+                    continue
 
-                    positionsByCarIdx = n
+                driverCoords = mapVars.track.pointAt(mapVars.trackLength*carIdxDist)
+                carClassColor = getCarClassColor carIdx
 
-                    for carIdx, driver of positionsByCarIdx[ir.SessionNum]
-                        if typeof driverCarNum[carIdx] != 'undefined'
-                            driverPosition = if driver.ClassPosition == -1 then driver.Position else driver.ClassPosition + 1
-                            driverCarNum[carIdx].plain(driverPosition).attr(config.mapOptions.styles.driver.posNum)
-                , true
+                if config.driverGroupsEnabled
+                    for group, i in config.driverGroups
+                        if (ir.DriversByCarIdx[carIdx].UserID in group) or (ir.WeekendInfo.TeamRacing and ir.DriversByCarIdx[carIdx].TeamID in group)
+                            circleColor = config.driverGroupsColors[i]
+                            break
+                        else
+                            circleColor = carClassColor
+                else
+                    circleColor = carClassColor
 
-                watchSessionNum = $scope.$watch 'ir.SessionNum', (n, o) ->
-                    if not n? or not ir.DriversByCarIdx
-                        return
+                driverNumber = mapVars.trackMap.plain('').attr(config.mapOptions.styles.driver.circleNum)
+                driverCircle = mapVars.trackMap.circle(config.mapOptions.styles.driver.circleRadius * 2).fill(circleColor).attr(config.mapOptions.styles.driver.default).attr(fill: circleColor)
 
-                    if ir.WeekendInfo.SimMode == 'replay'
-                        return
+                if not ir.PositionsByCarIdx[ir.SessionNum][carIdx]
+                    driverNumber.plain(ir.DriversByCarIdx[carIdx].CarNumber).attr(config.mapOptions.styles.driver.carNum)
+                else
+                    driverPosition = if ir.PositionsByCarIdx[ir.SessionNum][carIdx].ClassPosition == -1 then ir.PositionsByCarIdx[ir.SessionNum][carIdx].Position else ir.PositionsByCarIdx[ir.SessionNum][carIdx].ClassPosition + 1
+                    driverNumber.plain(driverPosition).attr(config.mapOptions.styles.driver.posNum)
 
-                    for idx, text of driverCarNum
-                        text.plain(ir.DriversByCarIdx[idx].CarNumber).attr(config.mapOptions.styles.driver.carNum)
-                    
+                if carIdx == ir.myCarIdx
+                    driverCircle.fill(shadeColor(circleColor, -0.3))
+                    driverNumber.addClass('player')
 
-    arrayEqual = (a, b) ->
-        a.length is b.length and a.every (elem, i) -> elem is b[i]
+                driverCircle.center(0, 0)
+                driverNumber.center(0, 0)
+
+                driver = mapVars.trackMap.group()
+                driver.add(driverCircle)
+                driver.add(driverNumber)
+                driver.move(driverCoords.x, driverCoords.y)
+
+                mapVars.drivers[carIdx] = driver
+
+                if carIdx == ir.CamCarIdx
+                    mapVars.drivers[carIdx].get(0).attr(config.mapOptions.styles.driver.camera)
+
+                if ir.CarIdxOnPitRoad[carIdx]
+                    mapVars.drivers[carIdx].attr(config.mapOptions.styles.driver.pit)
+            else
+                if carIdxDist == -1
+                    mapVars.drivers[carIdx].hide()
+                else
+                    driverCoords = mapVars.track.pointAt(mapVars.trackLength*carIdxDist)
+                    mapVars.drivers[carIdx].move(driverCoords.x, driverCoords.y)
+
+                    if carIdx == ir.CamCarIdx and !!mapVars.drivers[carIdx].next()
+                        mapVars.drivers[carIdx].front()
+
+                    mapVars.drivers[carIdx].show()
 
     drawStartFinishLine = (refPoint) ->
-        startCoords = track.pointAt(refPoint * trackLength)
-        pathAngle = track.pointAt((refPoint * trackLength) + 0.1)
+        startCoords = mapVars.track.pointAt(refPoint * mapVars.trackLength)
+        pathAngle = mapVars.track.pointAt((refPoint * mapVars.trackLength) + 0.1)
         rotateAngle = getLineAngle(startCoords.x, startCoords.y, pathAngle.x, pathAngle.y)
-        startFinishLine = trackMap.path(getLinePath(startCoords.x, startCoords.y - 15, startCoords.x, startCoords.y + 15)).rotate(rotateAngle).attr(config.mapOptions.styles.startFinish)
+        startFinishLine = mapVars.trackMap.path(getLinePath(startCoords.x, startCoords.y - 15, startCoords.x, startCoords.y + 15)).rotate(rotateAngle).attr(config.mapOptions.styles.startFinish)
 
     drawSectors = () ->
         if not ir.SplitTimeInfo
             return
 
         for sector, i in ir.SplitTimeInfo.Sectors when i >= 1
-            sectorCoords = track.pointAt(sector.SectorStartPct * trackLength)
-            sectorAngle = track.pointAt((sector.SectorStartPct * trackLength) + 0.1)
+            sectorCoords = mapVars.track.pointAt(sector.SectorStartPct * mapVars.trackLength)
+            sectorAngle = mapVars.track.pointAt((sector.SectorStartPct * mapVars.trackLength) + 0.1)
             sectorRotation = getLineAngle(sectorCoords.x, sectorCoords.y, sectorAngle.x, sectorAngle.y)
-            sectorLine = trackMap.path(getLinePath(sectorCoords.x, sectorCoords.y - 10, sectorCoords.x, sectorCoords.y + 10)).rotate(sectorRotation).attr(config.mapOptions.styles.sectors)
+            sectorLine = mapVars.trackMap.path(getLinePath(sectorCoords.x, sectorCoords.y - 10, sectorCoords.x, sectorCoords.y + 10)).rotate(sectorRotation).attr(config.mapOptions.styles.sectors)
 
-    getLinePath = (startX, startY, endX, endY) ->
-        'M' + startX + ' ' + startY + ' L' + endX + ' ' + endY
+    getCarClassColor = (carIdx) ->
+        carClassColor = ir.DriversByCarIdx[carIdx].CarClassColor
 
-    getLineAngle = (x1, y1, x2, y2) ->
-        x = x1 - x2
-        y = y1 - y2
+        if carClassColor == 0
+            carClassId = ir.DriversByCarIdx[carIdx].CarClassID
+            for d in ir.DriverInfo.Drivers
+                if d.CarClassID == carClassId and d.CarClassColor
+                    carClassColor = d.CarClassColor
+        if carClassColor == 0xffffff
+            carClassColor = 0xffda59
 
-        if (!x && !y)
-            return 0
-
-        return (180 + Math.atan2(-y, -x) * 180 / Math.PI + 360) % 360
-
-    updateMap = () ->
-        if not ir.SessionInfo.Sessions[ir.SessionNum]
-            return
-
-        if ir.SessionInfo.Sessions[ir.SessionNum].SessionType == 'Race'
-            skipCars = 1
-
-        for carIdxDist, carIdx in CarIdxLapDistPct when carIdx >= skipCars
-            if typeof drivers[carIdx] == 'undefined'
-                if carIdxDist != -1
-                    driverCoords = track.pointAt(trackLength*carIdxDist)
-
-                    carClassColor = ir.DriversByCarIdx[carIdx].CarClassColor
-                    if carClassColor == 0
-                        carClassId = ir.DriversByCarIdx[carIdx].CarClassID
-                        for d in ir.DriverInfo.Drivers
-                            if d.CarClassID == carClassId and d.CarClassColor
-                                carClassColor = d.CarClassColor
-                    if carClassColor == 0xffffff
-                        carClassColor = 0xffda59
-                    carClassColor = '#' + carClassColor.toString(16)
-
-                    if config.driverGroupsEnabled
-                        for group, i in config.driverGroups
-                            if (ir.DriversByCarIdx[carIdx].UserID in group) or (ir.WeekendInfo.TeamRacing and ir.DriversByCarIdx[carIdx].TeamID in group)
-                                circleColor = config.driverGroupsColors[i]
-                                break
-                            else
-                                circleColor = carClassColor
-                    else
-                        circleColor = carClassColor
-
-                    drivers[carIdx] = trackMap.circle(config.mapOptions.styles.driver.circleRadius * 2).fill(circleColor).cx(driverCoords.x).cy(driverCoords.y).attr(config.mapOptions.styles.driver.default).attr(fill: circleColor)
-
-                    driverCarNum[carIdx] = trackMap.plain('').cx(driverCoords.x).cy(driverCoords.y).attr(config.mapOptions.styles.driver.circleNum)
-
-                    if typeof ir.PositionsByCarIdx[ir.SessionNum][carIdx] != 'undefined'
-                        driverPosition = if ir.PositionsByCarIdx[ir.SessionNum][carIdx].ClassPosition == -1 then ir.PositionsByCarIdx[ir.SessionNum][carIdx].Position else ir.PositionsByCarIdx[ir.SessionNum][carIdx].ClassPosition + 1
-                        driverCarNum[carIdx].plain(driverPosition).attr(config.mapOptions.styles.driver.posNum)
-                    else
-                        driverCarNum[carIdx].plain(ir.DriversByCarIdx[carIdx].CarNumber).attr(config.mapOptions.styles.driver.carNum)
-
-                    if carIdx == ir.myCarIdx
-                        drivers[carIdx].fill(shadeColor(circleColor, -0.3))
-                        driverCarNum[carIdx].attr('id', 'player')
-
-                    if carIdx == ir.CamCarIdx
-                        drivers[carIdx].attr(config.mapOptions.styles.driver.camera).front()
-                        driverCarNum[carIdx].front()
-
-                    if ir.CarIdxOnPitRoad[carIdx]
-                        drivers[carIdx].attr(config.mapOptions.styles.driver.pit)
-
-            else
-                if carIdxDist == -1
-                    drivers[carIdx].hide()
-                    driverCarNum[carIdx].hide()
-                else
-                    driverCoords = track.pointAt(trackLength*carIdxDist)
-                    drivers[carIdx].cx(driverCoords.x).cy(driverCoords.y)
-                    driverCarNum[carIdx].cx(driverCoords.x).cy(driverCoords.y)
-
-                    if carIdx == ir.CamCarIdx and driverCarNum[carIdx].next != null
-                        drivers[carIdx].front()
-                        driverCarNum[carIdx].front()
-
-                    driverCarNum[carIdx].show()
-                    drivers[carIdx].show()
+        return carClassColor = '#' + carClassColor.toString(16)
 
 shadeColor = (color, percent) ->
     f = parseInt(color.slice(1), 16)
@@ -473,7 +418,17 @@ shadeColor = (color, percent) ->
     B = f & 0x0000FF
     '#' + (0x1000000 + (Math.round((t - R) * p) + R) * 0x10000 + (Math.round((t - G) * p) + G) * 0x100 + (Math.round((t - B) * p) + B)).toString(16).slice(1)
 
-##### /Map
+getLinePath = (startX, startY, endX, endY) ->
+    'M' + startX + ' ' + startY + ' L' + endX + ' ' + endY
+
+getLineAngle = (x1, y1, x2, y2) ->
+    x = x1 - x2
+    y = y1 - y2
+
+    if (!x && !y)
+        return 0
+
+    return (180 + Math.atan2(-y, -x) * 180 / Math.PI + 360) % 360
 
 angular.bootstrap document, [app.name]
 
