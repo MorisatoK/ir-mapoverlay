@@ -158,6 +158,7 @@ app.service 'iRData', ($rootScope, config) ->
     ir.onUpdate = (keys) ->
         if 'DriverInfo' in keys
             updateDriversByCarIdx()
+            updateCarClassIDs()
         if 'SessionInfo' in keys
             updatePositionsByCarIdx()
         if 'QualifyResultsInfo' in keys
@@ -183,6 +184,13 @@ app.service 'iRData', ($rootScope, config) ->
         ir.data.QualifyResultsByCarIdx ?= {}
         for position in ir.data.QualifyResultsInfo.Results
             ir.data.QualifyResultsByCarIdx[position.CarIdx] = position
+
+    updateCarClassIDs = ->
+        for driver in ir.data.DriverInfo.Drivers
+            carClassId = driver.CarClassID
+            ir.data.CarClassIDs ?= []
+            if driver.UserID != -1 and driver.IsSpectator == 0 and carClassId not in ir.data.CarClassIDs
+                ir.data.CarClassIDs.push carClassId
 
     return ir.data
 
@@ -320,6 +328,15 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
         for index, driver of mapVars.drivers
             driver.get(1).plain(ir.DriversByCarIdx[index].CarNumber).attr(config.mapOptions.styles.driver.carNum)
 
+    showClassBubble = (carIdx) ->
+        if not ir.CarClassIDs or ir.CarClassIDs.length <= 1
+            return
+
+        classBubble = mapVars.drivers[carIdx].get(2)
+
+        if !!classBubble and !classBubble.visible()
+            classBubble.show()
+
     updateMap = ->
         if not ir.SessionInfo or not ir.SessionInfo.Sessions[ir.SessionNum]
             return
@@ -340,12 +357,14 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
 
                 if config.mapOptions.styles.driver.circleColor
                     circleColor = config.mapOptions.styles.driver.circleColor
+                    drawClassBubble = true
 
                 if config.driverGroupsEnabled
                     for group, i in config.driverGroups
                         if (ir.DriversByCarIdx[carIdx].UserID in group) or (ir.WeekendInfo.TeamRacing and ir.DriversByCarIdx[carIdx].TeamID in group)
                             circleColor = config.driverGroupsColors[i]
                             numberColor = config.mapOptions.styles.driver.highlightNum
+                            drawClassBubble = true
                             break
 
                 driverNumber = mapVars.trackMap.plain('').attr(numberColor)
@@ -365,13 +384,18 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
                     else
                         driverCircle.fill(shadeColor(circleColor, -0.3))
 
-
                 driverCircle.center(0, 0)
                 driverNumber.center(0, 0)
 
                 driver = mapVars.trackMap.group()
                 driver.add(driverCircle)
                 driver.add(driverNumber)
+
+                if drawClassBubble
+                    classBubble = mapVars.trackMap.circle(config.mapOptions.styles.driver.circleRadius).fill(carClassColor).center(config.mapOptions.styles.driver.circleRadius * .85, -config.mapOptions.styles.driver.circleRadius * .85).hide()
+                    driver.add(classBubble)
+                    drawClassBubble = false
+
                 driver.move(driverCoords.x, driverCoords.y)
 
                 mapVars.drivers[carIdx] = driver
@@ -392,6 +416,8 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
                         mapVars.drivers[carIdx].front()
 
                     mapVars.drivers[carIdx].show()
+                    showClassBubble(carIdx)
+
 
     drawStartFinishLine = (refPoint) ->
         startCoords = mapVars.track.pointAt(refPoint * mapVars.trackLength)
