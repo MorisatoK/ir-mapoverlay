@@ -37,6 +37,7 @@ app.controller 'SettingsCtrl', ($scope, localStorageService) ->
         sectorColor: '#FFDA59'
         showSectors: false
         driverCircle: 12
+        circleColor: ''
         driverHighlightWidth: 4
         driverHighlightCam: '#4DFF51'
         driverHighlightOfftrack: '#FF0000'
@@ -57,6 +58,7 @@ app.controller 'SettingsCtrl', ($scope, localStorageService) ->
     settings.sectorColor ?= defaultSettings.sectorColor
     settings.showSectors ?= defaultSettings.showSectors
     settings.driverCircle ?= defaultSettings.driverCircle
+    settings.circleColor ?= defaultSettings.circleColor
     settings.driverHighlightWidth ?= defaultSettings.driverHighlightWidth
     settings.driverHighlightCam ?= defaultSettings.driverHighlightCam
     settings.driverHighlightOfftrack ?= defaultSettings.driverHighlightOfftrack
@@ -80,6 +82,7 @@ app.controller 'SettingsCtrl', ($scope, localStorageService) ->
         'sectorColor'
         'showSectors'
         'driverCircle'
+        'circleColor'
         'driverHighlightWidth'
         'driverHighlightCam'
         'driverHighlightOfftrack'

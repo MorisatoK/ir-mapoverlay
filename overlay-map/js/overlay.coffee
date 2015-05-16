@@ -96,6 +96,7 @@ app.service 'config', ($location) ->
                 'stroke-opacity': '1'
             driver:
                 circleRadius: driverCircle
+                circleColor: vars.circleColor or false
                 default:
                     'stroke-width': '0'
                     stroke: vars.driverHighlightCam or '#4DFF51'
@@ -337,6 +338,9 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
                 circleColor = carClassColor
                 numberColor = config.mapOptions.styles.driver.circleNum
 
+                if config.mapOptions.styles.driver.circleColor
+                    circleColor = config.mapOptions.styles.driver.circleColor
+
                 if config.driverGroupsEnabled
                     for group, i in config.driverGroups
                         if (ir.DriversByCarIdx[carIdx].UserID in group) or (ir.WeekendInfo.TeamRacing and ir.DriversByCarIdx[carIdx].TeamID in group)
@@ -345,7 +349,7 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
                             break
 
                 driverNumber = mapVars.trackMap.plain('').attr(numberColor)
-                driverCircle = mapVars.trackMap.circle(config.mapOptions.styles.driver.circleRadius * 2).fill(circleColor).attr(config.mapOptions.styles.driver.default).attr(fill: circleColor)
+                driverCircle = mapVars.trackMap.circle(config.mapOptions.styles.driver.circleRadius * 2).attr(config.mapOptions.styles.driver.default).fill(circleColor)
 
                 if not ir.PositionsByCarIdx[ir.SessionNum][carIdx]
                     driverNumber.plain(ir.DriversByCarIdx[carIdx].CarNumber).attr(config.mapOptions.styles.driver.carNum)
@@ -355,7 +359,7 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
 
                 if carIdx == ir.myCarIdx
                     driverNumber.attr(config.mapOptions.styles.driver.highlightNum)
-                    console.log config.mapOptions.styles.driver.playerHighlight
+
                     if config.mapOptions.styles.driver.playerHighlight
                         driverCircle.fill(config.mapOptions.styles.driver.playerHighlight)
                     else

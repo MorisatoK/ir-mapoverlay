@@ -117,12 +117,21 @@
 						</div>
 					</div>
 					<div class="form-group">
+						<label for="inputCircleColor" class="col-sm-3 control-label">Circle Color</label>
+						<div class="col-sm-2">
+							<input ng-model="settings.circleColor" ng-change="saveSettings()" type="text" class="form-control" id="inputCircleColor" colorpicker="hex" placeholder="#000000" />
+						</div>
+						<div class="col-sm-7">
+							<span class="help-block">The color of the driver circles. Overrides driver/team groups and car class colors. <em>Default: ingame class color</em></span>
+						</div>
+					</div>
+					<div class="form-group">
 						<label for="inputPlayerHighlight" class="col-sm-3 control-label">Player Highlight Color</label>
 						<div class="col-sm-2">
 							<input ng-model="settings.playerHighlight" ng-change="saveSettings()" type="text" class="form-control" id="inputPlayerHighlight" colorpicker="hex" placeholder="#000000" />
 						</div>
 						<div class="col-sm-7">
-							<span class="help-block">The color of the circle of the player. Overrides driver/team groups and car class colors. <em>Default: darkened car class color</em></span>
+							<span class="help-block">The color of the circle of the player. Overrides circle color above, driver/team groups and car class colors. <em>Default: darkened ingame class color</em></span>
 						</div>
 					</div>
 					<div class="form-group">
