@@ -41,7 +41,7 @@ app.controller 'SettingsCtrl', ($scope, localStorageService) ->
         driverHighlightCam: '#4DFF51'
         driverHighlightOfftrack: '#FF0000'
         driverPosNum: '#000000'
-        driverCarNum: '#666666'
+        highlightNum: '#FFFFFF'
         driverGroups: []
 
     $scope.isDefaultHost = document.location.host == defaultSettings.host
@@ -60,7 +60,7 @@ app.controller 'SettingsCtrl', ($scope, localStorageService) ->
     settings.driverHighlightCam ?= defaultSettings.driverHighlightCam
     settings.driverHighlightOfftrack ?= defaultSettings.driverHighlightOfftrack
     settings.driverPosNum ?= defaultSettings.driverPosNum
-    settings.driverCarNum ?= defaultSettings.driverCarNum
+    settings.highlightNum ?= defaultSettings.highlightNum
     settings.driverGroups ?= defaultSettings.driverGroups
 
     $scope.saveSettings = saveSettings = ->
@@ -82,7 +82,7 @@ app.controller 'SettingsCtrl', ($scope, localStorageService) ->
         'driverHighlightCam'
         'driverHighlightOfftrack'
         'driverPosNum'
-        'driverCarNum'
+        'highlightNum'
     ]
 
     updateURL = ->
