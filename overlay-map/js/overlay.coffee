@@ -18,8 +18,6 @@ app.service 'config', ($location) ->
     driverHighlightWidth = parseInt(vars.driverHighlightWidth) or 4
     driverHighlightWidth = Math.max 3, Math.min 10, driverHighlightWidth
 
-    showSectors: vars.showSectors == 'true'
-
     driverGroups = vars.dGrp
     driverGroupsColors = vars.dGrpClr
 
@@ -50,6 +48,8 @@ app.service 'config', ($location) ->
     driverGroupsEnabled: driverGroupsEnabled
     driverGroups: driverGroups
     driverGroupsColors: driverGroupsColors
+
+    showSectors: vars.showSectors == 'true'
 
     host: vars.host or 'localhost:8182'
     fps: fps
@@ -116,6 +116,7 @@ app.service 'config', ($location) ->
                     opacity: '0.5'
                 highlightNum:
                     fill: vars.highlightNum or '#FFFFFF'
+                playerHighlight: vars.playerHighlight or false
 
     requestParams: [
         # yaml
@@ -353,8 +354,13 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
                     driverNumber.plain(driverPosition).attr(config.mapOptions.styles.driver.posNum)
 
                 if carIdx == ir.myCarIdx
-                    driverCircle.fill(shadeColor(circleColor, -0.3))
                     driverNumber.attr(config.mapOptions.styles.driver.highlightNum)
+                    console.log config.mapOptions.styles.driver.playerHighlight
+                    if config.mapOptions.styles.driver.playerHighlight
+                        driverCircle.fill(config.mapOptions.styles.driver.playerHighlight)
+                    else
+                        driverCircle.fill(shadeColor(circleColor, -0.3))
+
 
                 driverCircle.center(0, 0)
                 driverNumber.center(0, 0)

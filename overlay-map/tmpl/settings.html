@@ -117,6 +117,15 @@
 						</div>
 					</div>
 					<div class="form-group">
+						<label for="inputPlayerHighlight" class="col-sm-3 control-label">Player Highlight Color</label>
+						<div class="col-sm-2">
+							<input ng-model="settings.playerHighlight" ng-change="saveSettings()" type="text" class="form-control" id="inputPlayerHighlight" colorpicker="hex" placeholder="#000000" />
+						</div>
+						<div class="col-sm-7">
+							<span class="help-block">The color of the circle of the player. Overrides driver/team groups and car class colors. <em>Default: darkened car class color</em></span>
+						</div>
+					</div>
+					<div class="form-group">
 						<label for="inputDriverHighlightWidth" class="col-sm-3 control-label">Highlight Thickness</label>
 						<div class="col-sm-2">
 							<input ng-model="settings.driverHighlightWidth" ng-change="saveSettings()" type="number" class="form-control" id="inputDriverHighlightWidth" min="3" max="10" />
@@ -158,7 +167,7 @@
 							<input ng-model="settings.highlightNum" ng-change="saveSettings()" type="text" class="form-control" id="inputHighlightNum" colorpicker="hex" />
 						</div>
 						<div class="col-sm-7">
-							<span class="help-block">The color of the number in the circle of the driver or driver/team groups. <em>Default: #FFFFFF</em></span>
+							<span class="help-block">The color of the number in the circle of the player or driver/team groups. <em>Default: #FFFFFF</em></span>
 						</div>
 					</div>
 				</div>
