@@ -1,11 +1,18 @@
 # iRacing TrackOverlay & Accelerometer Changelog
 
-### 1.6.0 - 2015-xx-xx
+### 1.6.0 - 2015-06-09
 
 ##### Track Overlay
 
-* New feature: Driver/Team groups to highlight specific driver circles on map
+* New track: Five Flags Speedway
+* New feature: Driver/Team groups to highlight specific drivers and/or teams on map
+* New option: "Circle Color" that can be used for the circle color of the drivers
+* New option: "Player Highlight Color" that can be used for circle color of the player
+* New option: "Number Highlight Color" that will be used for the player number and driver/team group numbers
+* Removed option for "Carnumber Color". The color of the car number in the circle when no position is set will now be equal to "Position Color" or "Number Highlight Color" but transparent
+* When custom circle colors or driver/team groups are used in multi-class races a separate bubble with the class color will be displayed
 * Slight overhaul of the settings page
+* Many under the hood changes and improvements
 
 ### 1.5.0 - 2015-05-06
 
