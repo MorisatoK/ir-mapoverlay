@@ -1,0 +1,24 @@
+{
+  "name": "ir-mapoverlay",
+  "version": "2.0.0",
+  "description": "Map overlay addon for iRacing Browser Apps",
+  "main": "index.html",
+  "scripts": {
+    "start": "live-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MorisatoK/ir-mapoverlay.git"
+  },
+  "author": "MorisatoK",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/MorisatoK/ir-mapoverlay/issues"
+  },
+  "homepage": "https://github.com/MorisatoK/ir-mapoverlay#readme",
+  "devDependencies": {
+    "live-server": "^0.8.2",
+    "angular2": "^2.0.0-alpha.45",
+    "systemjs": "^0.19.5"
+  }
+}
