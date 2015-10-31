@@ -19,6 +19,7 @@
   "devDependencies": {
     "angular2": "^2.0.0-alpha.45",
     "bootstrap": "^3.3.5",
+    "jquery": "^2.1.4",
     "live-server": "^0.8.2",
     "svg.js": "^2.1.1",
     "systemjs": "^0.19.5"
