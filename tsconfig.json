@@ -13,10 +13,10 @@
         "!node_modules/**"
     ],
     "files": [
-        "app/app.ts",
         "app/components/home.ts",
         "app/components/overlay.ts",
-        "app/components/settings.ts"
+        "app/components/settings.ts",
+        "app/map-overlay.ts"
     ],
     "exclude": []
 }
