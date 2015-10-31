@@ -1,6 +1,6 @@
 // Angular 2
-import { bootstrap, Component, View, bind } from 'angular2/angular2';
-import { ROUTER_PROVIDERS, ROUTER_DIRECTIVES, RouteConfig, LocationStrategy, Location, HashLocationStrategy } from 'angular2/router';
+import { bootstrap, Component, View, provide, CORE_DIRECTIVES } from 'angular2/angular2';
+import { ROUTER_PROVIDERS, ROUTER_DIRECTIVES, RouteConfig, LocationStrategy, HashLocationStrategy } from 'angular2/router';
 
 // Components
 import { Home } from './components/home';
@@ -14,12 +14,13 @@ const VERSION: string = '2.0.0';
 })
 
 @View({
-    directives: [ROUTER_DIRECTIVES],
+    directives: [ROUTER_DIRECTIVES, CORE_DIRECTIVES],
     templateUrl: 'app/templates/base.html'
 })
 
 @RouteConfig([
-    { path: '/', as: 'Home', component: Home },
+    { path: '/', redirectTo: '/home' },
+    { path: '/home', as: 'Home', component: Home },
     { path: '/settings', as: 'Settings', component: Settings },
     { path: '/overlay', as: 'Overlay', component: Overlay }
 ])
@@ -30,9 +31,19 @@ export class MapOverlay {
     constructor() {
         this.version = VERSION;
     }
+
+    isRouteActive(route: string) {
+        return { active: location.hash.match(route) };
+    }
+
+    isNavigationHidden() {
+        return location.hash.match('overlay');
+    }
 }
 
 bootstrap(
-    MapOverlay,
-    [ROUTER_PROVIDERS, bind(LocationStrategy).toClass(HashLocationStrategy)]
+    MapOverlay, [
+        ROUTER_PROVIDERS,
+        provide(LocationStrategy, { useClass: HashLocationStrategy })
+    ]
 );

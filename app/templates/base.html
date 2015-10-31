@@ -1,17 +1,17 @@
-<header>
+<header [hidden]="isNavigationHidden()">
     <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand" [router-link]=" ['/Home'] ">iRacing Map Overlay</a>
             </div>
             <ul class="nav navbar-nav navbar-right">
-                <li>
+                <li [ng-class]="isRouteActive('home')">
                     <a [router-link]=" ['/Home'] ">Home</a>
                 </li>
-                <li>
+                <li [ng-class]="isRouteActive('settings')">
                     <a [router-link]=" ['/Settings'] ">Settings</a>
                 </li>
-                <li>
+                <li [ng-class]="isRouteActive('overlay')">
                     <a [router-link]=" ['/Overlay'] ">Overlay</a>
                 </li>
             </ul>
@@ -19,7 +19,7 @@
     </nav>
 </header>
 <router-outlet></router-outlet>
-<footer>
+<footer [hidden]="isNavigationHidden()">
     <div class="container">
         <p class="text-muted"><a href="https://github.com/MorisatoK/ir-mapoverlay#readme">iRacing Map Overlay</a> {{version}} for <a href="http://ir-apps.kutu.ru/">iRacing Browser Apps</a></p>
     </div>

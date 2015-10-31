@@ -19,16 +19,23 @@ var MapOverlay = (function () {
     function MapOverlay() {
         this.version = VERSION;
     }
+    MapOverlay.prototype.isRouteActive = function (route) {
+        return { active: location.hash.match(route) };
+    };
+    MapOverlay.prototype.isNavigationHidden = function () {
+        return location.hash.match('overlay');
+    };
     MapOverlay = __decorate([
         angular2_1.Component({
             selector: 'map-overlay'
         }),
         angular2_1.View({
-            directives: [router_1.ROUTER_DIRECTIVES],
+            directives: [router_1.ROUTER_DIRECTIVES, angular2_1.CORE_DIRECTIVES],
             templateUrl: 'app/templates/base.html'
         }),
         router_1.RouteConfig([
-            { path: '/', as: 'Home', component: home_1.Home },
+            { path: '/', redirectTo: '/home' },
+            { path: '/home', as: 'Home', component: home_1.Home },
             { path: '/settings', as: 'Settings', component: settings_1.Settings },
             { path: '/overlay', as: 'Overlay', component: overlay_1.Overlay }
         ]), 
@@ -37,4 +44,7 @@ var MapOverlay = (function () {
     return MapOverlay;
 })();
 exports.MapOverlay = MapOverlay;
-angular2_1.bootstrap(MapOverlay, [router_1.ROUTER_PROVIDERS, angular2_1.bind(router_1.LocationStrategy).toClass(router_1.HashLocationStrategy)]);
+angular2_1.bootstrap(MapOverlay, [
+    router_1.ROUTER_PROVIDERS,
+    angular2_1.provide(router_1.LocationStrategy, { useClass: router_1.HashLocationStrategy })
+]);
