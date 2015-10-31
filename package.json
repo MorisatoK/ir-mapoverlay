@@ -17,8 +17,9 @@
   },
   "homepage": "https://github.com/MorisatoK/ir-mapoverlay#readme",
   "devDependencies": {
-    "live-server": "^0.8.2",
     "angular2": "^2.0.0-alpha.45",
+    "bootstrap": "^3.3.5",
+    "live-server": "^0.8.2",
     "systemjs": "^0.19.5"
   }
 }
