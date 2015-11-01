@@ -1,18 +1,26 @@
 /// <reference path="../../libs/typings/tsd.d.ts" />
 
-import { Component, View } from 'angular2/angular2';
+import { Component, View, FORM_DIRECTIVES, CORE_DIRECTIVES } from 'angular2/angular2';
+import { SettingsService } from '../services/settings-service';
 
 @Component({
-    selector: 'settings'
+    selector: 'settings',
+    providers: [SettingsService]
 })
 
 @View({
-    templateUrl: 'app/templates/settings.html'
+    templateUrl: 'app/templates/settings.html',
+    directives: [FORM_DIRECTIVES, CORE_DIRECTIVES]
 })
 
 export class Settings {
     static popoverInitialized: boolean;
     static spectrumInitialized: boolean;
+    private _settings;
+
+    constructor(settingsService: SettingsService) {
+        this._settings = settingsService.getSettings();
+    }
 
     afterViewInit() {
         if (!Settings.popoverInitialized) {

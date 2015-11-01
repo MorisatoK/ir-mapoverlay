@@ -8,8 +8,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var angular2_1 = require('angular2/angular2');
+var settings_service_1 = require('../services/settings-service');
 var Settings = (function () {
-    function Settings() {
+    function Settings(settingsService) {
+        this._settings = settingsService.getSettings();
     }
     Settings.prototype.afterViewInit = function () {
         if (!Settings.popoverInitialized) {
@@ -41,12 +43,14 @@ var Settings = (function () {
     };
     Settings = __decorate([
         angular2_1.Component({
-            selector: 'settings'
+            selector: 'settings',
+            providers: [settings_service_1.SettingsService]
         }),
         angular2_1.View({
-            templateUrl: 'app/templates/settings.html'
+            templateUrl: 'app/templates/settings.html',
+            directives: [angular2_1.FORM_DIRECTIVES, angular2_1.CORE_DIRECTIVES]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [settings_service_1.SettingsService])
     ], Settings);
     return Settings;
 })();

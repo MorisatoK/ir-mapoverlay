@@ -3,7 +3,7 @@
         <!-- clr browser url -->
         <div class="input-group input-group-lg input-clr-browser">
             <span class="input-group-addon">CLR Browser URL</span>
-            <input type="text" class="form-control">
+            <input [(ng-model)]="_settings.clrBrowser" type="text" class="form-control" />
             <span class="input-group-btn">
                 <button class="btn btn-success" type="button" data-toggle="popover" data-placement="bottom" data-trigger="hover" data-content="This will go to the overlay in the browser with the current settings.<br><span class='label label-info'>Info</span> <em>iRacing must be running in order to see something.</em>">Test »</button>
             </span>
@@ -24,12 +24,12 @@
                 <!-- host -->
                 <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="Your iRacing Browser Apps Server address and port.">
                     <span class="input-group-addon">Server</span>
-                    <input type="text" class="form-control" id="inputHost" placeholder="127.0.0.1:8182" />
+                    <input [(ng-model)]="_settings.options.host" type="text" class="form-control" id="inputHost" placeholder="127.0.0.1:8182" />
                 </div>
                 <!-- fps -->
                 <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="How often server will send data (1-60).<br><span class='label label-warning'>Warning</span> <em>This option is CPU expensive</em>.">
                     <span class="input-group-addon">FPS</span>
-                    <input type="text" class="form-control" id="inputFps" min="1" max="60" placeholder="15" />
+                    <input [(ng-model)]="_settings.options.fps" type="text" class="form-control" id="inputFps" min="1" max="60" placeholder="15" />
                 </div>
             </div>
 
@@ -37,29 +37,29 @@
             <div role="tabpanel" class="tab-pane fade" id="trackstroke">
                 <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The color of the track in hexadecimal format.<br><span class='label label-info'>Info</span> <em>Default:</em> <span class='color-preview' style='background-color: #000000'></span>">
                     <span class="input-group-addon">Track Stroke Color</span>
-                    <input type="text" class="colorpicker form-control" id="inputTrackColor" value="#000000" pattern="#[a-f0-9]{6}"/>
+                    <input [(ng-model)]="_settings.options.trackColor" type="text" class="colorpicker form-control" id="inputTrackColor" value="#000000" pattern="#[a-f0-9]{6}"/>
                 </div>
                 <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The width of the track stroke.<br><span class='label label-info'>Info</span> <em>Default: 10</em>">
                     <span class="input-group-addon">Track Stroke Width</span>
-                    <input type="number" class="form-control" id="inputTrackWidth" min="1" max="30" placeholder="10" />
+                    <input [(ng-model)]="_settings.options.trackWidth" type="number" class="form-control" id="inputTrackWidth" min="1" max="30" placeholder="10" />
                 </div>
                 <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The color of the track outline.<br><span class='label label-info'>Info</span> <em>Default:</em> <span class='color-preview' style='background-color: #FFFFFF'></span>">
                     <span class="input-group-addon">Track Outline Color</span>
-                    <input type="text" class="colorpicker form-control" id="inputTrackOutlineColor" value="#ffffff" pattern="#[a-f0-9]{6}" />
+                    <input [(ng-model)]="_settings.options.trackOutlineColor" type="text" class="colorpicker form-control" id="inputTrackOutlineColor" value="#ffffff" pattern="#[a-f0-9]{6}" />
                 </div>
                 <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The color of the start/finish line.<br><span class='label label-info'>Info</span> <em>Default:</em> <span class='color-preview' style='background-color: #FF0000'></span>">
                     <span class="input-group-addon">Start/Finish Line Color</span>
-                    <input type="text" class="colorpicker form-control" id="inputStartColor" value="#FF0000" pattern="#[a-f0-9]{6}" />
+                    <input [(ng-model)]="_settings.options.startFinishColor" type="text" class="colorpicker form-control" id="inputStartColor" value="#FF0000" pattern="#[a-f0-9]{6}" />
                 </div>
                 <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="Show lines at the sector boundaries of the tracks.">
                     <span class="input-group-addon">
-                        <input type="checkbox" id="inputShowSectors">
+                        <input [(ng-model)]="_settings.options.showSectors" type="checkbox" id="inputShowSectors">
                     </span>
                     <input type="text" class="form-control" value="Show Sectors" readonly="true"/>
                 </div>
                 <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The color of the sector lines.<br><span class='label label-info'>Info</span> <em>Default:</em> <span class='color-preview' style='background-color: #FFDA59'></span>">
                     <span class="input-group-addon">Sector Lines Color</span>
-                    <input type="text" class="colorpicker form-control" id="inputSectorColor" value="#FFDA59" pattern="#[a-f0-9]{6}" />
+                    <input [(ng-model)]="_settings.options.sectorColor" type="text" class="colorpicker form-control" id="inputSectorColor" value="#FFDA59" pattern="#[a-f0-9]{6}" />
                 </div>
             </div>
 
@@ -67,49 +67,53 @@
             <div role="tabpanel" class="tab-pane fade" id="drivercircles">
                 <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The radius of the driver circles.<br><span class='label label-info'>Info</span> <em>Default: 12</em>">
                     <span class="input-group-addon">Radius</span>
-                    <input type="number" class="form-control" id="inputDriverCircle" min="1" max="30" placeholder="12" />
+                    <input [(ng-model)]="_settings.options.driverCircle" type="number" class="form-control" id="inputDriverCircle" min="1" max="30" placeholder="12" />
                 </div>
                 <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The color of the driver circles.<br><span class='label label-info'>Info</span> <em>Overrides driver/team groups and car class colors.</em><br><span class='label label-info'>Info</span> <em>Default: ingame class color</em>">
                     <span class="input-group-addon">Circle Color</span>
-                    <input type="text" class="colorpicker allow-empty form-control" id="inputCircleColor" placeholder="#000000" pattern="#[a-f0-9]{6}" />
+                    <input [(ng-model)]="_settings.options.circleColor" type="text" class="colorpicker allow-empty form-control" id="inputCircleColor" placeholder="#000000" pattern="#[a-f0-9]{6}" />
                 </div>
                 <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The color of the circle of the player.<br><span class='label label-info'>Info</span> <em>Overrides circle color above, driver/team groups and car class colors.</em><br><span class='label label-info'>Info</span> <em>Default: darkened ingame class color</em>">
                     <span class="input-group-addon">Player Highlight Color</span>
-                    <input type="text" class="colorpicker allow-empty form-control" id="inputPlayerHighlight" placeholder="#000000" pattern="#[a-f0-9]{6}" />
+                    <input [(ng-model)]="_settings.options.playerHighlight" type="text" class="colorpicker allow-empty form-control" id="inputPlayerHighlight" placeholder="#000000" pattern="#[a-f0-9]{6}" />
                 </div>
                 <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The thickness of driver highlight outlines (camera/offtracks).<br><span class='label label-info'>Info</span> <em>Default: 4</em>">
                     <span class="input-group-addon">Highlight Thickness</span>
-                    <input type="number" class="form-control" id="inputDriverHighlightWidth" min="3" max="10" placeholder="4" />
+                    <input [(ng-model)]="_settings.options.driverHighlightWidth" type="number" class="form-control" id="inputDriverHighlightWidth" min="3" max="10" placeholder="4" />
                 </div>
                 <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The color of the highlight of the current camera car.<br><span class='label label-info'>Info</span> <em>Default:</em> <span class='color-preview' style='background-color: #4dFF51'></span>">
                     <span class="input-group-addon">Camera Highlight Color</span>
-                    <input type="text" class="colorpicker form-control" id="inputDriverHighlightCam" value="#4DFF51" pattern="#[a-f0-9]{6}" />
+                    <input [(ng-model)]="_settings.options.driverHighlightCam" type="text" class="colorpicker form-control" id="inputDriverHighlightCam" value="#4DFF51" pattern="#[a-f0-9]{6}" />
                 </div>
                 <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The color of the highlight when a car goes off track.<br><span class='label label-info'>Info</span> <em>Default:</em> <span class='color-preview' style='background-color: #FF0000'></span>">
                     <span class="input-group-addon">Offtrack Highlight Color</span>
-                    <input type="text" class="colorpicker form-control" id="inputDriverHighlightOfftrack" value="#FF0000" pattern="#[a-f0-9]{6}" />
+                    <input [(ng-model)]="_settings.options.driverHighlightOfftrack" type="text" class="colorpicker form-control" id="inputDriverHighlightOfftrack" value="#FF0000" pattern="#[a-f0-9]{6}" />
                 </div>
                 <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The color of the position number in the circle.<br><span class='label label-info'>Info</span> <em>Default:</em> <span class='color-preview' style='background-color: #000000'></span>">
                     <span class="input-group-addon">Position Color</span>
-                    <input type="text" class="colorpicker form-control" id="inputDriverPosNum" value="#000000" pattern="#[a-f0-9]{6}" />
+                    <input [(ng-model)]="_settings.options.driverPosNum" type="text" class="colorpicker form-control" id="inputDriverPosNum" value="#000000" pattern="#[a-f0-9]{6}" />
                 </div>
                 <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The color of the number in the circle of the player or driver/team groups.<br><span class='label label-info'>Info</span> <em>Default:</em> <span class='color-preview' style='background-color: #FFFFFF'></span>">
                     <span class="input-group-addon">Number Highlight Color</span>
-                    <input type="text" class="colorpicker form-control" id="inputHighlightNum" value="#FFFFFF" pattern="#[a-f0-9]{6}" />
+                    <input [(ng-model)]="_settings.options.highlightNum" type="text" class="colorpicker form-control" id="inputHighlightNum" value="#FFFFFF" pattern="#[a-f0-9]{6}" />
                 </div>
             </div>
 
             <!-- driver/team groups -->
             <div role="tabpanel" class="tab-pane fade" id="driverteams">
                 <span class="help-block">Enter one or more iRacing customer IDs or team IDs and pick a color in which the group should be highlighted. Separate multiple entries with a comma.</span>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" placeholder="123456,987654" />
+                <div class="driver-group" *ng-for="#group of _settings.options.driverGroups">
+                    <div class="col-sm-9">
+                        <input [(ng-model)]="group.id" type="text" class="form-control" placeholder="123456,987654" />
+                    </div>
+                    <div class="col-sm-2">
+                        <input [(ng-model)]="group.color" type="text" class="colorpicker form-control" value="#000000" pattern="#[a-f0-9]{6}" />
+                    </div>
+                    <button class="col-sm-1 btn btn-danger">-</button>
                 </div>
-                <div class="col-sm-2">
-                    <input type="text" class="colorpicker form-control" value="#000000" pattern="#[a-f0-9]{6}" />
+                <div class="col-sm-12">
+                    <button class="btn btn-primary">Add group</button>
                 </div>
-                <button class="col-sm-1 btn btn-danger">-</button>
-                <button class="btn btn-primary">Add group</button>
             </div>
          </div>
 
