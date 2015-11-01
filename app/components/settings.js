@@ -11,6 +11,16 @@ var angular2_1 = require('angular2/angular2');
 var Settings = (function () {
     function Settings() {
     }
+    Settings.prototype.afterViewInit = function () {
+        if (!Settings.popoverInitialized) {
+            jQuery('[data-toggle="popover"]').popover({
+                container: 'body',
+                html: true,
+                template: "<div class=\"popover overlay-settings\" role=\"tooltip\">\n                    <div class=\"arrow\"></div>\n                    <h3 class=\"popover-title\"></h3>\n                    <div class=\"popover-content\"></div>\n                    </div>\n                "
+            });
+            Settings.popoverInitialized = true;
+        }
+    };
     Settings = __decorate([
         angular2_1.Component({
             selector: 'settings'
