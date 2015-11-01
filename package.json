@@ -19,6 +19,7 @@
   "devDependencies": {
     "angular2": "^2.0.0-alpha.45",
     "bootstrap": "^3.3.5",
+    "es6-shim": "^0.33.9",
     "jquery": "^2.1.4",
     "live-server": "^0.8.2",
     "spectrum-colorpicker": "^1.7.1",
