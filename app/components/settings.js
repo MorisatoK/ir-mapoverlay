@@ -13,13 +13,31 @@ var Settings = (function () {
     }
     Settings.prototype.afterViewInit = function () {
         if (!Settings.popoverInitialized) {
-            jQuery('[data-toggle="popover"]').popover({
-                container: 'body',
-                html: true,
-                template: "<div class=\"popover overlay-settings\" role=\"tooltip\">\n                    <div class=\"arrow\"></div>\n                    <h3 class=\"popover-title\"></h3>\n                    <div class=\"popover-content\"></div>\n                    </div>\n                "
-            });
+            this.initializePopover();
             Settings.popoverInitialized = true;
         }
+        if (!Settings.spectrumInitialized) {
+            this.initializeSpectrum();
+            Settings.spectrumInitialized = true;
+        }
+    };
+    Settings.prototype.initializePopover = function () {
+        jQuery('[data-toggle="popover"]').popover({
+            container: 'body',
+            html: true,
+            template: "<div class=\"popover overlay-settings\" role=\"tooltip\">\n                <div class=\"arrow\"></div>\n                <h3 class=\"popover-title\"></h3>\n                <div class=\"popover-content\"></div>\n                </div>\n            "
+        });
+    };
+    Settings.prototype.initializeSpectrum = function () {
+        var spectrumOptions = {
+            preferredFormat: 'hex6',
+            showInput: true,
+            showInitial: true,
+            appendTo: 'form.overlay-settings'
+        };
+        var allowEmptyOptions = jQuery.extend({}, spectrumOptions, { allowEmpty: true });
+        jQuery('input.colorpicker:not(.allow-empty)').spectrum(spectrumOptions);
+        jQuery('input.colorpicker.allow-empty').spectrum(allowEmptyOptions);
     };
     Settings = __decorate([
         angular2_1.Component({

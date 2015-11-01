@@ -35,21 +35,21 @@
 
             <!-- track options -->
             <div role="tabpanel" class="tab-pane fade" id="trackstroke">
-                <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The color of the track in hexadecimal format.<br><span class='label label-info'>Info</span> <em>Default: #000000</em>">
+                <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The color of the track in hexadecimal format.<br><span class='label label-info'>Info</span> <em>Default:</em> <span class='color-preview' style='background-color: #000000'></span>">
                     <span class="input-group-addon">Track Stroke Color</span>
-                    <input type="text" class="form-control" id="inputTrackColor" placeholder="#000000" />
+                    <input type="text" class="colorpicker form-control" id="inputTrackColor" value="#000000" pattern="#[a-f0-9]{6}"/>
                 </div>
                 <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The width of the track stroke.<br><span class='label label-info'>Info</span> <em>Default: 10</em>">
                     <span class="input-group-addon">Track Stroke Width</span>
-                    <input type="number" class="form-control" id="inputTrackWidth" min="1" max="30" placeholder="10"/>
+                    <input type="number" class="form-control" id="inputTrackWidth" min="1" max="30" placeholder="10" />
                 </div>
-                <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The color of the track outline.<br><span class='label label-info'>Info</span> <em>Default: #FFFFFF</em>">
+                <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The color of the track outline.<br><span class='label label-info'>Info</span> <em>Default:</em> <span class='color-preview' style='background-color: #FFFFFF'></span>">
                     <span class="input-group-addon">Track Outline Color</span>
-                    <input type="text" class="form-control" id="inputTrackOutlineColor" placeholder="#FFFFFF" />
+                    <input type="text" class="colorpicker form-control" id="inputTrackOutlineColor" value="#ffffff" pattern="#[a-f0-9]{6}" />
                 </div>
-                <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The color of the start/finish line.<br><span class='label label-info'>Info</span> <em>Default: #FF0000</em>">
+                <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The color of the start/finish line.<br><span class='label label-info'>Info</span> <em>Default:</em> <span class='color-preview' style='background-color: #FF0000'></span>">
                     <span class="input-group-addon">Start/Finish Line Color</span>
-                    <input type="text" class="form-control" id="inputStartColor" placeholder="#FF0000" />
+                    <input type="text" class="colorpicker form-control" id="inputStartColor" value="#FF0000" pattern="#[a-f0-9]{6}" />
                 </div>
                 <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="Show lines at the sector boundaries of the tracks.">
                     <span class="input-group-addon">
@@ -57,9 +57,9 @@
                     </span>
                     <input type="text" class="form-control" value="Show Sectors" readonly="true"/>
                 </div>
-                <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The color of the sector lines.<br><span class='label label-info'>Info</span> <em>Default: #FFDA59</em>">
+                <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The color of the sector lines.<br><span class='label label-info'>Info</span> <em>Default:</em> <span class='color-preview' style='background-color: #FFDA59'></span>">
                     <span class="input-group-addon">Sector Lines Color</span>
-                    <input type="text" class="form-control" id="inputSectorColor" placeholder="#FFDA59" />
+                    <input type="text" class="colorpicker form-control" id="inputSectorColor" value="#FFDA59" pattern="#[a-f0-9]{6}" />
                 </div>
             </div>
 
@@ -71,31 +71,31 @@
                 </div>
                 <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The color of the driver circles.<br><span class='label label-info'>Info</span> <em>Overrides driver/team groups and car class colors.</em><br><span class='label label-info'>Info</span> <em>Default: ingame class color</em>">
                     <span class="input-group-addon">Circle Color</span>
-                    <input type="text" class="form-control" id="inputCircleColor" placeholder="#000000" />
+                    <input type="text" class="colorpicker allow-empty form-control" id="inputCircleColor" placeholder="#000000" pattern="#[a-f0-9]{6}" />
                 </div>
                 <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The color of the circle of the player.<br><span class='label label-info'>Info</span> <em>Overrides circle color above, driver/team groups and car class colors.</em><br><span class='label label-info'>Info</span> <em>Default: darkened ingame class color</em>">
                     <span class="input-group-addon">Player Highlight Color</span>
-                    <input type="text" class="form-control" id="inputPlayerHighlight" placeholder="#000000" />
+                    <input type="text" class="colorpicker allow-empty form-control" id="inputPlayerHighlight" placeholder="#000000" pattern="#[a-f0-9]{6}" />
                 </div>
                 <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The thickness of driver highlight outlines (camera/offtracks).<br><span class='label label-info'>Info</span> <em>Default: 4</em>">
                     <span class="input-group-addon">Highlight Thickness</span>
                     <input type="number" class="form-control" id="inputDriverHighlightWidth" min="3" max="10" placeholder="4" />
                 </div>
-                <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The color of the highlight of the current camera car.<br><span class='label label-info'>Info</span> <em>Default: #4DFF51</em>">
+                <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The color of the highlight of the current camera car.<br><span class='label label-info'>Info</span> <em>Default:</em> <span class='color-preview' style='background-color: #4dFF51'></span>">
                     <span class="input-group-addon">Camera Highlight Color</span>
-                    <input type="text" class="form-control" id="inputDriverHighlightCam" placeholder="#4DFF51" />
+                    <input type="text" class="colorpicker form-control" id="inputDriverHighlightCam" value="#4DFF51" pattern="#[a-f0-9]{6}" />
                 </div>
-                <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The color of the highlight when a car goes off track.<br><span class='label label-info'>Info</span> <em>Default: #FF0000</em>">
+                <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The color of the highlight when a car goes off track.<br><span class='label label-info'>Info</span> <em>Default:</em> <span class='color-preview' style='background-color: #FF0000'></span>">
                     <span class="input-group-addon">Offtrack Highlight Color</span>
-                    <input type="text" class="form-control" id="inputDriverHighlightOfftrack" placeholder="#FF0000" />
+                    <input type="text" class="colorpicker form-control" id="inputDriverHighlightOfftrack" value="#FF0000" pattern="#[a-f0-9]{6}" />
                 </div>
-                <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The color of the position number in the circle.<br><span class='label label-info'>Info</span> <em>Default: #000000</em>">
+                <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The color of the position number in the circle.<br><span class='label label-info'>Info</span> <em>Default:</em> <span class='color-preview' style='background-color: #000000'></span>">
                     <span class="input-group-addon">Position Color</span>
-                    <input type="text" class="form-control" id="inputDriverPosNum" placeholder="#000000" />
+                    <input type="text" class="colorpicker form-control" id="inputDriverPosNum" value="#000000" pattern="#[a-f0-9]{6}" />
                 </div>
-                <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The color of the number in the circle of the player or driver/team groups.<br><span class='label label-info'>Info</span> <em>Default: #FFFFFF</em>">
+                <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The color of the number in the circle of the player or driver/team groups.<br><span class='label label-info'>Info</span> <em>Default:</em> <span class='color-preview' style='background-color: #FFFFFF'></span>">
                     <span class="input-group-addon">Number Highlight Color</span>
-                    <input type="text" class="form-control" id="inputHighlightNum" placeholder="#FFFFFF" />
+                    <input type="text" class="colorpicker form-control" id="inputHighlightNum" value="#FFFFFF" pattern="#[a-f0-9]{6}" />
                 </div>
             </div>
 
@@ -106,7 +106,7 @@
                     <input type="text" class="form-control" placeholder="123456,987654" />
                 </div>
                 <div class="col-sm-2">
-                    <input type="text" class="form-control" placeholder="#000000" />
+                    <input type="text" class="colorpicker form-control" value="#000000" pattern="#[a-f0-9]{6}" />
                 </div>
                 <button class="col-sm-1 btn btn-danger">-</button>
                 <button class="btn btn-primary">Add group</button>
