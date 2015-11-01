@@ -1,3 +1,117 @@
 <main class="container">
-    <h2>Here be Dwarfs</h2>
+    <form class="form-horizontal overlay-settings">
+        <!-- clr browser url -->
+        <div class="input-group input-group-lg input-clr-browser">
+            <span class="input-group-addon">CLR Browser URL</span>
+            <input type="text" class="form-control">
+            <span class="input-group-btn">
+                <button class="btn btn-success" type="button" data-toggle="popover" data-placement="bottom" data-trigger="hover" data-content="This will go to the overlay in the browser with the current settings.<br><span class='label label-info'>Info</span> <em>iRacing must be running in order to see something.</em>">Test »</button>
+            </span>
+        </div>
+
+        <!-- Nav tabs -->
+         <ul class="nav nav-tabs">
+            <li class="active"><a href="#system" data-toggle="tab">System</a></li>
+            <li><a href="#trackstroke" data-toggle="tab">Track Stroke</a></li>
+            <li><a href="#drivercircles" data-toggle="tab">Driver Circles</a></li>
+            <li><a href="#driverteams" data-toggle="tab">Driver/Team Groups</a></li>
+         </ul>
+
+         <!-- Tab panes -->
+         <div class="tab-content">
+             <!-- system -->
+            <div role="tabpanel" class="tab-pane fade in active" id="system">
+                <!-- host -->
+                <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="Your iRacing Browser Apps Server address and port.">
+                    <span class="input-group-addon">Server</span>
+                    <input type="text" class="form-control" id="inputHost" placeholder="127.0.0.1:8182" />
+                </div>
+                <!-- fps -->
+                <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="How often server will send data (1-60).<br><span class='label label-warning'>Warning</span> <em>This option is CPU expensive</em>.">
+                    <span class="input-group-addon">FPS</span>
+                    <input type="text" class="form-control" id="inputFps" min="1" max="60" placeholder="15" />
+                </div>
+            </div>
+
+            <!-- track options -->
+            <div role="tabpanel" class="tab-pane fade" id="trackstroke">
+                <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The color of the track in hexadecimal format.<br><span class='label label-info'>Info</span> <em>Default: #000000</em>">
+                    <span class="input-group-addon">Track Stroke Color</span>
+                    <input type="text" class="form-control" id="inputTrackColor" placeholder="#000000" />
+                </div>
+                <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The width of the track stroke.<br><span class='label label-info'>Info</span> <em>Default: 10</em>">
+                    <span class="input-group-addon">Track Stroke Width</span>
+                    <input type="number" class="form-control" id="inputTrackWidth" min="1" max="30" placeholder="10"/>
+                </div>
+                <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The color of the track outline.<br><span class='label label-info'>Info</span> <em>Default: #FFFFFF</em>">
+                    <span class="input-group-addon">Track Outline Color</span>
+                    <input type="text" class="form-control" id="inputTrackOutlineColor" placeholder="#FFFFFF" />
+                </div>
+                <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The color of the start/finish line.<br><span class='label label-info'>Info</span> <em>Default: #FF0000</em>">
+                    <span class="input-group-addon">Start/Finish Line Color</span>
+                    <input type="text" class="form-control" id="inputStartColor" placeholder="#FF0000" />
+                </div>
+                <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="Show lines at the sector boundaries of the tracks.">
+                    <span class="input-group-addon">
+                        <input type="checkbox" id="inputShowSectors">
+                    </span>
+                    <input type="text" class="form-control" value="Show Sectors" readonly="true"/>
+                </div>
+                <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The color of the sector lines.<br><span class='label label-info'>Info</span> <em>Default: #FFDA59</em>">
+                    <span class="input-group-addon">Sector Lines Color</span>
+                    <input type="text" class="form-control" id="inputSectorColor" placeholder="#FFDA59" />
+                </div>
+            </div>
+
+            <!-- driver options -->
+            <div role="tabpanel" class="tab-pane fade" id="drivercircles">
+                <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The radius of the driver circles.<br><span class='label label-info'>Info</span> <em>Default: 12</em>">
+                    <span class="input-group-addon">Radius</span>
+                    <input type="number" class="form-control" id="inputDriverCircle" min="1" max="30" placeholder="12" />
+                </div>
+                <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The color of the driver circles.<br><span class='label label-info'>Info</span> <em>Overrides driver/team groups and car class colors.</em><br><span class='label label-info'>Info</span> <em>Default: ingame class color</em>">
+                    <span class="input-group-addon">Circle Color</span>
+                    <input type="text" class="form-control" id="inputCircleColor" placeholder="#000000" />
+                </div>
+                <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The color of the circle of the player.<br><span class='label label-info'>Info</span> <em>Overrides circle color above, driver/team groups and car class colors.</em><br><span class='label label-info'>Info</span> <em>Default: darkened ingame class color</em>">
+                    <span class="input-group-addon">Player Highlight Color</span>
+                    <input type="text" class="form-control" id="inputPlayerHighlight" placeholder="#000000" />
+                </div>
+                <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The thickness of driver highlight outlines (camera/offtracks).<br><span class='label label-info'>Info</span> <em>Default: 4</em>">
+                    <span class="input-group-addon">Highlight Thickness</span>
+                    <input type="number" class="form-control" id="inputDriverHighlightWidth" min="3" max="10" placeholder="4" />
+                </div>
+                <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The color of the highlight of the current camera car.<br><span class='label label-info'>Info</span> <em>Default: #4DFF51</em>">
+                    <span class="input-group-addon">Camera Highlight Color</span>
+                    <input type="text" class="form-control" id="inputDriverHighlightCam" placeholder="#4DFF51" />
+                </div>
+                <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The color of the highlight when a car goes off track.<br><span class='label label-info'>Info</span> <em>Default: #FF0000</em>">
+                    <span class="input-group-addon">Offtrack Highlight Color</span>
+                    <input type="text" class="form-control" id="inputDriverHighlightOfftrack" placeholder="#FF0000" />
+                </div>
+                <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The color of the position number in the circle.<br><span class='label label-info'>Info</span> <em>Default: #000000</em>">
+                    <span class="input-group-addon">Position Color</span>
+                    <input type="text" class="form-control" id="inputDriverPosNum" placeholder="#000000" />
+                </div>
+                <div class="input-group" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The color of the number in the circle of the player or driver/team groups.<br><span class='label label-info'>Info</span> <em>Default: #FFFFFF</em>">
+                    <span class="input-group-addon">Number Highlight Color</span>
+                    <input type="text" class="form-control" id="inputHighlightNum" placeholder="#FFFFFF" />
+                </div>
+            </div>
+
+            <!-- driver/team groups -->
+            <div role="tabpanel" class="tab-pane fade" id="driverteams">
+                <span class="help-block">Enter one or more iRacing customer IDs or team IDs and pick a color in which the group should be highlighted. Separate multiple entries with a comma.</span>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" placeholder="123456,987654" />
+                </div>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" placeholder="#000000" />
+                </div>
+                <button class="col-sm-1 btn btn-danger">-</button>
+                <button class="btn btn-primary">Add group</button>
+            </div>
+         </div>
+
+    </form>
 </main>
