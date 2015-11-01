@@ -10,6 +10,12 @@
     },
     "jquery/jquery.d.ts": {
       "commit": "eb59a40d3c2f3257e34ec2ede181046230814a41"
+    },
+    "tinycolor/tinycolor.d.ts": {
+      "commit": "eb59a40d3c2f3257e34ec2ede181046230814a41"
+    },
+    "spectrum/spectrum.d.ts": {
+      "commit": "eb59a40d3c2f3257e34ec2ede181046230814a41"
     }
   }
 }
