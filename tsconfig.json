@@ -20,6 +20,8 @@
         "libs/typings/bootstrap/bootstrap.d.ts",
         "libs/typings/jquery/jquery.d.ts",
         "libs/typings/lodash/lodash.d.ts",
+        "libs/typings/spectrum/spectrum.d.ts",
+        "libs/typings/tinycolor/tinycolor.d.ts",
         "libs/typings/tsd.d.ts"
     ],
     "exclude": []
