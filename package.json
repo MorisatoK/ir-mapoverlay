@@ -22,6 +22,7 @@
     "es6-shim": "^0.33.9",
     "jquery": "^2.1.4",
     "live-server": "^0.8.2",
+    "lodash": "^3.10.1",
     "spectrum-colorpicker": "^1.7.1",
     "svg.js": "^2.1.1",
     "systemjs": "^0.19.5"
