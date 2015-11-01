@@ -16,7 +16,10 @@
         "app/components/home.ts",
         "app/components/overlay.ts",
         "app/components/settings.ts",
-        "app/map-overlay.ts"
+        "app/map-overlay.ts",
+        "libs/typings/bootstrap/bootstrap.d.ts",
+        "libs/typings/jquery/jquery.d.ts",
+        "libs/typings/tsd.d.ts"
     ],
     "exclude": []
 }
