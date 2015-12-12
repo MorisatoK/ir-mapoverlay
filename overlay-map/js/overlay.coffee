@@ -260,12 +260,17 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
                 dims = mapVars.track.bbox()
                 mapVars.trackMap.attr('viewBox', '0 0 ' + (Math.round(dims.width) + 30) + ' ' + (Math.round(dims.height) + 30))
                 mapVars.trackMap.attr('preserveAspectRatio', config.mapOptions.preserveAspectRatio)
-            else 
+            else
                 pit_outline = mapVars.trackMap.path(path).attr(config.mapOptions.styles.pits_outline).back().data('id', 'pit_outline')
                 pit = mapVars.trackMap.path(path).attr(config.mapOptions.styles.pits).data('id', 'pit')
-        
+
         mapVars.trackLength = mapVars.track.length()
-        drawStartFinishLine(trackOverlay.tracksById[trackId].extendedLine || 0)
+
+        if trackOverlay.tracksById[trackId].extendedLine
+            for extendedLine in trackOverlay.tracksById[trackId].extendedLine
+                drawStartFinishLine(extendedLine)
+        else
+            drawStartFinishLine(0)
 
         if config.showSectors
             drawSectors()
@@ -470,4 +475,3 @@ getLineAngle = (x1, y1, x2, y2) ->
     return (180 + Math.atan2(-y, -x) * 180 / Math.PI + 360) % 360
 
 angular.bootstrap document, [app.name]
-
