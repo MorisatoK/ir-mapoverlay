@@ -203,7 +203,10 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
         skipCars: 0
         trackMap: null
         track: null
+        extendedTrack: null
+        extendedTrackMaxDist: null
         trackLength: null
+        extenededTrackLength: null
         drivers: {}
 
     $scope.$watch 'ir.IsReplayPlaying', checkTrackOverlayHide
@@ -214,7 +217,10 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
             mapVars.trackMap.remove()
             mapVars.trackMap = null
             mapVars.track = null
-            mapVars.trackLength= null
+            mapVars.extendedTrack = null
+            mapVars.extendedTrackMaxDist = null
+            mapVars.trackLength = null
+            mapVars.extenededTrackLength = null
             mapVars.skipCars = 0
             mapVars.drivers = {}
 
@@ -263,6 +269,12 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
             else
                 pit_outline = mapVars.trackMap.path(path).attr(config.mapOptions.styles.pits_outline).back().data('id', 'pit_outline')
                 pit = mapVars.trackMap.path(path).attr(config.mapOptions.styles.pits).data('id', 'pit')
+
+        if trackOverlay.tracksById[trackId].extendedTrack
+            ext_trk_outline = mapVars.trackMap.path(trackOverlay.tracksById[trackId].extendedTrack[1]).attr(config.mapOptions.styles.track_outline).data('id', 'ext_trk_outline')
+            mapVars.extendedTrack = mapVars.trackMap.path(trackOverlay.tracksById[trackId].extendedTrack[1]).attr(config.mapOptions.styles.track).data('id', 'ext_track')
+            mapVars.extendedTrackLength = mapVars.extendedTrack.length()
+            mapVars.extendedTrackMaxDist = trackOverlay.tracksById[trackId].extendedTrack[0]
 
         mapVars.trackLength = mapVars.track.length()
 
@@ -354,7 +366,7 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
                 if carIdxDist == -1
                     continue
 
-                driverCoords = mapVars.track.pointAt(mapVars.trackLength*carIdxDist)
+                driverCoords = getDriverCoords carIdxDist
                 carClassColor = getCarClassColor carIdx
 
                 circleColor = carClassColor
@@ -414,7 +426,7 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
                 if carIdxDist == -1
                     mapVars.drivers[carIdx].hide()
                 else
-                    driverCoords = mapVars.track.pointAt(mapVars.trackLength*carIdxDist)
+                    driverCoords = getDriverCoords carIdxDist
                     mapVars.drivers[carIdx].move(driverCoords.x, driverCoords.y)
 
                     if carIdx == ir.CamCarIdx and !!mapVars.drivers[carIdx].next()
@@ -423,6 +435,14 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
                     mapVars.drivers[carIdx].show()
                     showClassBubble(carIdx)
 
+
+    getDriverCoords = (carIdxDist) ->
+        if mapVars.extendedTrack && carIdxDist >= 1
+            driverCoords = mapVars.extendedTrack.pointAt(mapVars.extendedTrackLength*((carIdxDist - 1) / (mapVars.extendedTrackMaxDist - 1)))
+        else
+            driverCoords = mapVars.track.pointAt(mapVars.trackLength*carIdxDist)
+
+        return driverCoords
 
     drawStartFinishLine = (refPoint) ->
         startCoords = mapVars.track.pointAt(refPoint * mapVars.trackLength)
