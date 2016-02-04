@@ -1,4 +1,21 @@
 # iRacing TrackOverlay & Accelerometer Changelog
+### 1.7.1 - 2016-01-07
+
+##### Track Overlay
+
+* iRacing changed the way some telemetry is reported for Nürburgring Touristenfahrten track. This updates the overlay to handle this change.
+
+### 1.7.0 - 2015-12-12
+
+##### Track Overlay
+
+* New track: Southern National Motorsports Park
+* New track: Nürburgring Grand-Prix-Strecke
+* New track: Nürburgring Nordschleife
+* New track: Nürburgring Combined
+* New feature: Added support for separate start/finish lines (needed for NOS Touristenfahrten Bridge to Gantry variant)
+
+Note: You might want to change the layout settings for the track stroke for the NOS otherwise lots of track details will be lost with a thick stroke.
 
 ### 1.6.0 - 2015-06-09
 
