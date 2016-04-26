@@ -3,7 +3,7 @@
 
 ##### Track Overlay
 
-* updated swv.min.js to the latest version
+* updated svg.min.js to the latest version
 
 ### 1.7.1 - 2016-01-07
 
