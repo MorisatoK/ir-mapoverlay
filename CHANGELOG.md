@@ -1,4 +1,10 @@
 # iRacing TrackOverlay & Accelerometer Changelog
+### 1.7.2 - 2016-04-26
+
+##### Track Overlay
+
+* updated swv.min.js to the latest version
+
 ### 1.7.1 - 2016-01-07
 
 ##### Track Overlay
