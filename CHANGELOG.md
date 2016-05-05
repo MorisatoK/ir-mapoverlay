@@ -1,4 +1,12 @@
 # iRacing TrackOverlay & Accelerometer Changelog
+### 1.7.4 - 2016-05-05
+
+##### Track Overlay
+
+* updated svg.js to v2.3.1 that fixes the previous issues with track paths
+* reverted previous changes to Monza GP trackmap
+* added simple test page to compare native SVG drawing to svg.js drawing
+
 ### 1.7.3 - 2016-05-03
 
 ##### Track Overlay
