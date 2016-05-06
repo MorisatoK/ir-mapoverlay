@@ -17,14 +17,17 @@
   },
   "homepage": "https://github.com/MorisatoK/ir-mapoverlay#readme",
   "devDependencies": {
-    "angular2": "^2.0.0-alpha.45",
-    "bootstrap": "^3.3.5",
-    "es6-shim": "^0.33.9",
-    "jquery": "^2.1.4",
+    "angular2": "^2.0.0-beta.17",
+    "bootstrap": "^3.3.6",
+    "es6-shim": "^0.35.0",
+    "jquery": "^2.2.3",
     "live-server": "^0.8.2",
     "lodash": "^3.10.1",
-    "spectrum-colorpicker": "^1.7.1",
-    "svg.js": "^2.1.1",
-    "systemjs": "^0.19.5"
+    "reflect-metadata": "^0.1.2",
+    "rxjs": "^5.0.0-beta.6",
+    "spectrum-colorpicker": "^1.8.0",
+    "svg.js": "^2.3.1",
+    "systemjs": "^0.19.27",
+    "zone.js": "^0.6.12"
   }
 }
