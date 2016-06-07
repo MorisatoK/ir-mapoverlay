@@ -1,4 +1,10 @@
 # iRacing TrackOverlay & Accelerometer Changelog
+### 1.7.5 - 2016-06-07
+
+##### Track Overlay
+
+* New Tracks: Imola GP and Imola Moto
+
 ### 1.7.4 - 2016-05-05
 
 ##### Track Overlay
