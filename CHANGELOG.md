@@ -1,4 +1,10 @@
 # iRacing TrackOverlay & Accelerometer Changelog
+### 1.7.6 - 2016-09-07
+
+##### Track Overlay
+
+* New Tracks: Circuit des 24 Heures du Mans - 24 Heures du Mans and Historic layout
+
 ### 1.7.5 - 2016-06-07
 
 ##### Track Overlay
