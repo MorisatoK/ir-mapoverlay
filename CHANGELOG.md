@@ -1,4 +1,67 @@
 # iRacing TrackOverlay & Accelerometer Changelog
+### 1.7.6 - 2016-09-07
+
+##### Track Overlay
+
+* New Tracks: Circuit des 24 Heures du Mans - 24 Heures du Mans and Historic layout
+
+### 1.7.5 - 2016-06-07
+
+##### Track Overlay
+
+* New Tracks: Imola GP and Imola Moto
+
+### 1.7.4 - 2016-05-05
+
+##### Track Overlay
+
+* updated svg.js to v2.3.1 that fixes the previous issues with track paths
+* reverted previous changes to Monza GP trackmap
+* added simple test page to compare native SVG drawing to svg.js drawing
+
+### 1.7.3 - 2016-05-03
+
+##### Track Overlay
+
+* updated Monza GP trackmap to work around svg.js issue
+
+### 1.7.2 - 2016-04-26
+
+##### Track Overlay
+
+* updated svg.min.js to the latest version
+
+### 1.7.1 - 2016-01-07
+
+##### Track Overlay
+
+* iRacing changed the way some telemetry is reported for Nürburgring Touristenfahrten track. This updates the overlay to handle this change.
+
+### 1.7.0 - 2015-12-12
+
+##### Track Overlay
+
+* New track: Southern National Motorsports Park
+* New track: Nürburgring Grand-Prix-Strecke
+* New track: Nürburgring Nordschleife
+* New track: Nürburgring Combined
+* New feature: Added support for separate start/finish lines (needed for NOS Touristenfahrten Bridge to Gantry variant)
+
+Note: You might want to change the layout settings for the track stroke for the NOS otherwise lots of track details will be lost with a thick stroke.
+
+### 1.6.0 - 2015-06-09
+
+##### Track Overlay
+
+* New track: Five Flags Speedway
+* New feature: Driver/Team groups to highlight specific drivers and/or teams on map
+* New option: "Circle Color" that can be used for the circle color of the drivers
+* New option: "Player Highlight Color" that can be used for circle color of the player
+* New option: "Number Highlight Color" that will be used for the player number and driver/team group numbers
+* Removed option for "Carnumber Color". The color of the car number in the circle when no position is set will now be equal to "Position Color" or "Number Highlight Color" but transparent
+* When custom circle colors or driver/team groups are used in multi-class races a separate bubble with the class color will be displayed
+* Slight overhaul of the settings page
+* Many under the hood changes and improvements
 
 ### 1.5.0 - 2015-05-06
 

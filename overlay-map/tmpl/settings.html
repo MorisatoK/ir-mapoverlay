@@ -1,162 +1,209 @@
 <div class="row settings">
 	<div class="col-md-12">
 		<form class="form-horizontal">
-
 			<!-- url -->
 			<div class="input-group input-url">
 				<span class="input-group-addon">CLR Browser URL</span>
 				<input ng-model="url" ng-change="changeURL()" type="url" class="form-control">
 			</div>
 
-			<!-- host -->
-			<h2>General</h2>
-			<div ng-if="!isDefaultHost" class="form-group">
-				<label for="inputHost" class="col-sm-3 control-label">Server</label>
-				<div class="col-sm-3">
-					<input ng-model="settings.host" ng-change="saveSettings()" type="text" class="form-control" id="inputHost" placeholder="localhost:8182" />
+			<!-- system -->
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">System</h3>
 				</div>
-				<div class="col-sm-6">
-					<span class="help-block">Your iRacing Browser Apps Server address and port.</span>
-				</div>
-			</div>
-
-			<!-- fps -->
-			<div class="form-group">
-				<label for="inputFps" class="col-sm-3 control-label">FPS</label>
-				<div class="col-sm-2">
-					<input ng-model="settings.fps" ng-change="saveSettings()" type="number" class="form-control" id="inputFps" min="1" max="60" />
-				</div>
-				<div class="col-sm-7">
-					<span class="help-block">How often server will send data and update the map (1-60). <em>This option is CPU expensive. Default: 15</em>.</span>
-				</div>
-			</div>
-
-			<!-- track options -->
-			<h2>Track Stroke Options</h2>
-			<div class="form-group">
-				<label for="inputTrackColor" class="col-sm-3 control-label">Track Stroke Color</label>
-				<div class="col-sm-2">
-					<input ng-model="settings.trackColor" ng-change="saveSettings()" type="text" class="form-control" id="inputTrackColor" colorpicker="hex" />
-				</div>
-				<div class="col-sm-7">
-					<span class="help-block">The color of the track in hexadecimal format. <em>Default: #000000</em></span>
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label for="inputTrackWidth" class="col-sm-3 control-label">Track Stroke Width</label>
-				<div class="col-sm-2">
-					<input ng-model="settings.trackWidth" ng-change="saveSettings()" type="number" class="form-control" id="inputTrackWidth" min="1" max="30" />
-				</div>
-				<div class="col-sm-7">
-					<span class="help-block">The width of the track stroke. <em>Default: 10</em></span>
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label for="inputTrackOutlineColor" class="col-sm-3 control-label">Track Outline Color</label>
-				<div class="col-sm-2">
-					<input ng-model="settings.trackOutlineColor" ng-change="saveSettings()" type="text" class="form-control" id="inputTrackOutlineColor" colorpicker="hex" />
-				</div>
-				<div class="col-sm-7">
-					<span class="help-block">The color of the track outline. <em>Default: #FFFFFF</em></span>
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label for="inputStartColor" class="col-sm-3 control-label">Start/Finish Line Color</label>
-				<div class="col-sm-2">
-					<input ng-model="settings.startFinishColor" ng-change="saveSettings()" type="text" class="form-control" id="inputStartColor" colorpicker="hex" />
-				</div>
-				<div class="col-sm-7">
-					<span class="help-block">The color of the start/finish line. <em>Default: #FF0000</em></span>
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label for="inputShowSectors" class="col-sm-3 control-label">Show Sectors</label>
-				<div class="col-sm-9">
-					<div class="checkbox">
-						<label>
-							<input ng-model="settings.showSectors" ng-change="saveSettings()" type="checkbox" id="inputShowSectors">
-							Show lines at the sector boundaries of the tracks.</em>
-						</label>
+				<div class="panel-body">
+					<!-- host -->
+					<div ng-if="!isDefaultHost" class="form-group">
+						<label for="inputHost" class="col-sm-3 control-label">Server</label>
+						<div class="col-sm-3">
+							<input ng-model="settings.host" ng-change="saveSettings()" type="text" class="form-control" id="inputHost" placeholder="127.0.0.1:8182" />
+						</div>
+						<div class="col-sm-6">
+							<span class="help-block">Your iRacing Browser Apps Server address and port.</span>
+						</div>
+					</div>
+					<!-- fps -->
+					<div class="form-group">
+						<label for="inputFps" class="col-sm-3 control-label">FPS</label>
+						<div class="col-sm-2">
+							<input ng-model="settings.fps" ng-change="saveSettings()" type="number" class="form-control" id="inputFps" min="1" max="60" />
+						</div>
+						<div class="col-sm-7">
+							<span class="help-block">How often server will send data (1-60). <em>This option is CPU expensive</em>.</span>
+						</div>
 					</div>
 				</div>
 			</div>
 
-			<div class="form-group">
-				<label for="inputSectorColor" class="col-sm-3 control-label">Sector Lines Color</label>
-				<div class="col-sm-2">
-					<input ng-model="settings.sectorColor" ng-change="saveSettings()" type="text" class="form-control" id="inputSectorColor" colorpicker="hex" />
+			<!-- track options -->
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Track Stroke Options</h3>
 				</div>
-				<div class="col-sm-7">
-					<span class="help-block">The color of the sector lines. <em>Default: #FFDA59</em></span>
+				<div class="panel-body">
+					<div class="form-group">
+						<label for="inputTrackColor" class="col-sm-3 control-label">Track Stroke Color</label>
+						<div class="col-sm-2">
+							<input ng-model="settings.trackColor" ng-change="saveSettings()" type="text" class="form-control" id="inputTrackColor" colorpicker="hex" />
+						</div>
+						<div class="col-sm-7">
+							<span class="help-block">The color of the track in hexadecimal format. <em>Default: #000000</em></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputTrackWidth" class="col-sm-3 control-label">Track Stroke Width</label>
+						<div class="col-sm-2">
+							<input ng-model="settings.trackWidth" ng-change="saveSettings()" type="number" class="form-control" id="inputTrackWidth" min="1" max="30" />
+						</div>
+						<div class="col-sm-7">
+							<span class="help-block">The width of the track stroke. <em>Default: 10</em></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputTrackOutlineColor" class="col-sm-3 control-label">Track Outline Color</label>
+						<div class="col-sm-2">
+							<input ng-model="settings.trackOutlineColor" ng-change="saveSettings()" type="text" class="form-control" id="inputTrackOutlineColor" colorpicker="hex" />
+						</div>
+						<div class="col-sm-7">
+							<span class="help-block">The color of the track outline. <em>Default: #FFFFFF</em></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputStartColor" class="col-sm-3 control-label">Start/Finish Line Color</label>
+						<div class="col-sm-2">
+							<input ng-model="settings.startFinishColor" ng-change="saveSettings()" type="text" class="form-control" id="inputStartColor" colorpicker="hex" />
+						</div>
+						<div class="col-sm-7">
+							<span class="help-block">The color of the start/finish line. <em>Default: #FF0000</em></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputShowSectors" class="col-sm-3 control-label">Show Sectors</label>
+						<div class="col-sm-9">
+							<div class="checkbox">
+								<label>
+									<input ng-model="settings.showSectors" ng-change="saveSettings()" type="checkbox" id="inputShowSectors">
+									Show lines at the sector boundaries of the tracks.</em>
+								</label>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputSectorColor" class="col-sm-3 control-label">Sector Lines Color</label>
+						<div class="col-sm-2">
+							<input ng-model="settings.sectorColor" ng-change="saveSettings()" type="text" class="form-control" id="inputSectorColor" colorpicker="hex" />
+						</div>
+						<div class="col-sm-7">
+							<span class="help-block">The color of the sector lines. <em>Default: #FFDA59</em></span>
+						</div>
+					</div>
 				</div>
 			</div>
 
 			<!-- driver options -->
-			<h2>Driver Circle Options</h2>
-			<div class="form-group">
-				<label for="inputDriverCircle" class="col-sm-3 control-label">Radius</label>
-				<div class="col-sm-2">
-					<input ng-model="settings.driverCircle" ng-change="saveSettings()" type="number" class="form-control" id="inputDriverCircle" min="1" max="30" />
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Driver Circle Options</h3>
 				</div>
-				<div class="col-sm-7">
-					<span class="help-block">The radius of the driver circles. <em>Default: 12</em></span>
+				<div class="panel-body">
+					<div class="form-group">
+						<label for="inputDriverCircle" class="col-sm-3 control-label">Radius</label>
+						<div class="col-sm-2">
+							<input ng-model="settings.driverCircle" ng-change="saveSettings()" type="number" class="form-control" id="inputDriverCircle" min="1" max="30" />
+						</div>
+						<div class="col-sm-7">
+							<span class="help-block">The radius of the driver circles. <em>Default: 12</em></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputCircleColor" class="col-sm-3 control-label">Circle Color</label>
+						<div class="col-sm-2">
+							<input ng-model="settings.circleColor" ng-change="saveSettings()" type="text" class="form-control" id="inputCircleColor" colorpicker="hex" placeholder="#000000" />
+						</div>
+						<div class="col-sm-7">
+							<span class="help-block">The color of the driver circles. Overrides driver/team groups and car class colors. <em>Default: ingame class color</em></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputPlayerHighlight" class="col-sm-3 control-label">Player Highlight Color</label>
+						<div class="col-sm-2">
+							<input ng-model="settings.playerHighlight" ng-change="saveSettings()" type="text" class="form-control" id="inputPlayerHighlight" colorpicker="hex" placeholder="#000000" />
+						</div>
+						<div class="col-sm-7">
+							<span class="help-block">The color of the circle of the player. Overrides circle color above, driver/team groups and car class colors. <em>Default: darkened ingame class color</em></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputDriverHighlightWidth" class="col-sm-3 control-label">Highlight Thickness</label>
+						<div class="col-sm-2">
+							<input ng-model="settings.driverHighlightWidth" ng-change="saveSettings()" type="number" class="form-control" id="inputDriverHighlightWidth" min="3" max="10" />
+						</div>
+						<div class="col-sm-7">
+							<span class="help-block">The thickness of driver highlight outlines (camera/offtracks). <em>Default: 4</em></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputDriverHighlightCam" class="col-sm-3 control-label">Camera Highlight Color</label>
+						<div class="col-sm-2">
+							<input ng-model="settings.driverHighlightCam" ng-change="saveSettings()" type="text" class="form-control" id="inputDriverHighlightCam" colorpicker="hex" />
+						</div>
+						<div class="col-sm-7">
+							<span class="help-block">The color of the highlight of the current camera car. <em>Default: #4DFF51</em></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputDriverHighlightOfftrack" class="col-sm-3 control-label">Offtrack Highlight Color</label>
+						<div class="col-sm-2">
+							<input ng-model="settings.driverHighlightOfftrack" ng-change="saveSettings()" type="text" class="form-control" id="inputDriverHighlightOfftrack" colorpicker="hex" />
+						</div>
+						<div class="col-sm-7">
+							<span class="help-block">The color of the highlight when the car goes offtrack. <em>Default: #FF0000</em></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputDriverPosNum" class="col-sm-3 control-label">Position Color</label>
+						<div class="col-sm-2">
+							<input ng-model="settings.driverPosNum" ng-change="saveSettings()" type="text" class="form-control" id="inputDriverPosNum" colorpicker="hex" />
+						</div>
+						<div class="col-sm-7">
+							<span class="help-block">The color of the position number in the circle. <em>Default: #000000</em></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputHighlightNum" class="col-sm-3 control-label">Number Highlight Color</label>
+						<div class="col-sm-2">
+							<input ng-model="settings.highlightNum" ng-change="saveSettings()" type="text" class="form-control" id="inputHighlightNum" colorpicker="hex" />
+						</div>
+						<div class="col-sm-7">
+							<span class="help-block">The color of the number in the circle of the player or driver/team groups. <em>Default: #FFFFFF</em></span>
+						</div>
+					</div>
 				</div>
 			</div>
-
-			<div class="form-group">
-				<label for="inputDriverHighlightWidth" class="col-sm-3 control-label">Highlight Thickness</label>
-				<div class="col-sm-2">
-					<input ng-model="settings.driverHighlightWidth" ng-change="saveSettings()" type="number" class="form-control" id="inputDriverHighlightWidth" min="3" max="10" />
+			<!-- driver/team groups -->
+			<div class="panel panel-default driver-groups">
+				<div class="panel-heading">
+					<h3 class="panel-title">Driver/Team Groups</h3>
 				</div>
-				<div class="col-sm-7">
-					<span class="help-block">The thickness of driver highlight outlines (camera/offtracks). <em>Default: 4</em></span>
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label for="inputDriverHighlightCam" class="col-sm-3 control-label">Camera Highlight Color</label>
-				<div class="col-sm-2">
-					<input ng-model="settings.driverHighlightCam" ng-change="saveSettings()" type="text" class="form-control" id="inputDriverHighlightCam" colorpicker="hex" />
-				</div>
-				<div class="col-sm-7">
-					<span class="help-block">The color of the highlight of the current camera car. <em>Default: #4DFF51</em></span>
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label for="inputDriverHighlightOfftrack" class="col-sm-3 control-label">Offtrack Highlight Color</label>
-				<div class="col-sm-2">
-					<input ng-model="settings.driverHighlightOfftrack" ng-change="saveSettings()" type="text" class="form-control" id="inputDriverHighlightOfftrack" colorpicker="hex" />
-				</div>
-				<div class="col-sm-7">
-					<span class="help-block">The color of the highlight when the car goes offtrack. <em>Default: #FF0000</em></span>
+				<div class="panel-body">
+					<div class="form-group">
+						<div class="col-sm-12">
+							<span class="help-block">Enter one or more iRacing Customer IDs or Team IDs and pick a color in which the group should be highlighted. Separate multiple entries with a comma.</span>
+						</div>
+						<div class="row" ng-repeat="group in settings.driverGroups">
+							<div class="col-sm-9">
+								<input ng-model="group['ids']" ng-change="sanitizeDriverGroups()" ng-blur="trimComma()" type="text" class="form-control" placeholder="123456,987654" ng-pattern="/[0-9,]/"/>
+							</div>
+							<div class="col-sm-2">
+								<input ng-model="group['color']" ng-change="saveSettings()" type="text" class="form-control" placeholder="#000000" colorpicker="hex" />
+							</div>
+							<button class="col-sm-1 btn btn-danger remove-group" ng-click="removeGroup()">-</button>
+						</div>
+						<button class="btn btn-primary add-group" ng-click="addGroup()">Add group</button>
+					</div>
 				</div>
 			</div>
-
-			<div class="form-group">
-				<label for="inputDriverPosNum" class="col-sm-3 control-label">Position Color</label>
-				<div class="col-sm-2">
-					<input ng-model="settings.driverPosNum" ng-change="saveSettings()" type="text" class="form-control" id="inputDriverPosNum" colorpicker="hex" />
-				</div>
-				<div class="col-sm-7">
-					<span class="help-block">The color of the position number in the circle. <em>Default: #000000</em></span>
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label for="inputDriverCarNum" class="col-sm-3 control-label">Carnumber Color</label>
-				<div class="col-sm-2">
-					<input ng-model="settings.driverCarNum" ng-change="saveSettings()" type="text" class="form-control" id="inputDriverCarNum" colorpicker="hex" />
-				</div>
-				<div class="col-sm-7">
-					<span class="help-block">The color of the car number in the circle when no position is set yet. <em>Default: #666666</em></span>
-				</div>
-			</div>
-
 		</form>
 	</div>
 </div>
