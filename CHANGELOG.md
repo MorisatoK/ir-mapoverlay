@@ -1,4 +1,10 @@
 # iRacing TrackOverlay & Accelerometer Changelog
+### 1.7.7 - 2017-04-28
+
+##### Track Overlay
+
+* Update to Angular 1.6
+
 ### 1.7.6 - 2016-09-07
 
 ##### Track Overlay
