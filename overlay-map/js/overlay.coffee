@@ -3,6 +3,9 @@ window.app = angular.module 'overlay-map', [
     'ngSanitize'
 ]
 
+app.config ($locationProvider) ->
+    $locationProvider.hashPrefix ''
+
 app.service 'config', ($location) ->
     vars = $location.search()
 
