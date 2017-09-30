@@ -1,4 +1,15 @@
 # iRacing TrackOverlay & Accelerometer Changelog
+### 1.7.8 - 2017-09-30
+
+##### Track Overlay
+
+* Add Snetterton 300, 200 and 100 layouts
+* Add Lanier National Speedway - Dirt
+* Add USA International Speedway - Dirt
+* Add Eldora Speedway
+* Add Volusia Speedway Park
+* Add Williams Grove Speedway
+
 ### 1.7.7 - 2017-04-28
 
 ##### Track Overlay
