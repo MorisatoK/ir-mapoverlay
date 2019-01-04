@@ -58,9 +58,6 @@ app.service 'config', ($location) ->
     fps: fps
 
     mapOptions:
-        dimensions:
-            width: 420
-            height: 324
         preserveAspectRatio: 'xMidYMax meet'
         styles:
             track:
@@ -259,7 +256,7 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
         if not trackOverlay.tracksById[trackId]
             return
 
-        mapVars.trackMap = SVG('map-overlay').size(config.mapOptions.dimensions.width, config.mapOptions.dimensions.height)
+        mapVars.trackMap = SVG('map-overlay')
 
         for path, i in trackOverlay.tracksById[trackId].paths
             if i == 0
@@ -267,7 +264,10 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
                 mapVars.track = mapVars.trackMap.path(path).attr(config.mapOptions.styles.track).data('id', 'track')
 
                 dims = mapVars.track.bbox()
-                mapVars.trackMap.attr('viewBox', '0 0 ' + (Math.round(dims.width) + 30) + ' ' + (Math.round(dims.height) + 30))
+                mapWidth = Math.round(dims.width + 40)
+                mapHeight = Math.round(dims.height + 40)
+
+                mapVars.trackMap.attr('viewBox', "0 0 #{mapWidth} #{mapHeight}")
                 mapVars.trackMap.attr('preserveAspectRatio', config.mapOptions.preserveAspectRatio)
             else
                 pit_outline = mapVars.trackMap.path(path).attr(config.mapOptions.styles.pits_outline).back().data('id', 'pit_outline')
