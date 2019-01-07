@@ -33,6 +33,7 @@ app.controller 'SettingsCtrl', ($scope, localStorageService) ->
         trackColor: '#000000'
         trackWidth: 10
         trackOutlineColor: '#FFFFFF'
+        trackAlignment: 'center'
         startFinishColor: '#FF0000'
         sectorColor: '#FFDA59'
         showSectors: false
@@ -54,6 +55,7 @@ app.controller 'SettingsCtrl', ($scope, localStorageService) ->
     settings.trackColor ?= defaultSettings.trackColor
     settings.trackWidth ?= defaultSettings.trackWidth
     settings.trackOutlineColor ?= defaultSettings.trackOutlineColor
+    settings.trackAlignment ?= defaultSettings.trackAlignment
     settings.startFinishColor ?= defaultSettings.startFinishColor
     settings.sectorColor ?= defaultSettings.sectorColor
     settings.showSectors ?= defaultSettings.showSectors
@@ -78,6 +80,7 @@ app.controller 'SettingsCtrl', ($scope, localStorageService) ->
         'trackColor'
         'trackWidth'
         'trackOutlineColor'
+        'trackAlignment'
         'startFinishColor'
         'sectorColor'
         'showSectors'

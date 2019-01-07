@@ -58,7 +58,7 @@ app.service 'config', ($location) ->
     fps: fps
 
     mapOptions:
-        preserveAspectRatio: 'xMidYMax meet'
+        preserveAspectRatio: getPreserveAspectRatio vars.trackAlignment ? 'center'
         styles:
             track:
                 fill: 'none'
@@ -496,5 +496,17 @@ getLineAngle = (x1, y1, x2, y2) ->
         return 0
 
     return (180 + Math.atan2(-y, -x) * 180 / Math.PI + 360) % 360
+
+getPreserveAspectRatio = (trackAlignment) ->
+    switch trackAlignment
+        when 'top-left'     then 'xMinYMin meet'
+        when 'top'          then 'xMidYMin meet'
+        when 'top-right'    then 'xMaxYMin meet'
+        when 'left'         then 'xMinYMid meet'
+        when 'center'       then 'xMidYMid meet'
+        when 'right'        then 'xMaxYMid meet'
+        when 'bottom-left'  then 'xMinYMax meet'
+        when 'bottom'       then 'xMidYMax meet'
+        when 'bottom-right' then 'xMaxYMax meet'
 
 angular.bootstrap document, [app.name]
