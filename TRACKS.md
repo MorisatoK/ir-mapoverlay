@@ -225,6 +225,8 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 |277|Pocono Raceway||:heavy_check_mark:|
 |279|Volusia Speedway Park||:heavy_check_mark:|
 |288|Lanier National Speedway|Asphalt|:heavy_check_mark:|
+|293|Daytona International Speedway - 2007|Rallycross Long|:heavy_check_mark:|
+|296|Daytona International Speedway - 2007|Rallycross Short|:heavy_check_mark:|
 |297|Snetterton Circuit|300|:heavy_check_mark:|
 |298|Snetterton Circuit|200|:heavy_check_mark:|
 |299|Snetterton Circuit|100|:heavy_check_mark:|
@@ -242,8 +244,6 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 |-|-|-|
 |271|The Bullring|
 |286|Myrtle Beach Speedway|
-|293|Daytona International Speedway - 2007|Rallycross Long|
-|296|Daytona International Speedway - 2007|Rallycross Short|
 |303|Limaland Motorsports Park|
 |304|Lucas Oil Raceway|Rallycross|
 |305|Knoxville Raceway|
