@@ -247,6 +247,9 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 |338|Charlotte Motor Speedway|Legends RC Short - 2018|:heavy_check_mark:|
 |339|Charlotte Motor Speedway|Oval - 2018|:heavy_check_mark:|
 |340|Charlotte Motor Speedway|Roval Long - 2018|:heavy_check_mark:|
+|341|Silverstone Circuit|Grand Prix|:heavy_check_mark:|
+|342|Silverstone Circuit|International|:heavy_check_mark:|
+|343|Silverstone Circuit|National|:heavy_check_mark:|
 |350|Charlotte Motor Speedway|Roval|:heavy_check_mark:|
 
 ## Not Supported
