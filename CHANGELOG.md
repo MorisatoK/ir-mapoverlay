@@ -1,4 +1,17 @@
 # iRacing TrackOverlay & Accelerometer Changelog
+### 1.7.9 - 2019-01-20
+
+Never officialy released
+
+##### Track Overlay
+
+Thanks to Søren Kruse who filed a pull request the following features have been added:
+
+* Improved sizing and scaling of track maps
+* Add Detroit Grand Prix at Belle Isle
+* Add Charlotte Motor Speedway Roval
+* Add Tsukuba Circuit configs
+
 ### 1.7.8 - 2017-09-30
 
 ##### Track Overlay
