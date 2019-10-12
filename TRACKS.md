@@ -134,6 +134,7 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 |175|Suzuka International Racing Course|West|:heavy_check_mark:|
 |176|Suzuka International Racing Course|West w/ Chicane|:heavy_check_mark:|
 |178|Indianapolis Motor Speedway|IndyCar Oval|:heavy_check_mark:|
+|179|Long Beach Street Circui||:heavy_check_mark:|
 |180|Oulton Park Circuit|International|:heavy_check_mark:|
 |181|Oulton Park Circuit|Fosters|:heavy_check_mark:|
 |182|Oulton Park Circuit|Island|:heavy_check_mark:|
@@ -237,7 +238,6 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 |Track ID|Name|Config|
 |-|-|-|
 |143|Centripetal Circuit|
-|179|Long Beach Street Circui|
 |271|The Bullring|
 |276|Michigan International Speedway|
 |277|Pocono Raceway|
