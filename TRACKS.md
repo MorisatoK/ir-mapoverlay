@@ -250,6 +250,11 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 |341|Silverstone Circuit|Grand Prix|:heavy_check_mark:|
 |342|Silverstone Circuit|International|:heavy_check_mark:|
 |343|Silverstone Circuit|National|:heavy_check_mark:|
+|345|Circuit de Barcelona Catalunya|Grand Prix|:heavy_check_mark:|
+|346|Circuit de Barcelona Catalunya|National|:heavy_check_mark:|
+|347|Circuit de Barcelona Catalunya|Club|:heavy_check_mark:|
+|348|Circuit de Barcelona Catalunya|Moto|:heavy_check_mark:|
+|349|Circuit de Barcelona Catalunya|Historic|:heavy_check_mark:|
 |350|Charlotte Motor Speedway|Roval|:heavy_check_mark:|
 
 ## Not Supported
@@ -267,12 +272,4 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 |331|Chili Bow|
 |332|Wild West Motorsports Park|
 |334|Wild Horse Pass Motorsports Park|
-|341|Silverstone Circuit|Grand Prix|
-|342|Silverstone Circuit|International|
-|343|Silverstone Circuit|National|
 |344|Fairbury Speedway|
-|345|Circuit de Barcelona Catalunya|Grand Prix|
-|346|Circuit de Barcelona Catalunya|National|
-|347|Circuit de Barcelona Catalunya|Club|
-|348|Circuit de Barcelona Catalunya|Moto|
-|349|Circuit de Barcelona Catalunya|Historic|
