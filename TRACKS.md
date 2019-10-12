@@ -100,6 +100,7 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 |140|Pocono Raceway - 2011|International|:heavy_check_mark:|
 |141|Virginia International Raceway|Patriot Reverse|:heavy_check_mark:|
 |142|Summit Point Raceway|Jefferson Reverse|:heavy_check_mark:|
+|143|Centripetal Circuit||:heavy_check_mark:|
 |144|Canadian Tire Motorsports Park||:heavy_check_mark:|
 |145|Brands Hatch Circuit|Grand Prix|:heavy_check_mark:|
 |146|Brands Hatch Circuit|Indy|:heavy_check_mark:|
@@ -237,7 +238,6 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 ## Not Supported
 |Track ID|Name|Config|
 |-|-|-|
-|143|Centripetal Circuit|
 |271|The Bullring|
 |276|Michigan International Speedway|
 |277|Pocono Raceway|
