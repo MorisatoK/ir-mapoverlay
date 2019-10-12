@@ -230,7 +230,9 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
 
         trackId = ir.WeekendInfo.TrackID
 
-        initMap(trackId)
+        setTimeout ( ->
+            initMap(trackId)
+        ), 1000
 
         $scope.$watch 'ir.CarIdxLapDistPct', drawMap
         $scope.$watch 'ir.CamCarIdx', watchCamCar
