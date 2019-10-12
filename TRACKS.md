@@ -221,6 +221,7 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 |273|Eldora Speedway||:heavy_check_mark:|
 |274|Williams Grove Speedway||:heavy_check_mark:|
 |275|USA International Speedway|Dirt|:heavy_check_mark:|
+|277|Pocono Raceway||:heavy_check_mark:|
 |279|Volusia Speedway Park||:heavy_check_mark:|
 |288|Lanier National Speedway|Asphalt|:heavy_check_mark:|
 |297|Snetterton Circuit|300|:heavy_check_mark:|
@@ -240,7 +241,6 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 |-|-|-|
 |271|The Bullring|
 |276|Michigan International Speedway|
-|277|Pocono Raceway|
 |286|Myrtle Beach Speedway|
 |293|Daytona International Speedway - 2007|Rallycross Long|
 |296|Daytona International Speedway - 2007|Rallycross Short|
