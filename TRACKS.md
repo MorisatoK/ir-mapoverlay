@@ -14,24 +14,24 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 |7|Virginia International Raceway|South|:heavy_check_mark:|
 |8|Summit Point Raceway|Jefferson Circuit|:heavy_check_mark:|
 |9|Summit Point Raceway|Summit Point Raceway|:heavy_check_mark:|
-|11|Stafford Motor Speedway|Full Course|
+|11|Stafford Motor Speedway|Full Course|:x:|
 |12|Oxford Plains Speedway||:heavy_check_mark:|
 |14|South Boston Speedway||:heavy_check_mark:|
 |15|Concord Speedway||:heavy_check_mark:|
 |16|USA International Speedway|Asphalt|:heavy_check_mark:|
 |17|Lanier National Speedway|Asphalt|:heavy_check_mark:|
 |18|Road America|Full Course|:heavy_check_mark:|
-|19|Irwindale Speedway|Inner|
+|19|Irwindale Speedway|Inner|:x:|
 |20|Homestead Miami Speedway|Oval|:heavy_check_mark:|
 |21|Homestead Miami Speedway|Road Course A|:heavy_check_mark:|
 |22|Homestead Miami Speedway|Road Course B|:heavy_check_mark:|
-|23|Irwindale Speedway|Outer|
+|23|Irwindale Speedway|Outer|:x:|
 |24|Summit Point Raceway|Short|:heavy_check_mark:|
 |26|Daytona International Speedway - 2007|Road Course|:heavy_check_mark:|
 |27|Daytona International Speedway - 2007|Oval|:heavy_check_mark:|
 |28|Daytona International Speedway - 2007|Moto|:heavy_check_mark:|
 |29|Daytona International Speedway - 2007|Short|:heavy_check_mark:|
-|30|Irwindale Speedway|Outer - Inner|
+|30|Irwindale Speedway|Outer - Inner|:x:|
 |31|Richmond Raceway||:heavy_check_mark:|
 |33|Martinsville Speedway||:heavy_check_mark:|
 |34|Lime Rock Park|Full Course|:heavy_check_mark:|
@@ -49,17 +49,17 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 |48|Sonoma Raceway|Cup Historic|:heavy_check_mark:|
 |49|Sonoma Raceway|IRL 2007|:heavy_check_mark:|
 |50|Road America|Bend|:heavy_check_mark:|
-|51|Atlanta Motor Speedway|Road Course|
-|52|Atlanta Motor Speedway|Legends Oval|
-|53|Atlanta Motor Speedway|Oval|
-|94|The Milwaukee Mile|
+|51|Atlanta Motor Speedway|Road Course|:x:|
+|52|Atlanta Motor Speedway|Legends Oval|:x:|
+|53|Atlanta Motor Speedway|Oval|:x:|
+|94|The Milwaukee Mile||:x:|
 |95|Sebring International Raceway|International|:heavy_check_mark:|
 |96|Sebring International Raceway|Modified|:heavy_check_mark:|
 |97|Sebring International Raceway|Club|:heavy_check_mark:|
 |98|Sonoma Raceway|Cup|:heavy_check_mark:|
 |99|Barber Motorsports Park|Short A|:heavy_check_mark:|
 |100|Barber Motorsports Park|Short B|:heavy_check_mark:|
-|101|Bristol Motor Speedway|
+|101|Bristol Motor Speedway||:x:|
 |102|Sonoma Raceway|IRL|:heavy_check_mark:|
 |103|Las Vegas Motor Speedway|Oval|:heavy_check_mark:|
 |104|Phoenix International Raceway - 2008|Oval|:heavy_check_mark:|
@@ -73,7 +73,7 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 |112|Las Vegas Motor Speedway|Road Course Short|:heavy_check_mark:|
 |113|Las Vegas Motor Speedway|Infield Legends Oval|:heavy_check_mark:|
 |114|Las Vegas Motor Speedway|Road Course Combined|:heavy_check_mark:|
-|115|Darlington Raceway|
+|115|Darlington Raceway||:x:|
 |116|Talladega Superspeedway||:heavy_check_mark:|
 |117|Texas Motor Speedway|Road Course Long|:heavy_check_mark:|
 |118|Texas Motor Speedway|Road Course Short A|:heavy_check_mark:|
@@ -81,7 +81,7 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 |120|Texas Motor Speedway|Legends Oval|:heavy_check_mark:|
 |121|Texas Motor Speedway|Oval|:heavy_check_mark:|
 |122|Texas Motor Speedway|Road Course Combined|:heavy_check_mark:|
-|123|Chicagoland Speedway|
+|123|Chicagoland Speedway||:x:|
 |124|Michigan International Speedway - 2014||:heavy_check_mark:|
 |126|Road Atlanta|Club|:heavy_check_mark:|
 |127|Road Atlanta|Full Course|:heavy_check_mark:|
@@ -119,7 +119,7 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 |159|Summit Point Raceway|School|:heavy_check_mark:|
 |160|Lime Rock Park|Full Course|:heavy_check_mark:|
 |161|Thompson Speedway Motorsports Park|Oval|:heavy_check_mark:|
-|162|Dover International Speedway|
+|162|Dover International Speedway||:x:|
 |163|Circuit de Spa-Francorchamps|Grand Prix Pits|:heavy_check_mark:|
 |164|Circuit de Spa-Francorchamps|Classic Pits|:heavy_check_mark:|
 |165|Circuit de Spa-Francorchamps|Endurance|:heavy_check_mark:|
@@ -144,9 +144,9 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 |185|Oulton Park Circuit|Intl w/no Chicanes|:heavy_check_mark:|
 |186|Oulton Park Circuit|Fosters w/Hislop|:heavy_check_mark:|
 |187|Oulton Park Circuit|Island Historic|:heavy_check_mark:|
-|188|Kentucky Speedway|Oval|
-|189|Kentucky Speedway|Legends|
-|190|New Smyrna Speedway|
+|188|Kentucky Speedway|Oval|:x:|
+|189|Kentucky Speedway|Legends|:x:|
+|190|New Smyrna Speedway||:x:|
 |191|Daytona International Speedway|Oval|:heavy_check_mark:|
 |192|Daytona International Speedway|Road Course|:heavy_check_mark:|
 |193|Daytona International Speedway|Moto|:heavy_check_mark:|
@@ -157,7 +157,7 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 |198|Twin Ring Motegi|Oval|:heavy_check_mark:|
 |199|Circuit Zolder|Grand Prix|:heavy_check_mark:|
 |200|Circuit Zolder|Alternate|:heavy_check_mark:|
-|201|Langley Speedway|
+|201|Langley Speedway||:x:|
 |202|Oran Park Raceway|Grand Prix|:heavy_check_mark:|
 |203|Rockingham Speedway|Oval|:heavy_check_mark:|
 |204|Rockingham Speedway|Road Course|:heavy_check_mark:|
@@ -170,27 +170,27 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 |211|Oran Park Raceway|Moto|:heavy_check_mark:|
 |212|Autódromo José Carlos Pace|Grand Prix|:heavy_check_mark:|
 |213|Autódromo José Carlos Pace|Moto|:heavy_check_mark:|
-|214|Kansas Speedway|Oval|
-|215|Kansas Speedway|Road Course|
-|216|Kansas Speedway|Infield Road Course|
-|217|Irwindale Speedway|Figure Eight|
+|214|Kansas Speedway|Oval|:x:|
+|215|Kansas Speedway|Road Course|:x:|
+|216|Kansas Speedway|Infield Road Course|:x:|
+|217|Irwindale Speedway|Figure Eight|:x:|
 |218|Circuit Gilles Villeneuve||:heavy_check_mark:|
 |219|Mount Panorama Circuit||:heavy_check_mark:|
 |222|New Hampshire Motor Speedway|Legends|:heavy_check_mark:|
-|225|Auto Club Speedway|Oval|
-|226|Auto Club Speedway|Competition|
-|227|Auto Club Speedway|Moto|
-|228|Auto Club Speedway|Interior|
+|225|Auto Club Speedway|Oval|:x:|
+|226|Auto Club Speedway|Competition|:x:|
+|227|Auto Club Speedway|Moto|:x:|
+|228|Auto Club Speedway|Interior|:x:|
 |229|Circuit of the Americas|Grand Prix|:heavy_check_mark:|
 |230|Circuit of the Americas|East|:heavy_check_mark:|
 |231|Circuit of the Americas|West|:heavy_check_mark:|
-|232|Lucas Oil Raceway|Oval|
+|232|Lucas Oil Raceway|Oval|:x:|
 |233|Donington Park Racing Circuit|Grand Prix|:heavy_check_mark:|
 |234|Donington Park Racing Circuit|National|:heavy_check_mark:|
 |235|ISM Raceway|Oval|:heavy_check_mark:|
 |236|ISM Raceway|Oval w/ open dogleg|:heavy_check_mark:|
-|237|Gateway Motorsports Park|Oval|
-|238|Gateway Motorsports Park|Road Course|
+|237|Gateway Motorsports Park|Oval|:x:|
+|238|Gateway Motorsports Park|Road Course|:x:|
 |239|Autodromo Nazionale Monza|Grand Prix|:heavy_check_mark:|
 |240|Autodromo Nazionale Monza|Combined without chicanes|:heavy_check_mark:|
 |241|Autodromo Nazionale Monza|Junior|:heavy_check_mark:|
@@ -200,13 +200,13 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 |245|Autodromo Nazionale Monza|Oval - Left turning|:heavy_check_mark:|
 |246|Autodromo Nazionale Monza|Combined without first chicane|:heavy_check_mark:|
 |247|Autodromo Nazionale Monza|Combined|:heavy_check_mark:|
-|248|Five Flags Speedway|
+|248|Five Flags Speedway||:x:|
 |249|Nürburgring Nordschleife|Industriefahrten|:heavy_check_mark:|
 |250|Nürburgring Grand-Prix-Strecke|Grand Prix|:heavy_check_mark:|
 |252|Nürburgring Combined|Gesamtstrecke 24h|:heavy_check_mark:|
 |253|Nürburgring Nordschleife|Touristenfahrten|:heavy_check_mark:|
 |255|Nürburgring Grand-Prix-Strecke|BES/WEC|:heavy_check_mark:|
-|256|Southern National Motorsports Park|
+|256|Southern National Motorsports Park||:x:|
 |257|Nürburgring Grand-Prix-Strecke|Grand Prix w/out Arena|:heavy_check_mark:|
 |259|Nürburgring Grand-Prix-Strecke|Sprintstrecke|:heavy_check_mark:|
 |260|Nürburgring Grand-Prix-Strecke|Kurzanbindung w/out Arena|:heavy_check_mark:|
