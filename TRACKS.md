@@ -225,12 +225,19 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 |298|Snetterton Circuit|200|:heavy_check_mark:|
 |299|Snetterton Circuit|100|:heavy_check_mark:|
 |319|Detroit Grand Prix at Belle Isle||:heavy_check_mark:|
+|324|Tsukuba Circuit|2000 Full|:heavy_check_mark:|
+|325|Tsukuba Circuit|2000 Moto|:heavy_check_mark:|
+|326|Tsukuba Circuit|2000 Short|:heavy_check_mark:|
+|327|Tsukuba Circuit|1000 Full|:heavy_check_mark:|
+|328|Tsukuba Circuit|1000 Outer|:heavy_check_mark:|
+|329|Tsukuba Circuit|1000 Chicane|:heavy_check_mark:|
 |330|Charlotte Motor Speedway|Roval 2018|:heavy_check_mark:|
 
 ## Not Supported
 |Track ID|Name|Config|
 |-|-|-|
 |143|Centripetal Circuit|
+|179|Long Beach Street Circui|
 |271|The Bullring|
 |276|Michigan International Speedway|
 |277|Pocono Raceway|
@@ -246,12 +253,6 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 |320|Kokomo Speedway|
 |322|Atlanta Motor Speedway|Rallycross Short|
 |323|Atlanta Motor Speedway|Rallycross Long|
-|324|Tsukuba Circuit|2000 Full|
-|325|Tsukuba Circuit|2000 Moto|
-|326|Tsukuba Circuit|2000 Short|
-|327|Tsukuba Circuit|1000 Full|
-|328|Tsukuba Circuit|1000 Outer|
-|329|Tsukuba Circuit|1000 Chicane|
 |331|Chili Bow|
 |332|Wild West Motorsports Park|
 |333|Tsukuba Circuit|1000 Full Reverse|
