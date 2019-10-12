@@ -241,6 +241,13 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 |329|Tsukuba Circuit|1000 Chicane|:heavy_check_mark:|
 |330|Charlotte Motor Speedway|Roval 2018|:heavy_check_mark:|
 |333|Tsukuba Circuit|1000 Full Reverse|:heavy_check_mark:|
+|335|Charlotte Motor Speedway|Legends Oval 2018|:heavy_check_mark:|
+|336|Charlotte Motor Speedway|Legends RC Long - 2018|:heavy_check_mark:|
+|337|Charlotte Motor Speedway|Legends RC Medium - 2018|:heavy_check_mark:|
+|338|Charlotte Motor Speedway|Legends RC Short - 2018|:heavy_check_mark:|
+|339|Charlotte Motor Speedway|Oval - 2018|:heavy_check_mark:|
+|340|Charlotte Motor Speedway|Roval Long - 2018|:heavy_check_mark:|
+|350|Charlotte Motor Speedway|Roval|:heavy_check_mark:|
 
 ## Not Supported
 |Track ID|Name|Config|
@@ -257,12 +264,6 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 |331|Chili Bow|
 |332|Wild West Motorsports Park|
 |334|Wild Horse Pass Motorsports Park|
-|335|Charlotte Motor Speedway|Legends Oval 2018|
-|336|Charlotte Motor Speedway|Legends RC Long - 2018|
-|337|Charlotte Motor Speedway|Legends RC Medium - 2018|
-|338|Charlotte Motor Speedway|Legends RC Short - 2018|
-|339|Charlotte Motor Speedway|Oval - 2018|
-|340|Charlotte Motor Speedway|Roval Long - 2018|
 |341|Silverstone Circuit|Grand Prix|
 |342|Silverstone Circuit|International|
 |343|Silverstone Circuit|National|
@@ -272,4 +273,3 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 |347|Circuit de Barcelona Catalunya|Club|
 |348|Circuit de Barcelona Catalunya|Moto|
 |349|Circuit de Barcelona Catalunya|Historic|
-|350|Charlotte Motor Speedway|Roval|
