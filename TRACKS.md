@@ -262,6 +262,7 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 |341|Silverstone Circuit|Grand Prix|:heavy_check_mark:|
 |342|Silverstone Circuit|International|:heavy_check_mark:|
 |343|Silverstone Circuit|National|:heavy_check_mark:|
+|344|Fairbury Speedway||:x:|
 |345|Circuit de Barcelona Catalunya|Grand Prix|:heavy_check_mark:|
 |346|Circuit de Barcelona Catalunya|National|:heavy_check_mark:|
 |347|Circuit de Barcelona Catalunya|Club|:heavy_check_mark:|
@@ -272,4 +273,3 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 ## Not Supported
 |Track ID|Name|Config|
 |-|-|-|
-|344|Fairbury Speedway|
