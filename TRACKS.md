@@ -225,6 +225,7 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 |276|Michigan International Speedway||:heavy_check_mark:|
 |277|Pocono Raceway||:heavy_check_mark:|
 |279|Volusia Speedway Park||:heavy_check_mark:|
+|286|Myrtle Beach Speedway||:x:|
 |288|Lanier National Speedway|Asphalt|:heavy_check_mark:|
 |293|Daytona International Speedway - 2007|Rallycross Long|:heavy_check_mark:|
 |296|Daytona International Speedway - 2007|Rallycross Short|:heavy_check_mark:|
@@ -261,7 +262,6 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 ## Not Supported
 |Track ID|Name|Config|
 |-|-|-|
-|286|Myrtle Beach Speedway|
 |303|Limaland Motorsports Park|
 |304|Lucas Oil Raceway|Rallycross|
 |305|Knoxville Raceway|
