@@ -239,6 +239,7 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 |312|Sonoma Raceway|Rallycross|:heavy_check_mark:|
 |314|The Dirt Track at Charlotte||:x:|
 |319|Detroit Grand Prix at Belle Isle||:heavy_check_mark:|
+|320|Kokomo Speedway||:x:|
 |324|Tsukuba Circuit|2000 Full|:heavy_check_mark:|
 |325|Tsukuba Circuit|2000 Moto|:heavy_check_mark:|
 |326|Tsukuba Circuit|2000 Short|:heavy_check_mark:|
@@ -266,7 +267,6 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 ## Not Supported
 |Track ID|Name|Config|
 |-|-|-|
-|320|Kokomo Speedway|
 |322|Atlanta Motor Speedway|Rallycross Short|
 |323|Atlanta Motor Speedway|Rallycross Long|
 |331|Chili Bow|
