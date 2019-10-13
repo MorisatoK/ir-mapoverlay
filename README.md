@@ -35,7 +35,7 @@ The accelerometer can be configured by heading your browser to `http://localhost
 Known bugs and limitations
 ==========================
 
-* Tested on most if not all of the road tracks and some of the ovals I own - being a road guy this leaves most of the ovals and some road tracks untested so YMMV.
+* Tested on most if not all of the road tracks and some of the ovals I own - see [overview](./TRACKS.md).
 * On some tracks the pit road is displayed on map but this is solely cosmetic.
 * Map works live and in replays but not when watching the replay in a live session.
 * The accelerometer only works when you are driving the car. This is intended.
