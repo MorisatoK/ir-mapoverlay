@@ -233,6 +233,7 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 |298|Snetterton Circuit|200|:heavy_check_mark:|
 |299|Snetterton Circuit|100|:heavy_check_mark:|
 |303|Limaland Motorsports Park||:x:|
+|304|Lucas Oil Raceway|Rallycross|:x:|
 |306|Phoenix International Raceway - 2008|Rallycross|:heavy_check_mark:|
 |312|Sonoma Raceway|Rallycross|:heavy_check_mark:|
 |319|Detroit Grand Prix at Belle Isle||:heavy_check_mark:|
@@ -263,7 +264,6 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 ## Not Supported
 |Track ID|Name|Config|
 |-|-|-|
-|304|Lucas Oil Raceway|Rallycross|
 |305|Knoxville Raceway|
 |314|The Dirt Track at Charlotte|
 |320|Kokomo Speedway|
