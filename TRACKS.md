@@ -250,6 +250,7 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 |329|Tsukuba Circuit|1000 Chicane|:heavy_check_mark:|
 |330|Charlotte Motor Speedway|Roval 2018|:heavy_check_mark:|
 |331|Chili Bowl||:x:|
+|332|Wild West Motorsports Park||:x:|
 |333|Tsukuba Circuit|1000 Full Reverse|:heavy_check_mark:|
 |335|Charlotte Motor Speedway|Legends Oval 2018|:heavy_check_mark:|
 |336|Charlotte Motor Speedway|Legends RC Long - 2018|:heavy_check_mark:|
@@ -270,6 +271,5 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 ## Not Supported
 |Track ID|Name|Config|
 |-|-|-|
-|332|Wild West Motorsports Park|
 |334|Wild Horse Pass Motorsports Park|
 |344|Fairbury Speedway|
