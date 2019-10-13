@@ -1,6 +1,10 @@
 # Track Overview
 
 Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
+|Status|Meaning|
+|-|-|
+|:heavy_check_mark:|I was able to test the trackmap in iRacing and line it up as good as possible with real track position.|
+|:x:|I was not able to test the trackmap in iRacing (aka I don't own the track). The map might not line up with real track position. Driving direction might not be correct. Start finish line position is more like an educated guess based on iRacing course info and other sources.|
 
 ## Supported
 |Track ID|Name|Config|Tested|
