@@ -218,6 +218,7 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 |267|Autodromo Internazionale Enzo e Dino Ferrari|Moto|:heavy_check_mark:|
 |268|Circuit des 24 Heures du Mans|24 Heures du Mans|:heavy_check_mark:|
 |269|Circuit des 24 Heures du Mans|Historic|:heavy_check_mark:|
+|271|The Bullring||:x:|
 |273|Eldora Speedway||:heavy_check_mark:|
 |274|Williams Grove Speedway||:heavy_check_mark:|
 |275|USA International Speedway|Dirt|:heavy_check_mark:|
@@ -260,7 +261,6 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 ## Not Supported
 |Track ID|Name|Config|
 |-|-|-|
-|271|The Bullring|
 |286|Myrtle Beach Speedway|
 |303|Limaland Motorsports Park|
 |304|Lucas Oil Raceway|Rallycross|
