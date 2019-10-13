@@ -1,4 +1,32 @@
 # iRacing TrackOverlay & Accelerometer Changelog
+### 1.7.10 - 2019-10-13
+
+##### Track Overlay
+
+* Updated SVG library
+* Added overview of supported and tested tracks
+* Add Circuit de Barcelona Catalunya
+* Add new Silverstone Circuit
+* Add new Charlotte Motor Speedway configs
+* Add Sonoma Rallycross config
+* Add Phoenix 2008 Rallycross config
+* Add new Michigan Speedway
+* Add new Pocono Raceway
+* Add Centripetal Circuit
+* Add Long Beach Tech Track
+* Add The Bullring
+* Add Myrtle Beach Speedway
+* Add Limaland Motorsports Park
+* Add Lucas Oil Raceway Rallycross config
+* Add Knoxville Raceway
+* Add The Dirt Track at Charlotte
+* Add Kokomo Speedway
+* Add Atlanta Motor Speedway Rallycross configs
+* Add Chili Bowl
+* Add Wild West Motorsports Park
+* Add Wild Horse Pass Motorsports Park
+* Add Fairbury Speedway
+
 ### 1.7.9 - 2019-01-20
 
 Never officialy released
