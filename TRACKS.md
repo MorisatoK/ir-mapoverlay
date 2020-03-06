@@ -278,12 +278,12 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 |352|Lime Rock Park|Classic|:heavy_check_mark:|
 |353|Lime Rock Park|Grand Prix|:heavy_check_mark:|
 |354|Lime Rock Park|Chicanes|:heavy_check_mark:|
+|355|Lime Rock Park|West Bend Chicane|:heavy_check_mark:|
 |358|Lånkebanen (Hell RX)|Rallycross|:x:|
 
 ## Not Supported
 |Track ID|Name|Config|
 |-|-|-|
-|355|Lime Rock Park|West Bend Chicane|
 |357|Texas Motor Speedway|Oval|
 |362|Homestead Miami Speedway|Indycar Oval|
 |364|Texas Motor Speedway|Legends Oval|
