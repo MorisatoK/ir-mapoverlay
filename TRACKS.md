@@ -10,7 +10,7 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 ## Supported
 |Track ID|Name|Config|Tested|
 |-|-|-|-|
-|1|Lime Rock Park|Full Course|:heavy_check_mark:|
+|1|Lime Rock Park - 2007|Full Course|:heavy_check_mark:|
 |2|Virginia International Raceway|Full Course|:heavy_check_mark:|
 |3|Virginia International Raceway|Patriot|:heavy_check_mark:|
 |4|Virginia International Raceway|North|:heavy_check_mark:|
@@ -39,7 +39,7 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 |30|Irwindale Speedway|Outer - Inner|:x:|
 |31|Richmond Raceway||:heavy_check_mark:|
 |33|Martinsville Speedway||:heavy_check_mark:|
-|34|Lime Rock Park|Full Course|:heavy_check_mark:|
+|34|Lime Rock Park - 2007|Full Course|:heavy_check_mark:|
 |37|Charlotte Motor Speedway - 2016|Road Course|:heavy_check_mark:|
 |38|Charlotte Motor Speedway - 2016|Infield Road Course|:heavy_check_mark:|
 |39|Charlotte Motor Speedway - 2016|Legends Oval|:heavy_check_mark:|
@@ -122,7 +122,7 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 |157|Mid-Ohio Sports Car Course|Alt Oval|:heavy_check_mark:|
 |158|WeatherTech Raceway at Laguna Seca|School|:heavy_check_mark:|
 |159|Summit Point Raceway|School|:heavy_check_mark:|
-|160|Lime Rock Park|Full Course|:heavy_check_mark:|
+|160|Lime Rock Park - 2007|Full Course|:heavy_check_mark:|
 |161|Thompson Speedway Motorsports Park|Oval|:heavy_check_mark:|
 |162|Dover International Speedway||:x:|
 |163|Circuit de Spa-Francorchamps|Grand Prix Pits|:heavy_check_mark:|
