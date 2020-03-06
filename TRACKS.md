@@ -274,13 +274,13 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 |348|Circuit de Barcelona Catalunya|Moto|:heavy_check_mark:|
 |349|Circuit de Barcelona Catalunya|Historic|:heavy_check_mark:|
 |350|Charlotte Motor Speedway|Roval|:heavy_check_mark:|
+|351|Lernerville Speedway|-|:heavy_check_mark:|
 
 ## Not Supported
 |Track ID|Name|Config|
 |-|-|-|
 |237|Worldwide Technology Raceway|Oval|
 |238|Worldwide Technology Raceway|Road|
-|351|Lernerville Speedway|-|
 |352|Lime Rock Park|Grand Prix|
 |353|Lime Rock Park|Classic|
 |354|Lime Rock Park|Chicanes|

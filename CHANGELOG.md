@@ -1,4 +1,10 @@
 # iRacing TrackOverlay & Accelerometer Changelog
+### 1.7.xx - 2020-xx-xx
+
+##### Track Overlay
+
+* Added Lernerville Speedway
+
 ### 1.7.10 - 2019-10-13
 
 ##### Track Overlay
