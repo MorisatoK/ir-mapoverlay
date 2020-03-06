@@ -275,13 +275,13 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 |349|Circuit de Barcelona Catalunya|Historic|:heavy_check_mark:|
 |350|Charlotte Motor Speedway|Roval|:heavy_check_mark:|
 |351|Lernerville Speedway|-|:x:|
+|352|Lime Rock Park|Classic|:heavy_check_mark:|
 |353|Lime Rock Park|Grand Prix|:heavy_check_mark:|
 |358|Lånkebanen (Hell RX)|Rallycross|:x:|
 
 ## Not Supported
 |Track ID|Name|Config|
 |-|-|-|
-|352|Lime Rock Park|Classic|
 |354|Lime Rock Park|Chicanes|
 |355|Lime Rock Park|West Bend Chicane|
 |357|Texas Motor Speedway|Oval|
