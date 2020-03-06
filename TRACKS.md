@@ -278,3 +278,11 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 ## Not Supported
 |Track ID|Name|Config|
 |-|-|-|
+|237|Worldwide Technology Raceway|Oval|
+|238|Worldwide Technology Raceway|Road|
+|351|Lernerville Speedway|-|
+|352|Lime Rock Park|Grand Prix|
+|353|Lime Rock Park|Classic|
+|354|Lime Rock Park|Chicanes|
+|355|Lime Rock Park|West Bend Chicane|
+|358|Lånkebanen (Hell RX)|-|
