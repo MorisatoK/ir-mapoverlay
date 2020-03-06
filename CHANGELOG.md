@@ -7,6 +7,7 @@
 * Add Lånkebanen (Hell RX)
 * Add new Lime Rock Park
 * Add new Texas Motor Speedway
+* Add Homestead Miami Speedway - Indycar Oval
 
 ### 1.7.10 - 2019-10-13
 
