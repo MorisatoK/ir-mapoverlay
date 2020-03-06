@@ -360,7 +360,7 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
             classBubble.show()
 
     updateMap = ->
-        if not ir.SessionInfo or not ir.SessionInfo.Sessions[ir.SessionNum]
+        if not ir.SessionInfo or not ir.SessionInfo.Sessions[ir.SessionNum] or not mapVars.trackMap
             return
 
         if ir.SessionInfo.Sessions[ir.SessionNum].SessionType == 'Race'
@@ -442,6 +442,9 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
 
 
     getDriverCoords = (carIdxDist) ->
+        if not mapVars.track
+            return
+            
         if mapVars.extendedTrack && carIdxDist >= 1
             driverCoords = mapVars.extendedTrack.pointAt(mapVars.extendedTrackLength*((carIdxDist - 1) / (mapVars.extendedTrackMaxDist - 1)))
         else
