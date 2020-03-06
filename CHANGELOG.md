@@ -1,5 +1,5 @@
 # iRacing TrackOverlay & Accelerometer Changelog
-### 1.7.xx - 2020-xx-xx
+### 1.7.11 - 2020-03-07
 
 ##### Track Overlay
 
@@ -8,6 +8,7 @@
 * Add new Lime Rock Park
 * Add new Texas Motor Speedway
 * Add Homestead Miami Speedway - Indycar Oval
+* Fix Sebring International Raceway - Club
 
 ### 1.7.10 - 2019-10-13
 
