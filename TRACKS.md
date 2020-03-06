@@ -80,12 +80,12 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 |114|Las Vegas Motor Speedway|Road Course Combined|:heavy_check_mark:|
 |115|Darlington Raceway||:x:|
 |116|Talladega Superspeedway||:heavy_check_mark:|
-|117|Texas Motor Speedway|Road Course Long|:heavy_check_mark:|
-|118|Texas Motor Speedway|Road Course Short A|:heavy_check_mark:|
-|119|Texas Motor Speedway|Road Course Short B|:heavy_check_mark:|
-|120|Texas Motor Speedway|Legends Oval|:heavy_check_mark:|
-|121|Texas Motor Speedway|Oval|:heavy_check_mark:|
-|122|Texas Motor Speedway|Road Course Combined|:heavy_check_mark:|
+|117|Texas Motor Speedway - 2009|Road Course Long|:heavy_check_mark:|
+|118|Texas Motor Speedway - 2009|Road Course Short A|:heavy_check_mark:|
+|119|Texas Motor Speedway - 2009|Road Course Short B|:heavy_check_mark:|
+|120|Texas Motor Speedway - 2009|Legends Oval|:heavy_check_mark:|
+|121|Texas Motor Speedway - 2009|Oval|:heavy_check_mark:|
+|122|Texas Motor Speedway - 2009|Road Course Combined|:heavy_check_mark:|
 |123|Chicagoland Speedway||:x:|
 |124|Michigan International Speedway - 2014||:heavy_check_mark:|
 |126|Road Atlanta|Club|:heavy_check_mark:|
@@ -194,8 +194,8 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 |234|Donington Park Racing Circuit|National|:heavy_check_mark:|
 |235|ISM Raceway|Oval|:heavy_check_mark:|
 |236|ISM Raceway|Oval w/ open dogleg|:heavy_check_mark:|
-|237|Gateway Motorsports Park|Oval|:x:|
-|238|Gateway Motorsports Park|Road Course|:x:|
+|237|Worldwide Technology Raceway|Oval|:x:|
+|238|Worldwide Technology Raceway|Road Course|:x:|
 |239|Autodromo Nazionale Monza|Grand Prix|:heavy_check_mark:|
 |240|Autodromo Nazionale Monza|Combined without chicanes|:heavy_check_mark:|
 |241|Autodromo Nazionale Monza|Junior|:heavy_check_mark:|
@@ -279,10 +279,11 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 ## Not Supported
 |Track ID|Name|Config|
 |-|-|-|
-|237|Worldwide Technology Raceway|Oval|
-|238|Worldwide Technology Raceway|Road|
 |352|Lime Rock Park|Grand Prix|
 |353|Lime Rock Park|Classic|
 |354|Lime Rock Park|Chicanes|
 |355|Lime Rock Park|West Bend Chicane|
-|358|Lånkebanen (Hell RX)|-|
+|357|Texas Motor Speedway|Oval|
+|358|Lånkebanen (Hell RX)|Rallycross|
+|362|Homestead Miami Speedway|Indycar Oval|
+|364|Texas Motor Speedway|Legends Oval|
