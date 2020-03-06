@@ -39,7 +39,7 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 |30|Irwindale Speedway|Outer - Inner|:x:|
 |31|Richmond Raceway||:heavy_check_mark:|
 |33|Martinsville Speedway||:heavy_check_mark:|
-|34|Lime Rock Park - 2007|Full Course|:heavy_check_mark:|
+|34|Lime Rock Park - 2007|Road Course w/ Chicane|:heavy_check_mark:|
 |37|Charlotte Motor Speedway - 2016|Road Course|:heavy_check_mark:|
 |38|Charlotte Motor Speedway - 2016|Infield Road Course|:heavy_check_mark:|
 |39|Charlotte Motor Speedway - 2016|Legends Oval|:heavy_check_mark:|
@@ -275,13 +275,13 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 |349|Circuit de Barcelona Catalunya|Historic|:heavy_check_mark:|
 |350|Charlotte Motor Speedway|Roval|:heavy_check_mark:|
 |351|Lernerville Speedway|-|:x:|
+|353|Lime Rock Park|Grand Prix|:heavy_check_mark:|
 |358|Lånkebanen (Hell RX)|Rallycross|:x:|
 
 ## Not Supported
 |Track ID|Name|Config|
 |-|-|-|
-|352|Lime Rock Park|Grand Prix|
-|353|Lime Rock Park|Classic|
+|352|Lime Rock Park|Classic|
 |354|Lime Rock Park|Chicanes|
 |355|Lime Rock Park|West Bend Chicane|
 |357|Texas Motor Speedway|Oval|
