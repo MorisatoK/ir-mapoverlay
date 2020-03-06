@@ -274,7 +274,8 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 |348|Circuit de Barcelona Catalunya|Moto|:heavy_check_mark:|
 |349|Circuit de Barcelona Catalunya|Historic|:heavy_check_mark:|
 |350|Charlotte Motor Speedway|Roval|:heavy_check_mark:|
-|351|Lernerville Speedway|-|:heavy_check_mark:|
+|351|Lernerville Speedway|-|:x:|
+|358|Lånkebanen (Hell RX)|Rallycross|:x:|
 
 ## Not Supported
 |Track ID|Name|Config|
@@ -284,6 +285,5 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 |354|Lime Rock Park|Chicanes|
 |355|Lime Rock Park|West Bend Chicane|
 |357|Texas Motor Speedway|Oval|
-|358|Lånkebanen (Hell RX)|Rallycross|
 |362|Homestead Miami Speedway|Indycar Oval|
 |364|Texas Motor Speedway|Legends Oval|

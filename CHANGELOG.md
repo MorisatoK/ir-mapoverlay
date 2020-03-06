@@ -3,7 +3,8 @@
 
 ##### Track Overlay
 
-* Added Lernerville Speedway
+* Add Lernerville Speedway
+* Add Lånkebanen (Hell RX)
 
 ### 1.7.10 - 2019-10-13
 
