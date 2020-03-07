@@ -39,3 +39,4 @@ Known bugs and limitations
 * On some tracks the pit road is displayed on map but this is solely cosmetic.
 * Map works live and in replays but not when watching the replay in a live session.
 * The accelerometer only works when you are driving the car. This is intended.
+* Under some circumstances (most likely too many high fps connections) to the iRacing Browser Server the map overlay may start to lag. Refreshing will help.

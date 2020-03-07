@@ -1,4 +1,10 @@
 # iRacing TrackOverlay & Accelerometer Changelog
+### 1.8.0 - 2020-03-07
+
+##### Track Overlay
+
+* Locked FPS to 15 to reduce issues with lagging map. Seems to be a server/networking issue where the Websocket can not keep up with high FPS rates/high number of updates.
+
 ### 1.7.11 - 2020-03-07
 
 ##### Track Overlay
