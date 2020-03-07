@@ -8,13 +8,13 @@
 			</div>
 
 			<!-- system -->
-			<div class="panel panel-default">
+			<div ng-if="!isDefaultHost" class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">System</h3>
 				</div>
 				<div class="panel-body">
 					<!-- host -->
-					<div ng-if="!isDefaultHost" class="form-group">
+					<div class="form-group">
 						<label for="inputHost" class="col-sm-3 control-label">Server</label>
 						<div class="col-sm-3">
 							<input ng-model="settings.host" ng-change="saveSettings()" type="text" class="form-control" id="inputHost" placeholder="127.0.0.1:8182" />
@@ -24,7 +24,7 @@
 						</div>
 					</div>
 					<!-- fps -->
-					<div class="form-group">
+					<!-- <div class="form-group">
 						<label for="inputFps" class="col-sm-3 control-label">FPS</label>
 						<div class="col-sm-2">
 							<input ng-model="settings.fps" ng-change="saveSettings()" type="number" class="form-control" id="inputFps" min="1" max="60" />
@@ -32,7 +32,7 @@
 						<div class="col-sm-7">
 							<span class="help-block">How often server will send data (1-60). <em>This option is CPU expensive</em>.</span>
 						</div>
-					</div>
+					</div> -->
 				</div>
 			</div>
 

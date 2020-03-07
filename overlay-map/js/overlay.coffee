@@ -9,8 +9,10 @@ app.config ($locationProvider) ->
 app.service 'config', ($location) ->
     vars = $location.search()
 
-    fps = parseInt(vars.fps) or 15
-    fps = Math.max 1, Math.min 60, fps
+    # deactivated, possible issue with server causing lagging animation
+    #fps = parseInt(vars.fps) or 15
+    #fps = Math.max 1, Math.min 60, fps
+    fps = 15
 
     baseStrokeWidth = parseInt(vars.trackWidth) or 10
     baseStrokeWidth = Math.max 1, Math.min 30, baseStrokeWidth
