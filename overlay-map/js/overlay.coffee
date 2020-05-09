@@ -9,10 +9,8 @@ app.config ($locationProvider) ->
 app.service 'config', ($location) ->
     vars = $location.search()
 
-    # deactivated, possible issue with server causing lagging animation
-    #fps = parseInt(vars.fps) or 15
-    #fps = Math.max 1, Math.min 60, fps
-    fps = 15
+    fps = parseInt(vars.fps) or 30
+    fps = Math.max 1, Math.min 60, fps
 
     baseStrokeWidth = parseInt(vars.trackWidth) or 10
     baseStrokeWidth = Math.max 1, Math.min 30, baseStrokeWidth
@@ -226,22 +224,17 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
             mapVars.skipCars = 0
             mapVars.drivers = {}
 
-    $scope.$watch 'ir.WeekendInfo', ->
-        if not ir.WeekendInfo
+    $scope.$watchGroup ['ir.WeekendInfo', 'ir.DriverInfo', 'ir.SessionInfo'], ->
+        if not ir.WeekendInfo or not ir.DriverInfo or not ir.SessionInfo
             return
 
-        trackId = ir.WeekendInfo.TrackID
-
-        setTimeout ( ->
-            initMap(trackId)
-        ), 1000
-
-        $scope.$watch 'ir.CarIdxLapDistPct', drawMap
-        $scope.$watch 'ir.CamCarIdx', watchCamCar
-        $scope.$watch 'ir.CarIdxOnPitRoad', watchPitRoad
-        $scope.$watch 'ir.CarIdxTrackSurface', watchOfftracks
-        $scope.$watch 'ir.PositionsByCarIdx', watchPositions, true
-        $scope.$watch 'ir.SessionNum', watchSessionNum
+        do waitCSS = ->
+            setTimeout ->
+                if not $element[0].getBoundingClientRect().height
+                    do waitCSS
+                else if not mapVars.trackMap and ir.WeekendInfo?.TrackID
+                    initMap ir.WeekendInfo.TrackID
+            , 1
 
     checkTrackOverlayHide = ->
         if not ir.WeekendInfo or ir.WeekendInfo.SimMode == 'replay'
@@ -294,17 +287,17 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
         if config.showSectors
             drawSectors()
 
-    drawMap = ->
+    $scope.$watch 'ir.CarIdxLapDistPct', drawMap = ->
         requestAnimationFrame(updateMap)
 
-    watchCamCar = ->
+    $scope.$watch 'ir.CamCarIdx', watchCamCar = ->
         for index, driver of mapVars.drivers
             driver.get(0).attr(config.mapOptions.styles.driver.default)
 
         if !!mapVars.drivers[ir.CamCarIdx]
             mapVars.drivers[ir.CamCarIdx].get(0).attr(config.mapOptions.styles.driver.camera)
 
-    watchPitRoad = ->
+    $scope.$watch 'ir.CarIdxOnPitRoad', watchPitRoad = ->
         if not ir.CarIdxOnPitRoad
             return
 
@@ -317,7 +310,7 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
             else if !!mapVars.drivers[carIdx]
                 mapVars.drivers[carIdx].attr(config.mapOptions.styles.driver.onTrack)
 
-    watchOfftracks = (n, o) ->
+    $scope.$watch 'ir.CarIdxTrackSurface', watchOfftracks = (n, o) ->
         if not n or not o
             return
 
@@ -333,7 +326,7 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
                 if carIdx == ir.CamCarIdx
                     mapVars.drivers[carIdx].get(0).attr(config.mapOptions.styles.driver.camera)
 
-    watchPositions = ->
+    $scope.$watch 'ir.PositionsByCarIdx', watchPositions = ->
         if not ir.PositionsByCarIdx
             return
 
@@ -341,8 +334,9 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
             if !!mapVars.drivers[carIdx]
                 driverPosition = if driver.ClassPosition == -1 then driver.Position else driver.ClassPosition + 1
                 mapVars.drivers[carIdx].get(1).plain(driverPosition).attr(config.mapOptions.styles.driver.posNum).center(0, 0)
+    , true
 
-    watchSessionNum = (n, o) ->
+    $scope.$watch 'ir.SessionNum', watchSessionNum = (n, o) ->
         if not n? or not ir.DriversByCarIdx
             return
 
@@ -446,7 +440,7 @@ app.controller 'MapCtrl', ($scope, $element, iRData, config) ->
     getDriverCoords = (carIdxDist) ->
         if not mapVars.track
             return
-            
+
         if mapVars.extendedTrack && carIdxDist >= 1
             driverCoords = mapVars.extendedTrack.pointAt(mapVars.extendedTrackLength*((carIdxDist - 1) / (mapVars.extendedTrackMaxDist - 1)))
         else
