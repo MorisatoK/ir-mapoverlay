@@ -282,6 +282,7 @@ Overview of iRacing tracks the trackmap supports and if the trackmap is tested.
 |357|Texas Motor Speedway|Oval|:heavy_check_mark:|
 |358|Lånkebanen (Hell RX)|Rallycross|:x:|
 |359|Lånkebanen (Hell RX)|Club|:x:|
+|360|Lånkebanen (Hell RX)|Rallycross Short|:x:|
 |362|Homestead Miami Speedway|Indycar Oval|:heavy_check_mark:|
 |364|Texas Motor Speedway|Legends Oval|:heavy_check_mark:|
 |365|Bristol|Legacy?|:x:|
