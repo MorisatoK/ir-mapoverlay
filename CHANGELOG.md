@@ -1,4 +1,13 @@
 # iRacing TrackOverlay & Accelerometer Changelog
+### 1.9.0 - 2020-05-16
+
+##### Track Overlay
+
+* Thanks to kutu the stuttering issues should be mostly gone now. FPS configuration has been restored and defaults to 30 now.
+* Add North Wilkesboro
+* Add Bristol (presumably legacy? Track ID 365 leads to Bristol on iRacing website)
+* Add new Lånkebanen configurations (very likely all over the place, iRacing has no indications for directions and start/finish on their track info)
+
 ### 1.8.0 - 2020-03-07
 
 ##### Track Overlay
