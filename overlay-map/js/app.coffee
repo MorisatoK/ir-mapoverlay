@@ -29,7 +29,7 @@ app.run ($rootScope, $sce) ->
 app.controller 'SettingsCtrl', ($scope, localStorageService) ->
     defaultSettings =
         host: 'localhost:8182'
-        #fps: 15
+        fps: 30
         trackColor: '#000000'
         trackWidth: 10
         trackOutlineColor: '#FFFFFF'
@@ -51,7 +51,7 @@ app.controller 'SettingsCtrl', ($scope, localStorageService) ->
 
     $scope.settings = settings = localStorageService.get('settings') or {}
     settings.host ?= null
-    #settings.fps ?= defaultSettings.fps
+    settings.fps ?= defaultSettings.fps
     settings.trackColor ?= defaultSettings.trackColor
     settings.trackWidth ?= defaultSettings.trackWidth
     settings.trackOutlineColor ?= defaultSettings.trackOutlineColor
@@ -70,13 +70,13 @@ app.controller 'SettingsCtrl', ($scope, localStorageService) ->
     settings.driverGroups ?= defaultSettings.driverGroups
 
     $scope.saveSettings = saveSettings = ->
-        #settings.fps = Math.min 60, Math.max(1, settings.fps)
+        settings.fps = Math.min 60, Math.max(1, settings.fps)
         localStorageService.set 'settings', settings
         updateURL()
 
     actualKeys = [
         'host'
-        #'fps'
+        'fps'
         'trackColor'
         'trackWidth'
         'trackOutlineColor'
@@ -142,7 +142,7 @@ app.controller 'SettingsCtrl', ($scope, localStorageService) ->
 
     $scope.addGroup = ->
         settings.driverGroups.push {'ids':'', 'color': ''}
-      
+
     $scope.removeGroup = (element) ->
         settings.driverGroups.splice this.$index, 1
         saveSettings()
