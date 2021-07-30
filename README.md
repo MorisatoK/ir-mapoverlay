@@ -1,3 +1,6 @@
+# :warning::warning::warning: <br/> 2021/07/30 - No longer maintained and repository archived since the trackmap is now a core functionality of Kapps. <br/> :warning::warning::warning:
+
+
 iRacing TrackOverlay & Accelerometer 
 ====================================
 
